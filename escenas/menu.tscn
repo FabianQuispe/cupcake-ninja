@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://csafoik0a3g7e"]
+
+[ext_resource type="Script" uid="uid://8j0u0jsu34xq" path="res://scripts/menu.gd" id="1_d7r87"]
+[ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="1_vdanu"]
+[ext_resource type="Texture2D" uid="uid://c7ipfi53ii8py" path="res://fondos/fondo_1.png" id="2_2owot"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6cq3m"]
+texture = ExtResource("2_2owot")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouk20"]
+atlas = ExtResource("1_vdanu")
+region = Rect2(0, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mae5d"]
+atlas = ExtResource("1_vdanu")
+region = Rect2(96, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hy44"]
+atlas = ExtResource("1_vdanu")
+region = Rect2(48, 0, 44, 32)
+
+[node name="Control" type="Control" unique_id=271450989]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d7r87")
+
+[node name="Panel" type="Panel" parent="." unique_id=1752294917]
+texture_filter = 1
+layout_mode = 0
+offset_right = 320.11096
+offset_bottom = 180.0
+scale = Vector2(3.605, 3.605)
+theme_override_styles/panel = SubResource("StyleBoxTexture_6cq3m")
+
+[node name="Botones" type="Node2D" parent="." unique_id=1226314483]
+
+[node name="BotonJugar" type="TextureButton" parent="Botones" unique_id=643307385]
+texture_filter = 1
+offset_left = 463.0
+offset_top = 269.0
+offset_right = 507.0
+offset_bottom = 301.0
+scale = Vector2(4.6380033, 3.1180058)
+texture_normal = SubResource("AtlasTexture_ouk20")
+texture_pressed = SubResource("AtlasTexture_mae5d")
+texture_hover = SubResource("AtlasTexture_4hy44")
+
+[node name="Jugar" type="Label" parent="Botones/BotonJugar" unique_id=1090816870]
+layout_mode = 0
+offset_left = 12.720987
+offset_top = 8.659378
+offset_right = 202.721
+offset_bottom = 73.65938
+scale = Vector2(0.15259326, 0.23117486)
+theme_override_font_sizes/font_size = 47
+text = "Jugar"
+
+[node name="BotonTutorial" type="TextureButton" parent="Botones" unique_id=1455501644]
+texture_filter = 1
+offset_left = 463.0
+offset_top = 382.0
+offset_right = 507.0
+offset_bottom = 414.0
+scale = Vector2(4.6380033, 3.1180058)
+texture_normal = SubResource("AtlasTexture_ouk20")
+texture_pressed = SubResource("AtlasTexture_mae5d")
+texture_hover = SubResource("AtlasTexture_4hy44")
+
+[node name="Tutorial" type="Label" parent="Botones/BotonTutorial" unique_id=652969108]
+layout_mode = 0
+offset_left = 7.1151276
+offset_top = 8.659378
+offset_right = 197.11513
+offset_bottom = 73.65938
+scale = Vector2(0.15259326, 0.23117486)
+theme_override_font_sizes/font_size = 47
+text = "Tutorial"
+
+[node name="BotonCreditos" type="TextureButton" parent="Botones" unique_id=1853832091]
+texture_filter = 1
+offset_left = 463.0
+offset_top = 490.0
+offset_right = 507.0
+offset_bottom = 522.0
+scale = Vector2(4.6380033, 3.1180058)
+texture_normal = SubResource("AtlasTexture_ouk20")
+texture_pressed = SubResource("AtlasTexture_mae5d")
+texture_hover = SubResource("AtlasTexture_4hy44")
+
+[node name="Creditos" type="Label" parent="Botones/BotonCreditos" unique_id=1602084776]
+layout_mode = 0
+offset_left = 7.1151276
+offset_top = 8.659378
+offset_right = 197.11513
+offset_bottom = 73.65938
+scale = Vector2(0.15259326, 0.23117486)
+theme_override_font_sizes/font_size = 47
+text = "Creditos"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=113970228]
+
+[connection signal="pressed" from="Botones/BotonJugar" to="." method="_on_boton_jugar_pressed"]
+[connection signal="pressed" from="Botones/BotonCreditos" to="." method="_on_boton_creditos_pressed"]
