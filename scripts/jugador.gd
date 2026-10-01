@@ -3,6 +3,7 @@ extends Personaje
 
 signal movimiento_terminado(direccion: Vector2)
 signal ataque_realizado(posicion: Vector2, direccion: Vector2, alcance: float, danio: int)
+signal vidas_cambiadas (vidas_actuales: int)
 
 enum Estado { IDLE, SLIDING }
 
@@ -13,6 +14,7 @@ enum Estado { IDLE, SLIDING }
 var estado := Estado.IDLE
 var direccion := Vector2.RIGHT
 var power_up_disponible: PowerUp
+var vidas_restantes: int = 3
 var escudo_activo := false
 var turnos_escudo := 0
 var raycast_trayectoria: RayCast2D
@@ -23,10 +25,9 @@ var _hay_toque := false
 var _destello_ataque := 0.0
 var _tiempo_invulnerable := 0.0
 
-
 func _ready() -> void:
 	nombre = "Jugador"
-	vida = 100
+	vida = 3
 	var forma := CollisionShape2D.new()
 	var circulo := CircleShape2D.new()
 	circulo.radius = 16.0
@@ -155,7 +156,11 @@ func recibir_dano(cantidad: int) -> void:
 		return
 	_tiempo_invulnerable = 0.35
 	super.recibir_dano(cantidad)
-
+	if vida <= 0:
+		vidas_restantes -= 1
+		vidas_cambiadas.emit(vidas_restantes)
+		if vidas_restantes > 0:
+			vida = 3
 
 func usar_power_up(power_up: PowerUp) -> void:
 	if power_up_disponible != null:

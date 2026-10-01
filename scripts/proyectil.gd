@@ -3,7 +3,7 @@ extends Node2D
 
 var direccion := Vector2.RIGHT
 var velocidad := 520.0
-var danio := 10
+var danio := 1
 
 
 func avanzar(delta: float) -> void:

@@ -1,7 +1,7 @@
 class_name Trampa
 extends Node2D
 
-var danio: int = 10
+var danio: int = 1
 var activada := false
 
 

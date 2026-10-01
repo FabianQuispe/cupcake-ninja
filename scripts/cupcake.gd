@@ -4,6 +4,7 @@ var game_manager := GameManager.new()
 var jugador: Jugador
 var enemigos: Array[Enemigo] = []
 var nivel: Nivel
+var hud_vida: HudVida
 var estado_label: Label
 var ayuda_label: Label
 var objetivo_label: Label
@@ -22,6 +23,9 @@ func _ready() -> void:
 	_crear_hud()
 	_crear_paredes()
 	_crear_jugador()
+	hud_vida = preload("res://escenas/hud_vida.tscn").instantiate()
+	add_child(hud_vida)
+	jugador.vida_cambiada.connect(hud_vida.actualizar_vidas)
 	_crear_enemigos()
 	_crear_trampas()
 	_crear_power_ups()
@@ -88,7 +92,7 @@ func _crear_hud() -> void:
 func _crear_jugador() -> void:
 	jugador = Jugador.new()
 	jugador.position = Vector2(576, 330)
-	jugador.danio_disparo = 5
+	jugador.danio_disparo = 1
 	game_manager.jugador = jugador
 	jugador.movimiento_terminado.connect(_resolver_turno)
 	jugador.ataque_realizado.connect(_resolver_ataque)
@@ -125,7 +129,7 @@ func _crear_enemigo(posicion: Vector2, tipo: String) -> void:
 	enemigo.tipo = tipo
 	enemigo.objetivo = jugador
 	enemigo.velocidad = 42.0
-	enemigo.danio_contacto = 8
+	enemigo.danio_contacto = 1
 	enemigos.append(enemigo)
 	add_child(enemigo)
 
@@ -154,14 +158,14 @@ func _crear_trampas() -> void:
 	for posicion in [Vector2(430, 235), Vector2(700, 470), Vector2(1000, 360)]:
 		var trampa := Trampa.new()
 		trampa.position = posicion
-		trampa.danio = 12
+		trampa.danio = 1
 		nivel.agregar_trampa(trampa)
 		add_child(trampa)
 
 
 func _crear_power_ups() -> void:
 	var vida := PowerUpVida.new()
-	vida.cantidad_vidas = 20
+	vida.cantidad_vidas = 3
 	jugador.power_up_disponible = vida
 
 

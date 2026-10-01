@@ -1,7 +1,7 @@
 class_name PowerUpVida
 extends PowerUp
 
-var cantidad_vidas: int = 20
+var cantidad_vidas: int = 3
 
 
 func aplicar_vida(jugador: Jugador) -> void:

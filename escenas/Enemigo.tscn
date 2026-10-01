@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://jmaqdv1c3xvr"]
+
+[sub_resource type="GDScript" id="GDScript_6ea73"]
+script/source = "extends Personaje
+
+class_name Enemigo
+
+func _ready() -> void:
+	vida = 3
+
+func morir() -> void:
+	super.morir()
+
+"
+
+[node name="Node2D" type="Node2D" unique_id=887736071]
+script = SubResource("GDScript_6ea73")

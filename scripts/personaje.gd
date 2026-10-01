@@ -4,9 +4,9 @@ extends CharacterBody2D
 signal vida_cambiada(vida_actual: int)
 
 var nombre: String = "Personaje"
-var vida: int = 100
+var vida: int = 3
 var velocidad: float = 220.0
-var danio_disparo: int = 10
+var danio_disparo: int = 1
 
 
 func mover(direccion: Vector2) -> void:
