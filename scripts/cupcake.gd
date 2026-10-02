@@ -15,7 +15,8 @@ var generador_aleatorio := RandomNumberGenerator.new()
 func _ready() -> void:
 	generador_aleatorio.randomize()
 	game_manager.jugador = null
-	game_manager.nivel = Nivel.new(1, "Sobrevive y consigue 100 puntos")
+	game_manager.nivel = Nivel.new(1, "Sobrevive y consigue 100 puntos")#reemplazar por el de abajo luego 
+	#game_manager.cargar_mundos(_crear_mundos())
 	nivel = game_manager.nivel
 	add_child(game_manager)
 	game_manager.iniciar_juego()
@@ -29,6 +30,30 @@ func _ready() -> void:
 	_crear_enemigos()
 	_crear_trampas()
 	_crear_power_ups()
+	
+func _crear_mundos() -> Array[Mundo]:
+	var mundos: Array[Mundo] = []
+	
+	var mundo_dulce := Mundo.new(Mundo.estado_mundo.activo)
+	mundo_dulce.añadir_nivel(NivelNormal.new(1,"Nivel 1, consigue 100 puntos"))
+	mundo_dulce.añadir_nivel(NivelIntermedio.new(2, "Nivel 2, contrareloj"))
+	mundo_dulce.añadir_nivel(NivelDificil.new(3, "Nivel 3, dificil"))
+	mundos.append (mundo_dulce)
+	
+	var mundo_salado := Mundo.new(Mundo.estado_mundo.activo)
+	mundo_salado.añadir_nivel(NivelNormal.new(1, "Nivel 1, salado"))
+	mundo_salado.añadir_nivel(NivelIntermedio.new(2, "Nivel 2, salado"))
+	mundo_salado.añadir_nivel(NivelDificil.new(3, "Nivel 3, salado"))
+	mundos.append(mundo_salado)
+	
+	var mundo_minas := Mundo.new(Mundo.estado_mundo.activo)
+	mundo_minas.añadir_nivel(NivelNormal.new(1, "Nivel 1, minas"))
+	mundo_minas.añadir_nivel(NivelIntermedio.new(2, "Nivel 2, minas"))
+	mundo_minas.añadir_nivel(NivelDificil.new(3, "Nivel 3, minas"))
+	mundos.append(mundo_salado)
+	
+	return mundos
+	
 	_actualizar_hud()
 
 

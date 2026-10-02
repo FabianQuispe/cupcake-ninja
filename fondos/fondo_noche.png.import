@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnj1hjkyxdd52"
-path="res://.godot/imported/cupcake_sprite.png-0139729c6e739c41d39d71da16838558.ctex"
+uid="uid://qxt0krxwkuh0"
+path="res://.godot/imported/fondo_noche.png-4dc88c05fe1075c9083c783bf2cf8531.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites-assets/personajes/cupcake_sprite.png"
-dest_files=["res://.godot/imported/cupcake_sprite.png-0139729c6e739c41d39d71da16838558.ctex"]
+source_file="res://fondos/fondo_noche.png"
+dest_files=["res://.godot/imported/fondo_noche.png-4dc88c05fe1075c9083c783bf2cf8531.ctex"]
 
 [params]
 
