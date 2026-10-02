@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbtnds8un56y"]
 
-[ext_resource type="Script" uid="uid://cw436v8rqe4gr" path="res://hud_vida.gd" id="1_dp305"]
+[ext_resource type="Script" uid="uid://cw436v8rqe4gr" path="res://scripts/hud_vida.gd" id="1_dp305"]
 [ext_resource type="Texture2D" uid="uid://pvcgw1v7k6ap" path="res://sprites-assets/vida/vida.png" id="1_i33c0"]
 [ext_resource type="Texture2D" uid="uid://cidmq2cy4eyp3" path="res://sprites-assets/vida/sin_vida.png" id="3_qh0ce"]
 
