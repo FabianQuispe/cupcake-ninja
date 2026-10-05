@@ -8,13 +8,15 @@ var _estado: estado_mundo = estado_mundo.desactivo
 
 func _init(estado_mundo_inicial: estado_mundo = estado_mundo.desactivo) -> void:
 	_estado = estado_mundo_inicial
-	
+
 func añadir_nivel(nivel:Nivel) -> void:
 	niveles.append (nivel)
-	
+
+func activar() -> void:
+	_estado = estado_mundo.activo
+
 func desactivar() -> void:
-	if _estado == estado_mundo.desactivo:
-		_estado == estado_mundo.activo
+	_estado = estado_mundo.desactivo
 
 func completar_mundo() -> void:
-	_estado= estado_mundo.completo
+	_estado = estado_mundo.completo

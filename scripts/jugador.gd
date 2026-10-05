@@ -6,11 +6,10 @@ signal ataque_realizado(posicion: Vector2, direccion: Vector2, alcance: float, d
 signal vidas_cambiadas (vidas_actuales: int)
 
 enum Estado { IDLE, SLIDING }
-
 @export var tamano_casilla := 48.0
 @export var velocidad_deslizamiento := 240.0
 @export var alcance_ataque := 96.0
-
+@onready var sprite: Sprite2D = $Cupcake
 var estado := Estado.IDLE
 var direccion := Vector2.RIGHT
 var power_up_disponible: PowerUp
@@ -28,9 +27,10 @@ var _tiempo_invulnerable := 0.0
 func _ready() -> void:
 	nombre = "Jugador"
 	vida = 3
+	sprite.scale = Vector2(0.3, 0.3)
 	var forma := CollisionShape2D.new()
 	var circulo := CircleShape2D.new()
-	circulo.radius = 16.0
+	circulo.radius = 8.0
 	forma.shape = circulo
 	add_child(forma)
 
@@ -98,10 +98,22 @@ func iniciar_deslizamiento(nueva_direccion: Vector2) -> void:
 	if nueva_direccion == Vector2.ZERO:
 		return
 	direccion = nueva_direccion
+	_actualizar_orientacion()
 	raycast_trayectoria.target_position = direccion * tamano_casilla
 	raycast_trayectoria.force_raycast_update()
 	if estado == Estado.IDLE and not raycast_trayectoria.is_colliding():
 		estado = Estado.SLIDING
+		sprite.frame = 5
+
+func _actualizar_orientacion() -> void:
+	if direccion.x<0:
+		sprite.flip_h = true
+	elif direccion.x>0:
+		sprite.flip_h = false
+	elif direccion.y<0:
+		sprite.flip_v = true
+	elif direccion.y > 0:
+		sprite.flip_v = false
 
 
 func _deslizar_hasta_colision(delta: float) -> void:
@@ -123,7 +135,8 @@ func finalizar_deslizamiento() -> void:
 	global_position = _ajustar_a_casilla(global_position)
 	movimiento_terminado.emit(direccion)
 	_consumir_turno()
-
+	sprite.frame = 3
+	
 
 func _ajustar_a_casilla(posicion: Vector2) -> Vector2:
 	return Vector2(round(posicion.x / tamano_casilla) * tamano_casilla, round(posicion.y / tamano_casilla) * tamano_casilla)
@@ -132,6 +145,7 @@ func _ajustar_a_casilla(posicion: Vector2) -> Vector2:
 func realizar_ataque() -> void:
 	_destello_ataque = 0.14
 	queue_redraw()
+	sprite.frame = 4
 	raycast_ataque.target_position = direccion * alcance_ataque
 	raycast_ataque.force_raycast_update()
 	var alcance_real := alcance_ataque
@@ -140,6 +154,8 @@ func realizar_ataque() -> void:
 		alcance_real = global_position.distance_to(punto_bloqueo) - 18.0
 	ataque_realizado.emit(global_position, direccion, maxf(alcance_real, 0.0), maxi(danio_disparo, 35))
 	_consumir_turno()
+	await get_tree().create_timer(0.3).timeout
+	sprite.frame = 3
 
 
 func _consumir_turno() -> void:

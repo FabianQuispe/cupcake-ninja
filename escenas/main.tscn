@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dnt42qifjor0a"]
 
-[ext_resource type="Script" uid="uid://cwugisaa23rvq" path="res://scripts/cupcake.gd" id="1_d7u15"]
+[ext_resource type="Script" uid="uid://cwugisaa23rvq" path="res://scripts/juego.gd" id="1_d7u15"]
 
 [node name="CupcakeNinja" type="Node2D" unique_id=1276835411]
 script = ExtResource("1_d7u15")

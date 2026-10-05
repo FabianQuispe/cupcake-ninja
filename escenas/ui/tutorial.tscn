@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://d1flm6dltgxc"]
+
+[ext_resource type="Script" uid="uid://lgeetdvs4yvq" path="res://scripts/tutorial.gd" id="1_jspii"]
+[ext_resource type="Texture2D" uid="uid://dqnfc1u4hcbwm" path="res://fondos/fondo_2.png" id="2_gu6o0"]
+[ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="3_it414"]
+[ext_resource type="AudioStream" uid="uid://6b8spv8dcqto" path="res://sonidos/sonido_boton.mp3" id="4_e3e7l"]
+[ext_resource type="Texture2D" uid="uid://rhd3lmrrhjsa" path="res://sprites-assets/personajes/enemigo_papa.png" id="4_it414"]
+[ext_resource type="Texture2D" uid="uid://dnj1hjkyxdd52" path="res://sprites-assets/personajes/cupcake_sprite.png" id="5_e3e7l"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mrt3"]
+texture = ExtResource("2_gu6o0")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwowx"]
+atlas = ExtResource("3_it414")
+region = Rect2(0, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu44a"]
+atlas = ExtResource("3_it414")
+region = Rect2(96, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cr88"]
+atlas = ExtResource("3_it414")
+region = Rect2(48, 0, 44, 32)
+
+[node name="Tutorial" type="Control" unique_id=364418413]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jspii")
+
+[node name="Panel" type="Panel" parent="." unique_id=1078544534]
+texture_filter = 1
+layout_mode = 0
+offset_right = 319.27878
+offset_bottom = 180.02774
+scale = Vector2(3.605, 3.605)
+theme_override_styles/panel = SubResource("StyleBoxTexture_5mrt3")
+
+[node name="CuadroTexto" type="Sprite2D" parent="." unique_id=1173706047]
+self_modulate = Color(0.9999997, 0.8077901, 0.99612993, 1)
+texture_filter = 1
+position = Vector2(567.44104, 67.97691)
+rotation = 3.1415927
+scale = Vector2(6.8400664, -5.497113)
+texture = ExtResource("3_it414")
+region_enabled = true
+region_rect = Rect2(31.259617, 463.94092, 32.98765, 16)
+
+[node name="Teclas" type="Node2D" parent="." unique_id=2013550269]
+position = Vector2(567.44104, 67.97691)
+rotation = -3.1415925
+scale = Vector2(6.8400664, -5.497113)
+
+[node name="Tecla derecha" type="Sprite2D" parent="Teclas" unique_id=108903511]
+texture_filter = 1
+position = Vector2(43.92371, 28.200825)
+scale = Vector2(0.5336218, 0.62324893)
+texture = ExtResource("3_it414")
+region_enabled = true
+region_rect = Rect2(-0.76173806, 175.08441, 17.530458, 17.648056)
+
+[node name="Tecla izquierda" type="Sprite2D" parent="Teclas" unique_id=1328558385]
+texture_filter = 1
+position = Vector2(64.39134, 27.655083)
+scale = Vector2(0.5336218, 0.62324893)
+texture = ExtResource("3_it414")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(-0.76173806, 175.08441, 17.530458, 17.648056)
+
+[node name="Tecla arriba" type="Sprite2D" parent="Teclas" unique_id=892614842]
+texture_filter = 1
+position = Vector2(54.011307, 15.648781)
+scale = Vector2(0.5336218, 0.62324893)
+texture = ExtResource("3_it414")
+region_enabled = true
+region_rect = Rect2(15.293896, 175.18442, 17.405655, 17.598206)
+
+[node name="Teca abajo" type="Sprite2D" parent="Teclas" unique_id=591054767]
+texture_filter = 1
+position = Vector2(54.157505, 27.837)
+scale = Vector2(0.5336218, 0.62324893)
+texture = ExtResource("3_it414")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(15.453244, 175.18442, 17.245522, 17.598206)
+
+[node name="Tecla a" type="Sprite2D" parent="Teclas" unique_id=2129646941]
+texture_filter = 1
+position = Vector2(11.029284, 28.200817)
+scale = Vector2(0.5336218, 0.62324893)
+texture = ExtResource("3_it414")
+region_enabled = true
+region_rect = Rect2(-0.40751743, 207.4584, 16.576511, 16.948181)
+
+[node name="Label" type="Node2D" parent="." unique_id=642811483]
+position = Vector2(567.44104, 67.97691)
+rotation = 3.1415927
+scale = Vector2(6.8400664, -5.497113)
+
+[node name="Tutorial" type="Label" parent="Label" unique_id=1325066703]
+offset_left = 23.537775
+offset_top = -4.3659277
+offset_right = 950.38885
+offset_bottom = 166.36234
+scale = Vector2(-0.050475396, 0.06499647)
+theme_override_font_sizes/font_size = 89
+text = "TUTORIAL"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Advertencia" type="Label" parent="Label" unique_id=819988657]
+offset_left = -28.297817
+offset_top = 19.650873
+offset_right = 936.9488
+offset_bottom = 128.61595
+scale = Vector2(-0.05726383, 0.06952641)
+theme_override_colors/font_outline_color = Color(0.7293229, 0.30620676, 0.24779207, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 74
+text = "Cuidado con los enemigos"
+
+[node name="Disparar" type="Label" parent="Label" unique_id=214070314]
+offset_left = 20.385921
+offset_top = 12.010504
+offset_right = 394.36163
+offset_bottom = 120.97558
+scale = Vector2(-0.05726383, 0.06952641)
+theme_override_colors/font_outline_color = Color(0.7293229, 0.30620676, 0.24779207, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 74
+text = "Disparar"
+
+[node name="Sprites" type="Node2D" parent="." unique_id=668360780]
+
+[node name="Enemigo" type="Sprite2D" parent="Sprites" unique_id=764366752]
+texture_filter = 1
+position = Vector2(828, 350)
+scale = Vector2(0.47514606, 0.47514606)
+texture = ExtResource("4_it414")
+hframes = 9
+
+[node name="Cupcake1" type="Sprite2D" parent="Sprites" unique_id=1511829518]
+texture_filter = 1
+position = Vector2(215.00002, 351)
+scale = Vector2(0.47514606, 0.47514606)
+texture = ExtResource("5_e3e7l")
+hframes = 6
+frame = 5
+
+[node name="Cupcake2" type="Sprite2D" parent="Sprites" unique_id=947386511]
+texture_filter = 1
+position = Vector2(501, 353)
+scale = Vector2(0.47514606, 0.47514606)
+texture = ExtResource("5_e3e7l")
+hframes = 6
+frame = 4
+
+[node name="TextureButton1" type="TextureButton" parent="." unique_id=1249836970]
+texture_filter = 1
+layout_mode = 0
+offset_left = 35.00003
+offset_top = 502.00003
+offset_right = 79.00003
+offset_bottom = 534.0
+scale = Vector2(4.6380033, 3.1180058)
+texture_normal = SubResource("AtlasTexture_rwowx")
+texture_pressed = SubResource("AtlasTexture_hu44a")
+texture_hover = SubResource("AtlasTexture_0cr88")
+
+[node name="Volver" type="Label" parent="TextureButton1" unique_id=1049213572]
+layout_mode = 0
+offset_left = 11.211718
+offset_top = 8.659378
+offset_right = 201.21172
+offset_bottom = 73.65938
+scale = Vector2(0.15259326, 0.23117486)
+theme_override_font_sizes/font_size = 47
+text = "Volver"
+
+[node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=1087063853]
+stream = ExtResource("4_e3e7l")
+
+[connection signal="pressed" from="TextureButton1" to="." method="_on_texture_button_1_pressed"]

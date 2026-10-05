@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bgwkpwawjkttt" path="res://scripts/creditos.gd" id="1_xid12"]
 [ext_resource type="Texture2D" uid="uid://dqnfc1u4hcbwm" path="res://fondos/fondo_2.png" id="2_1345a"]
 [ext_resource type="Texture2D" uid="uid://bufqeu5fwb6qr" path="res://sprites-assets/botones/cuadro.png" id="3_5v1o1"]
+[ext_resource type="AudioStream" uid="uid://6b8spv8dcqto" path="res://sonidos/sonido_boton.mp3" id="5_pyrin"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5v1o1"]
 texture = ExtResource("2_1345a")
@@ -20,7 +21,7 @@ region = Rect2(96, 0, 44, 32)
 atlas = ExtResource("1_7p47b")
 region = Rect2(48, 0, 44, 32)
 
-[node name="creditos" type="Control" unique_id=525779174]
+[node name="Creditos" type="Control" unique_id=525779174]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,13 +38,13 @@ offset_bottom = 180.02774
 scale = Vector2(3.605, 3.605)
 theme_override_styles/panel = SubResource("StyleBoxTexture_5v1o1")
 
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1964761773]
+[node name="CuadroTexto1" type="Sprite2D" parent="." unique_id=1964761773]
 texture_filter = 1
 position = Vector2(577, 323)
 scale = Vector2(10.531251, 9.73941)
 texture = ExtResource("3_5v1o1")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=563804189]
+[node name="CuadroTexto2" type="Sprite2D" parent="." unique_id=563804189]
 self_modulate = Color(0.9999997, 0.8077901, 0.99612993, 1)
 texture_filter = 1
 position = Vector2(575, 85)
@@ -64,6 +65,7 @@ offset_bottom = 101.79273
 scale = Vector2(0.30912834, 0.34422672)
 theme_override_font_sizes/font_size = 89
 text = "CRÉDITOS"
+metadata/_edit_use_anchors_ = true
 
 [node name="Programadores" type="Label" parent="Label" unique_id=329455272]
 offset_left = 76.36001
@@ -139,7 +141,7 @@ texture_normal = SubResource("AtlasTexture_xid12")
 texture_pressed = SubResource("AtlasTexture_1345a")
 texture_hover = SubResource("AtlasTexture_5v1o1")
 
-[node name="Jugar" type="Label" parent="TextureButton1" unique_id=316802519]
+[node name="Volver" type="Label" parent="TextureButton1" unique_id=316802519]
 layout_mode = 0
 offset_left = 11.211718
 offset_top = 8.659378
@@ -148,5 +150,8 @@ offset_bottom = 73.65938
 scale = Vector2(0.15259326, 0.23117486)
 theme_override_font_sizes/font_size = 47
 text = "Volver"
+
+[node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=386773341]
+stream = ExtResource("5_pyrin")
 
 [connection signal="pressed" from="TextureButton1" to="." method="_on_texture_button_1_pressed"]

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://do1i6epldjm0q"]
+
+[ext_resource type="Script" uid="uid://dfvfux3jdj84x" path="res://scripts/jugador.gd" id="1_16k11"]
+[ext_resource type="Texture2D" uid="uid://dnj1hjkyxdd52" path="res://sprites-assets/personajes/cupcake_sprite.png" id="2_omvyu"]
+
+[sub_resource type="Animation" id="Animation_btb33"]
+resource_name = "Win"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cupcake:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qw2bf"]
+_data = {
+&"Win": SubResource("Animation_btb33")
+}
+
+[node name="Jugador" type="CharacterBody2D" unique_id=2072079063]
+script = ExtResource("1_16k11")
+
+[node name="Cupcake" type="Sprite2D" parent="." unique_id=1223004284]
+texture_filter = 1
+position = Vector2(38.36956, 48.125)
+scale = Vector2(0.43550715, 0.43550724)
+texture = ExtResource("2_omvyu")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2103158307]
+libraries/ = SubResource("AnimationLibrary_qw2bf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=359608813]
+polygon = PackedVector2Array(65, 6, 73, 21, 68, 32, 79, 39, 74, 48, 81, 54, 68, 67, 58, 91, 46, 124, 34, 97, 20, 123, 1, 77, -7, 57, -4, 35, 7, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 34, -14, 51, 2)

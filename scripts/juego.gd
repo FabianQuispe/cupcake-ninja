@@ -1,5 +1,5 @@
 extends Node2D
-
+#Avisar que cambié cupcake por "juego"
 var game_manager := GameManager.new()
 var jugador: Jugador
 var enemigos: Array[Enemigo] = []
@@ -50,7 +50,7 @@ func _crear_mundos() -> Array[Mundo]:
 	mundo_minas.añadir_nivel(NivelNormal.new(1, "Nivel 1, minas"))
 	mundo_minas.añadir_nivel(NivelIntermedio.new(2, "Nivel 2, minas"))
 	mundo_minas.añadir_nivel(NivelDificil.new(3, "Nivel 3, minas"))
-	mundos.append(mundo_salado)
+	mundos.append(mundo_minas)
 	
 	return mundos
 	
@@ -63,9 +63,13 @@ func _process(_delta: float) -> void:
 
 	_actualizar_hud()
 	_revisar_contactos()
-	if jugador.vida <= 0:
+	
+	if jugador.vida <= nivel.muerte_max:
 		game_manager.terminar_juego()
 		estado_label.text = "DERROTA - pulsa R para reiniciar"
+	#elif nivel.consultar_nivel(game_manager.puntaje.puntos, muerte_max, tiempo_de_nivel) == Nivel.resultado_nivel.ganar:
+			#_avanzar_nivel()
+	
 	if jugador.position.y > 700.0:
 		jugador.position = Vector2(576.0, 330.0)
 
@@ -115,7 +119,7 @@ func _crear_hud() -> void:
 
 
 func _crear_jugador() -> void:
-	jugador = Jugador.new()
+	jugador = preload("res://escenas/jugador.tscn").instantiate()
 	jugador.position = Vector2(576, 330)
 	jugador.danio_disparo = 1
 	game_manager.jugador = jugador

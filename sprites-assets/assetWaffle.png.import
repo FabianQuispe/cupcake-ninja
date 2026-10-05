@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rhd3lmrrhjsa"
-path="res://.godot/imported/enemigoPapa.png-96301352c5df1c2297de37ada39e9498.ctex"
+uid="uid://o7k5fh1sjl10"
+path="res://.godot/imported/assetWaffle.png-5591cb9915408f72590bcd4e8de9c256.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites-assets/personajes/enemigoPapa.png"
-dest_files=["res://.godot/imported/enemigoPapa.png-96301352c5df1c2297de37ada39e9498.ctex"]
+source_file="res://sprites-assets/assetWaffle.png"
+dest_files=["res://.godot/imported/assetWaffle.png-5591cb9915408f72590bcd4e8de9c256.ctex"]
 
 [params]
 

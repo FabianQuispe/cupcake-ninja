@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://8j0u0jsu34xq" path="res://scripts/menu.gd" id="1_d7r87"]
 [ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="1_vdanu"]
 [ext_resource type="Texture2D" uid="uid://c7ipfi53ii8py" path="res://fondos/fondo_1.png" id="2_2owot"]
+[ext_resource type="AudioStream" uid="uid://6b8spv8dcqto" path="res://sonidos/sonido_boton.mp3" id="4_6cq3m"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6cq3m"]
 texture = ExtResource("2_2owot")
@@ -101,7 +102,9 @@ scale = Vector2(0.15259326, 0.23117486)
 theme_override_font_sizes/font_size = 47
 text = "Creditos"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=113970228]
+[node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=113970228]
+stream = ExtResource("4_6cq3m")
 
 [connection signal="pressed" from="Botones/BotonJugar" to="." method="_on_boton_jugar_pressed"]
+[connection signal="pressed" from="Botones/BotonTutorial" to="." method="_on_boton_tutorial_pressed"]
 [connection signal="pressed" from="Botones/BotonCreditos" to="." method="_on_boton_creditos_pressed"]

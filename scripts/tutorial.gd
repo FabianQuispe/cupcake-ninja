@@ -1,5 +1,6 @@
 extends Control
 
+#El botón lleva al main
 func _on_texture_button_1_pressed() -> void:
 	$SonidoBoton.play()
 	await $SonidoBoton.finished
