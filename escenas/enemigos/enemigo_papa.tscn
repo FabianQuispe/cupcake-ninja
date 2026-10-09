@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://coq666r3157g8"]
 
 [ext_resource type="Texture2D" uid="uid://rhd3lmrrhjsa" path="res://sprites-assets/personajes/enemigo_papa.png" id="1_oa8xu"]
+[ext_resource type="Script" uid="uid://d0y08b8kmxp06" path="res://scripts/enemigos/enemigo_papa.gd" id="1_rlqcs"]
 
 [sub_resource type="Animation" id="Animation_usnke"]
 length = 0.001
@@ -62,7 +63,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvmdf"]
 size = Vector2(118, 196)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=402133901]
+[node name="Enemigo_papa" type="CharacterBody2D" unique_id=402133901]
+script = ExtResource("1_rlqcs")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=8712820]
 texture_filter = 1

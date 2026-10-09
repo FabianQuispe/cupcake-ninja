@@ -12,6 +12,13 @@ func _ready() -> void:
 	velocidad = 42.0
 	queue_redraw()
 
+func _physics_process(delta: float) -> void:
+	comportamiento(delta)
+	
+func comportamiento (_delta: float) -> void:
+	if not is_instance_valid(objetivo):
+		return
+	mover (objetivo.global_position - global_position)
 	
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, 16.0, Color("e96868"))

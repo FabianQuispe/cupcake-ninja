@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d1flm6dltgxc"]
 
-[ext_resource type="Script" uid="uid://lgeetdvs4yvq" path="res://scripts/tutorial.gd" id="1_jspii"]
+[ext_resource type="Script" uid="uid://lgeetdvs4yvq" path="res://scripts/ui/tutorial.gd" id="1_jspii"]
 [ext_resource type="Texture2D" uid="uid://dqnfc1u4hcbwm" path="res://fondos/fondo_2.png" id="2_gu6o0"]
 [ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="3_it414"]
 [ext_resource type="AudioStream" uid="uid://6b8spv8dcqto" path="res://sonidos/sonido_boton.mp3" id="4_e3e7l"]

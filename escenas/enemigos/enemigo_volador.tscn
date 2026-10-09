@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bgqbb2h0pkey0"]
+
+[ext_resource type="Script" uid="uid://cmopyvhlafaoe" path="res://scripts/enemigos/enemigo_volador.gd" id="1_58snc"]
+[ext_resource type="Texture2D" uid="uid://drjjn52q0gt6n" path="res://sprites-assets/personajes/enemigo_volador.png" id="2_ebask"]
+
+[sub_resource type="Animation" id="Animation_nbqag"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_xuxv0"]
+resource_name = "fly"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6cboq"]
+_data = {
+&"RESET": SubResource("Animation_nbqag"),
+&"fly": SubResource("Animation_xuxv0")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebask"]
+radius = 50.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2136436131]
+script = ExtResource("1_58snc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=837981153]
+texture_filter = 1
+position = Vector2(176.52165, 28.999994)
+scale = Vector2(1.4202896, 1.4202899)
+texture = ExtResource("2_ebask")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=537939606]
+root_node = NodePath("../Sprite2D")
+libraries/ = SubResource("AnimationLibrary_6cboq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1244083849]
+position = Vector2(174, 45)
+shape = SubResource("CircleShape2D_ebask")

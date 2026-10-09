@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o7k5fh1sjl10"
-path="res://.godot/imported/assetWaffle.png-5591cb9915408f72590bcd4e8de9c256.ctex"
+uid="uid://c3fx3wy46l7o6"
+path="res://.godot/imported/fondo_dulce.png-cc5692b09bcfd4d1a944ab336273e8a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites-assets/assetWaffle.png"
-dest_files=["res://.godot/imported/assetWaffle.png-5591cb9915408f72590bcd4e8de9c256.ctex"]
+source_file="res://fondos/fondo_dulce.png"
+dest_files=["res://.godot/imported/fondo_dulce.png-cc5692b09bcfd4d1a944ab336273e8a4.ctex"]
 
 [params]
 
