@@ -11,6 +11,10 @@ var objetivo_label: Label
 var tiempo_de_nivel := 0.0
 var generador_aleatorio := RandomNumberGenerator.new()
 
+const ESCENA_NIVEL := preload("res://escenas/niveles/nivel_1.tscn")
+const ESCENA_ENEMIGO_PAPA := preload("res://escenas/enemigos/enemigo_papa.tscn")
+const ESCENA_ENEMIGO_VOLADOR := preload("res://escenas/enemigos/enemigo_volador.tscn")
+
 
 func _ready() -> void:
 	generador_aleatorio.randomize()
@@ -88,16 +92,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _crear_fondo() -> void:
-	queue_redraw()
-
-
-func _draw() -> void:
-	draw_rect(Rect2(0, 0, 1152, 648), Color("182338"))
-	draw_rect(Rect2(32, 104, 1088, 512), Color("243653"))
-	for x in range(48, 1120, 48):
-		draw_line(Vector2(x, 120), Vector2(x, 600), Color("2d4160"), 1.0)
-	for y in range(120, 601, 48):
-		draw_line(Vector2(48, y), Vector2(1104, y), Color("2d4160"), 1.0)
+	var escenario := ESCENA_NIVEL.instantiate()
+	escenario.name = "EscenarioNivel1"
+	add_child(escenario)
+	move_child(escenario, 0)
 
 
 func _crear_hud() -> void:
@@ -148,19 +146,35 @@ func _crear_paredes() -> void:
 
 
 func _crear_enemigos() -> void:
-	for datos in [[Vector2(240, 210), "Cuchillo"], [Vector2(900, 230), "Muffin"], [Vector2(850, 500), "Glaseado"]]:
+	for datos in [[Vector2(240, 210), "Papa"], [Vector2(900, 230), "Volador"], [Vector2(850, 500), "Papa"]]:
 		_crear_enemigo(datos[0], datos[1])
 
 
 func _crear_enemigo(posicion: Vector2, tipo: String) -> void:
-	var enemigo := Enemigo.new()
+	var enemigo: Enemigo
+	if tipo == "Volador":
+		enemigo = ESCENA_ENEMIGO_VOLADOR.instantiate()
+		enemigo.scale = Vector2(0.2, 0.2)
+	else:
+		enemigo = ESCENA_ENEMIGO_PAPA.instantiate()
+		enemigo.scale = Vector2(0.3, 0.3)
+
+	var sprite := enemigo.get_node_or_null("Sprite2D") as Sprite2D
+	if sprite:
+		sprite.position = Vector2.ZERO
+	var forma_colision := enemigo.get_node_or_null("CollisionShape2D") as CollisionShape2D
+	if forma_colision:
+		forma_colision.position = Vector2.ZERO
+
 	enemigo.position = posicion
 	enemigo.tipo = tipo
 	enemigo.objetivo = jugador
-	enemigo.velocidad = 42.0
 	enemigo.danio_contacto = 1
 	enemigos.append(enemigo)
 	add_child(enemigo)
+	var animacion := enemigo.get_node_or_null("AnimationPlayer") as AnimationPlayer
+	if animacion:
+		animacion.play("fly" if tipo == "Volador" else "walk")
 
 
 func _crear_enemigo_aleatorio() -> void:
@@ -172,7 +186,7 @@ func _crear_enemigo_aleatorio() -> void:
 		)
 		if posicion.distance_to(jugador.position) >= 192.0 and not _hay_trampa_cerca(posicion):
 			break
-	var tipos := ["Cuchillo", "Muffin", "Glaseado"]
+	var tipos := ["Papa", "Volador"]
 	_crear_enemigo(posicion, tipos[generador_aleatorio.randi_range(0, tipos.size() - 1)])
 
 

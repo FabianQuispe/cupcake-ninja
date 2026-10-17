@@ -28,11 +28,6 @@ func _ready() -> void:
 	nombre = "Jugador"
 	vida = 3
 	sprite.scale = Vector2(0.3, 0.3)
-	var forma := CollisionShape2D.new()
-	var circulo := CircleShape2D.new()
-	circulo.radius = 8.0
-	forma.shape = circulo
-	add_child(forma)
 
 	raycast_trayectoria = RayCast2D.new()
 	raycast_trayectoria.name = "RayCastTrayectoria"

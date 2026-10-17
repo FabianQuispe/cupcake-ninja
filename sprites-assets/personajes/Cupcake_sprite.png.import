@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnj1hjkyxdd52"
-path="res://.godot/imported/cupcake_sprite.png-0139729c6e739c41d39d71da16838558.ctex"
+path="res://.godot/imported/Cupcake_sprite.png-dce6a490d732517e79eeb1eb331f2241.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites-assets/personajes/cupcake_sprite.png"
-dest_files=["res://.godot/imported/cupcake_sprite.png-0139729c6e739c41d39d71da16838558.ctex"]
+source_file="res://sprites-assets/personajes/Cupcake_sprite.png"
+dest_files=["res://.godot/imported/Cupcake_sprite.png-dce6a490d732517e79eeb1eb331f2241.ctex"]
 
 [params]
 
