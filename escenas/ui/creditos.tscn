@@ -34,9 +34,9 @@ script = ExtResource("1_xid12")
 [node name="Panel" type="Panel" parent="." unique_id=288130524]
 texture_filter = 1
 layout_mode = 0
-offset_top = 2.0
-offset_right = 319.27878
-offset_bottom = 182.02774
+offset_top = 1.0
+offset_right = 283.49515
+offset_bottom = 159.9459
 scale = Vector2(3.605, 3.605)
 theme_override_styles/panel = SubResource("StyleBoxTexture_5v1o1")
 

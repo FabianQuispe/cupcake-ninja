@@ -37,7 +37,7 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 319.27878
 offset_bottom = 180.02774
-scale = Vector2(3.605, 3.605)
+scale = Vector2(3.205, 3.205)
 theme_override_styles/panel = SubResource("StyleBoxTexture_5mrt3")
 
 [node name="CuadroTexto" type="Sprite2D" parent="." unique_id=1173706047]

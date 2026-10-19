@@ -34,8 +34,8 @@ script = ExtResource("1_566hm")
 modulate = Color(0.9920364, 0.7380258, 0.884731, 1)
 texture_filter = 1
 layout_mode = 0
-offset_right = 320.11096
-offset_bottom = 180.0
+offset_right = 283.6551
+offset_bottom = 159.50069
 scale = Vector2(3.605, 3.605)
 theme_override_styles/panel = SubResource("StyleBoxTexture_bl2xq")
 
