@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh8buoj188mws"
-path="res://.godot/imported/bomba.png-2cb8bfa541063b588dfc0fe74e21358b.ctex"
+uid="uid://bifxqjtkukrse"
+path="res://.godot/imported/2_Industrial_Tileset_1B_Background.png-e7b47bec339b7ab5129dea5b8a0c8a54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites-assets/enemigos/bomba.png"
-dest_files=["res://.godot/imported/bomba.png-2cb8bfa541063b588dfc0fe74e21358b.ctex"]
+source_file="res://sprites-assets/assets/2_Industrial_Tileset_1B_Background.png"
+dest_files=["res://.godot/imported/2_Industrial_Tileset_1B_Background.png-e7b47bec339b7ab5129dea5b8a0c8a54.ctex"]
 
 [params]
 

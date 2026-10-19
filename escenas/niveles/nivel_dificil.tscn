@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://debk5qxb53isf"]
 
-[ext_resource type="Texture2D" uid="uid://c3fx3wy46l7o6" path="res://fondos/fondo_dulce.png" id="1_fa47c"]
+[ext_resource type="Texture2D" uid="uid://ce5nkbkonhcbq" path="res://fondos/fondo_juego.png" id="1_fa47c"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4wukh"]
 texture = ExtResource("1_fa47c")
@@ -8,7 +8,7 @@ texture = ExtResource("1_fa47c")
 [node name="Node2D" type="Node2D" unique_id=608464967]
 
 [node name="Panel" type="Panel" parent="." unique_id=838107218]
-modulate = Color(0.94780403, 0.7480901, 0.6560142, 1)
+modulate = Color(1, 0.62262684, 0.87430996, 1)
 texture_filter = 1
 offset_left = -2.0
 offset_top = -1.0

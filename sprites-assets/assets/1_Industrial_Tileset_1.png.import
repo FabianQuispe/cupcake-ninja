@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drjjn52q0gt6n"
-path="res://.godot/imported/enemigo_volador.png-3c9d7e60326d196d2fbf9c97357062ef.ctex"
+uid="uid://ghvuebfrpajt"
+path="res://.godot/imported/1_Industrial_Tileset_1.png-02f04eabe79cd32a193b3ac57dfeff49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites-assets/personajes/enemigo_volador.png"
-dest_files=["res://.godot/imported/enemigo_volador.png-3c9d7e60326d196d2fbf9c97357062ef.ctex"]
+source_file="res://sprites-assets/assets/1_Industrial_Tileset_1.png"
+dest_files=["res://.godot/imported/1_Industrial_Tileset_1.png-02f04eabe79cd32a193b3ac57dfeff49.ctex"]
 
 [params]
 

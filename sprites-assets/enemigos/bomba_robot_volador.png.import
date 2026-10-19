@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt6usvcl4bcvm"
-path="res://.godot/imported/2_Industrial_Tileset_1_Background.png-55127ba092c3221cc6c80373935b0425.ctex"
+uid="uid://dh8buoj188mws"
+path="res://.godot/imported/bomba_robot_volador.png-0fcc7a5309474155f2485d993da460b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites-assets/2_Industrial_Tileset_1_Background.png"
-dest_files=["res://.godot/imported/2_Industrial_Tileset_1_Background.png-55127ba092c3221cc6c80373935b0425.ctex"]
+source_file="res://sprites-assets/enemigos/bomba_robot_volador.png"
+dest_files=["res://.godot/imported/bomba_robot_volador.png-0fcc7a5309474155f2485d993da460b2.ctex"]
 
 [params]
 

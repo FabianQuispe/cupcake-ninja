@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bifxqjtkukrse"
-path="res://.godot/imported/2_Industrial_Tileset_1B_Background.png-3d50699d5f719c722296b45e1f7c45c3.ctex"
+uid="uid://crufiyl2xw564"
+path="res://.godot/imported/disparar_personaje.png-e11c8b308d4af5eeb1232815dbf1542e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites-assets/2_Industrial_Tileset_1B_Background.png"
-dest_files=["res://.godot/imported/2_Industrial_Tileset_1B_Background.png-3d50699d5f719c722296b45e1f7c45c3.ctex"]
+source_file="res://sprites-assets/personajes/disparar_personaje.png"
+dest_files=["res://.godot/imported/disparar_personaje.png-e11c8b308d4af5eeb1232815dbf1542e.ctex"]
 
 [params]
 
