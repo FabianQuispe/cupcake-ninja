@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://7xqv1ckm6qi5"]
+
+[ext_resource type="Texture2D" uid="uid://c3fx3wy46l7o6" path="res://fondos/fondo_dulce.png" id="1_3jrvm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yyom2"]
+texture = ExtResource("1_3jrvm")
+
+[node name="Node2D" type="Node2D" unique_id=1134108642]
+
+[node name="Panel" type="Panel" parent="." unique_id=1842858871]
+modulate = Color(0.44070446, 0.8704086, 0.9527146, 1)
+texture_filter = 1
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 1152.0
+offset_bottom = 647.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_yyom2")

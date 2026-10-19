@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="3_it414"]
 [ext_resource type="AudioStream" uid="uid://6b8spv8dcqto" path="res://sonidos/sonido_boton.mp3" id="4_e3e7l"]
 [ext_resource type="Texture2D" uid="uid://rhd3lmrrhjsa" path="res://sprites-assets/personajes/enemigo_papa.png" id="4_it414"]
-[ext_resource type="Texture2D" uid="uid://dnj1hjkyxdd52" path="res://sprites-assets/personajes/cupcake_sprite.png" id="5_e3e7l"]
+[ext_resource type="FontFile" uid="uid://d4h663edhjxp6" path="res://sprites-assets/tipografia/stairsnslabs.ttf" id="4_vmmbw"]
+[ext_resource type="Texture2D" uid="uid://dnj1hjkyxdd52" path="res://sprites-assets/personajes/Cupcake_sprite.png" id="5_e3e7l"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mrt3"]
 texture = ExtResource("2_gu6o0")
@@ -102,36 +103,41 @@ rotation = 3.1415927
 scale = Vector2(6.8400664, -5.497113)
 
 [node name="Tutorial" type="Label" parent="Label" unique_id=1325066703]
-offset_left = 23.537775
-offset_top = -4.3659277
-offset_right = 950.38885
-offset_bottom = 166.36234
+offset_left = 23.017473
+offset_top = -1.08728
+offset_right = 949.8685
+offset_bottom = 169.64098
 scale = Vector2(-0.050475396, 0.06499647)
-theme_override_font_sizes/font_size = 89
+theme_override_fonts/font = ExtResource("4_vmmbw")
+theme_override_font_sizes/font_size = 41
 text = "TUTORIAL"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Advertencia" type="Label" parent="Label" unique_id=819988657]
-offset_left = -28.297817
-offset_top = 19.650873
-offset_right = 936.9488
-offset_bottom = 128.61595
+offset_left = -35.169094
+offset_top = 16.0126
+offset_right = 1319.712
+offset_bottom = 172.586
 scale = Vector2(-0.05726383, 0.06952641)
 theme_override_colors/font_outline_color = Color(0.7293229, 0.30620676, 0.24779207, 1)
 theme_override_constants/outline_size = 30
-theme_override_font_sizes/font_size = 74
-text = "Cuidado con los enemigos"
+theme_override_fonts/font = ExtResource("4_vmmbw")
+theme_override_font_sizes/font_size = 43
+text = "Cuidado con 
+
+los enemigos"
 
 [node name="Disparar" type="Label" parent="Label" unique_id=214070314]
-offset_left = 20.385921
-offset_top = 12.010504
-offset_right = 394.36163
-offset_bottom = 120.97558
+offset_left = 23.017475
+offset_top = 16.194519
+offset_right = 479.0175
+offset_bottom = 125.15959
 scale = Vector2(-0.05726383, 0.06952641)
 theme_override_colors/font_outline_color = Color(0.7293229, 0.30620676, 0.24779207, 1)
 theme_override_constants/outline_size = 30
-theme_override_font_sizes/font_size = 74
+theme_override_fonts/font = ExtResource("4_vmmbw")
+theme_override_font_sizes/font_size = 43
 text = "Disparar"
 
 [node name="Sprites" type="Node2D" parent="." unique_id=668360780]
@@ -173,12 +179,13 @@ texture_hover = SubResource("AtlasTexture_0cr88")
 
 [node name="Volver" type="Label" parent="TextureButton1" unique_id=1049213572]
 layout_mode = 0
-offset_left = 11.211718
-offset_top = 8.659378
-offset_right = 201.21172
-offset_bottom = 73.65938
+offset_left = 5.605839
+offset_top = 13.149414
+offset_right = 244.60583
+offset_bottom = 78.149414
 scale = Vector2(0.15259326, 0.23117486)
-theme_override_font_sizes/font_size = 47
+theme_override_fonts/font = ExtResource("4_vmmbw")
+theme_override_font_sizes/font_size = 28
 text = "Volver"
 
 [node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=1087063853]

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="1_vdanu"]
 [ext_resource type="Texture2D" uid="uid://c7ipfi53ii8py" path="res://fondos/fondo_1.png" id="2_2owot"]
 [ext_resource type="AudioStream" uid="uid://6b8spv8dcqto" path="res://sonidos/sonido_boton.mp3" id="4_6cq3m"]
+[ext_resource type="FontFile" uid="uid://d4h663edhjxp6" path="res://sprites-assets/tipografia/stairsnslabs.ttf" id="4_xrw20"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6cq3m"]
 texture = ExtResource("2_2owot")
@@ -52,12 +53,13 @@ texture_hover = SubResource("AtlasTexture_4hy44")
 
 [node name="Jugar" type="Label" parent="Botones/BotonJugar" unique_id=1090816870]
 layout_mode = 0
-offset_left = 12.720987
-offset_top = 8.659378
-offset_right = 202.721
-offset_bottom = 73.65938
+offset_left = 8.193176
+offset_top = 12.508026
+offset_right = 356.77692
+offset_bottom = 70.776276
 scale = Vector2(0.15259326, 0.23117486)
-theme_override_font_sizes/font_size = 47
+theme_override_fonts/font = ExtResource("4_xrw20")
+theme_override_font_sizes/font_size = 28
 text = "Jugar"
 
 [node name="BotonTutorial" type="TextureButton" parent="Botones" unique_id=1455501644]
@@ -73,12 +75,13 @@ texture_hover = SubResource("AtlasTexture_4hy44")
 
 [node name="Tutorial" type="Label" parent="Botones/BotonTutorial" unique_id=652969108]
 layout_mode = 0
-offset_left = 7.1151276
-offset_top = 8.659378
-offset_right = 197.11513
-offset_bottom = 73.65938
+offset_left = 1.2936571
+offset_top = 12.82871
+offset_right = 298.29367
+offset_bottom = 77.82871
 scale = Vector2(0.15259326, 0.23117486)
-theme_override_font_sizes/font_size = 47
+theme_override_fonts/font = ExtResource("4_xrw20")
+theme_override_font_sizes/font_size = 28
 text = "Tutorial"
 
 [node name="BotonCreditos" type="TextureButton" parent="Botones" unique_id=1853832091]
@@ -94,12 +97,13 @@ texture_hover = SubResource("AtlasTexture_4hy44")
 
 [node name="Creditos" type="Label" parent="Botones/BotonCreditos" unique_id=1602084776]
 layout_mode = 0
-offset_left = 7.1151276
-offset_top = 8.659378
-offset_right = 197.11513
-offset_bottom = 73.65938
+offset_left = 1.2936573
+offset_top = 12.507992
+offset_right = 298.29367
+offset_bottom = 77.507996
 scale = Vector2(0.15259326, 0.23117486)
-theme_override_font_sizes/font_size = 47
+theme_override_fonts/font = ExtResource("4_xrw20")
+theme_override_font_sizes/font_size = 28
 text = "Creditos"
 
 [node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=113970228]

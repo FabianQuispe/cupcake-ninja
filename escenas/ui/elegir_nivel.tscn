@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://kcgiem71akdp"]
+
+[ext_resource type="Script" uid="uid://dnccevjn0ync4" path="res://scripts/ui/elegir_nivel.gd" id="1_566hm"]
+[ext_resource type="Texture2D" uid="uid://c7ipfi53ii8py" path="res://fondos/fondo_1.png" id="2_kwvsd"]
+[ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="3_nfr48"]
+[ext_resource type="FontFile" uid="uid://d4h663edhjxp6" path="res://sprites-assets/tipografia/stairsnslabs.ttf" id="4_g4yij"]
+[ext_resource type="AudioStream" uid="uid://6b8spv8dcqto" path="res://sonidos/sonido_boton.mp3" id="5_nfr48"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bl2xq"]
+texture = ExtResource("2_kwvsd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3k61"]
+atlas = ExtResource("3_nfr48")
+region = Rect2(0, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usdi7"]
+atlas = ExtResource("3_nfr48")
+region = Rect2(96, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dixcb"]
+atlas = ExtResource("3_nfr48")
+region = Rect2(48, 0, 44, 32)
+
+[node name="Control" type="Control" unique_id=2088415792]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_566hm")
+
+[node name="Panel" type="Panel" parent="." unique_id=246260334]
+modulate = Color(0.9920364, 0.7380258, 0.884731, 1)
+texture_filter = 1
+layout_mode = 0
+offset_right = 320.11096
+offset_bottom = 180.0
+scale = Vector2(3.605, 3.605)
+theme_override_styles/panel = SubResource("StyleBoxTexture_bl2xq")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=86788959]
+position = Vector2(99.00003, 252)
+scale = Vector2(0.90295947, 1.0118521)
+
+[node name="BotonNivel1" type="TextureButton" parent="Node2D" unique_id=1043118543]
+modulate = Color(0.5709606, 1, 0.9479646, 1)
+texture_filter = 1
+offset_left = 73.09295
+offset_right = 117.09295
+offset_bottom = 32.0
+scale = Vector2(5.1580033, 3.4675877)
+texture_normal = SubResource("AtlasTexture_k3k61")
+texture_pressed = SubResource("AtlasTexture_usdi7")
+texture_hover = SubResource("AtlasTexture_dixcb")
+
+[node name="Facil" type="Label" parent="Node2D/BotonNivel1" unique_id=903163371]
+layout_mode = 0
+offset_left = 10.081413
+offset_top = 14.419246
+offset_right = 358.66516
+offset_bottom = 72.68749
+scale = Vector2(0.15259326, 0.23117486)
+theme_override_fonts/font = ExtResource("4_g4yij")
+theme_override_font_sizes/font_size = 24
+text = "Facil"
+
+[node name="BotonNivel2" type="TextureButton" parent="Node2D" unique_id=1274864697]
+modulate = Color(0.5709606, 1, 0.9479646, 1)
+texture_filter = 1
+offset_left = 393.1516
+offset_right = 437.1516
+offset_bottom = 32.0
+scale = Vector2(6.2654724, 3.4675877)
+texture_normal = SubResource("AtlasTexture_k3k61")
+texture_pressed = SubResource("AtlasTexture_usdi7")
+texture_hover = SubResource("AtlasTexture_dixcb")
+
+[node name="Intermedio" type="Label" parent="Node2D/BotonNivel2" unique_id=1398703997]
+layout_mode = 0
+offset_left = 5.8329983
+offset_top = 14.419246
+offset_right = 354.41675
+offset_bottom = 72.68749
+scale = Vector2(0.10310115, 0.23117486)
+theme_override_fonts/font = ExtResource("4_g4yij")
+theme_override_font_sizes/font_size = 24
+text = "Intermedio"
+
+[node name="BotonNivel3" type="TextureButton" parent="Node2D" unique_id=1073055311]
+modulate = Color(0.5709606, 1, 0.9479646, 1)
+texture_filter = 1
+offset_left = 778.55096
+offset_right = 822.55096
+offset_bottom = 32.0
+scale = Vector2(5.1580033, 3.4675877)
+texture_normal = SubResource("AtlasTexture_k3k61")
+texture_pressed = SubResource("AtlasTexture_usdi7")
+texture_hover = SubResource("AtlasTexture_dixcb")
+
+[node name="Dificil" type="Label" parent="Node2D/BotonNivel3" unique_id=1750941346]
+layout_mode = 0
+offset_left = 6.4412684
+offset_top = 14.419246
+offset_right = 355.025
+offset_bottom = 72.68749
+scale = Vector2(0.15259326, 0.23117486)
+theme_override_fonts/font = ExtResource("4_g4yij")
+theme_override_font_sizes/font_size = 24
+text = "Dificil"
+
+[node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=1601359808]
+stream = ExtResource("5_nfr48")
+
+[connection signal="pressed" from="Node2D/BotonNivel1" to="." method="_on_boton_nivel_1_pressed"]
+[connection signal="pressed" from="Node2D/BotonNivel2" to="." method="_on_boton_nivel_2_pressed"]
+[connection signal="pressed" from="Node2D/BotonNivel3" to="." method="_on_boton_nivel_3_pressed"]

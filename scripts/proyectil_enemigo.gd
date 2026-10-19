@@ -14,6 +14,6 @@ func _physics_process(delta: float) -> void:
 		objetivo.recibir_dano(danio)
 		queue_free()
 		return
-	
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, 5.0, Color("fff0a8"))
+		
+	if position.x > 1152 or position.y > 648:
+		queue_free()

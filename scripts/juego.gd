@@ -1,7 +1,8 @@
 extends Node2D
-#Avisar que cambié cupcake por "juego"
+
 var game_manager := GameManager.new()
 var jugador: Jugador
+var muertes_de_jugador:= 0
 var enemigos: Array[Enemigo] = []
 var nivel: Nivel
 var hud_vida: HudVida
@@ -11,7 +12,7 @@ var objetivo_label: Label
 var tiempo_de_nivel := 0.0
 var generador_aleatorio := RandomNumberGenerator.new()
 
-const ESCENA_NIVEL := preload("res://escenas/niveles/nivel_1.tscn")
+const ESCENA_NIVEL := preload("res://escenas/niveles/nivel_facil.tscn")
 const ESCENA_ENEMIGO_PAPA := preload("res://escenas/enemigos/enemigo_papa.tscn")
 const ESCENA_ENEMIGO_VOLADOR := preload("res://escenas/enemigos/enemigo_volador.tscn")
 
@@ -35,45 +36,26 @@ func _ready() -> void:
 	_crear_trampas()
 	_crear_power_ups()
 	
-func _crear_mundos() -> Array[Mundo]:
-	var mundos: Array[Mundo] = []
-	
-	var mundo_dulce := Mundo.new(Mundo.estado_mundo.activo)
-	mundo_dulce.añadir_nivel(NivelNormal.new(1,"Nivel 1, consigue 100 puntos"))
-	mundo_dulce.añadir_nivel(NivelIntermedio.new(2, "Nivel 2, contrareloj"))
-	mundo_dulce.añadir_nivel(NivelDificil.new(3, "Nivel 3, dificil"))
-	mundos.append (mundo_dulce)
-	
-	var mundo_salado := Mundo.new(Mundo.estado_mundo.activo)
-	mundo_salado.añadir_nivel(NivelNormal.new(1, "Nivel 1, salado"))
-	mundo_salado.añadir_nivel(NivelIntermedio.new(2, "Nivel 2, salado"))
-	mundo_salado.añadir_nivel(NivelDificil.new(3, "Nivel 3, salado"))
-	mundos.append(mundo_salado)
-	
-	var mundo_minas := Mundo.new(Mundo.estado_mundo.activo)
-	mundo_minas.añadir_nivel(NivelNormal.new(1, "Nivel 1, minas"))
-	mundo_minas.añadir_nivel(NivelIntermedio.new(2, "Nivel 2, minas"))
-	mundo_minas.añadir_nivel(NivelDificil.new(3, "Nivel 3, minas"))
-	mundos.append(mundo_minas)
-	
-	return mundos
-	
 	_actualizar_hud()
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if not game_manager.juego_activo:
 		return
-
+		
+	tiempo_de_nivel += delta
 	_actualizar_hud()
 	_revisar_contactos()
 	
-	if jugador.vida <= nivel.muerte_max:
+	var resultado = nivel.consultar_nivel(game_manager.puntaje.puntos, tiempo_de_nivel, muertes_de_jugador)
+	
+	if resultado == Nivel.ganar:
+		game_manager.terminar_juego()
+		estado_label.text = "GANASTE - pulsa R para reiniciar"
+	elif resultado == Nivel.perder:
 		game_manager.terminar_juego()
 		estado_label.text = "DERROTA - pulsa R para reiniciar"
-	#elif nivel.consultar_nivel(game_manager.puntaje.puntos, muerte_max, tiempo_de_nivel) == Nivel.resultado_nivel.ganar:
-			#_avanzar_nivel()
-	
+		
 	if jugador.position.y > 700.0:
 		jugador.position = Vector2(576.0, 330.0)
 

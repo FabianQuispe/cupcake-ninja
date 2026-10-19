@@ -50,7 +50,7 @@ script = ExtResource("1_58snc")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=837981153]
 texture_filter = 1
 position = Vector2(176.52165, 28.999994)
-scale = Vector2(1.4202896, 1.4202899)
+scale = Vector2(2.6602886, 2.6602888)
 texture = ExtResource("2_ebask")
 hframes = 5
 
@@ -59,5 +59,6 @@ root_node = NodePath("../Sprite2D")
 libraries/ = SubResource("AnimationLibrary_6cboq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1244083849]
-position = Vector2(174, 45)
+position = Vector2(174, 60)
+scale = Vector2(1.8730605, 1.8730605)
 shape = SubResource("CircleShape2D_ebask")

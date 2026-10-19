@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://do1i6epldjm0q"]
 
 [ext_resource type="Script" uid="uid://dfvfux3jdj84x" path="res://scripts/jugador.gd" id="1_16k11"]
-[ext_resource type="Texture2D" uid="uid://dnj1hjkyxdd52" path="res://sprites-assets/personajes/cupcake_sprite.png" id="2_omvyu"]
+[ext_resource type="Texture2D" uid="uid://dnj1hjkyxdd52" path="res://sprites-assets/personajes/Cupcake_sprite.png" id="2_omvyu"]
 
 [sub_resource type="Animation" id="Animation_btb33"]
 resource_name = "Win"
@@ -27,14 +27,14 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jugador"]
-size = Vector2(16, 16)
+size = Vector2(60, 85)
 
 [node name="Jugador" type="CharacterBody2D" unique_id=2072079063]
 script = ExtResource("1_16k11")
 
 [node name="Cupcake" type="Sprite2D" parent="." unique_id=1223004284]
 texture_filter = 1
-scale = Vector2(0.43550715, 0.43550724)
+scale = Vector2(0.31356522, 0.3135653)
 texture = ExtResource("2_omvyu")
 hframes = 6
 
@@ -42,4 +42,6 @@ hframes = 6
 libraries/ = SubResource("AnimationLibrary_qw2bf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=359608813]
+position = Vector2(-5, 0.5)
+scale = Vector2(0.72000015, 0.72000015)
 shape = SubResource("RectangleShape2D_jugador")
