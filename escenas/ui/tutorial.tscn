@@ -1,15 +1,20 @@
 [gd_scene format=3 uid="uid://d1flm6dltgxc"]
 
 [ext_resource type="Script" uid="uid://lgeetdvs4yvq" path="res://scripts/ui/tutorial.gd" id="1_jspii"]
-[ext_resource type="Texture2D" uid="uid://dqnfc1u4hcbwm" path="res://fondos/fondo_2.png" id="2_gu6o0"]
+[ext_resource type="Texture2D" uid="uid://ce5nkbkonhcbq" path="res://fondos/fondo_juego.png" id="2_vmmbw"]
+[ext_resource type="Texture2D" uid="uid://bvyiqx376qoxj" path="res://sprites-assets/botones/FrameMap.png" id="3_35skj"]
 [ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="3_it414"]
 [ext_resource type="AudioStream" uid="uid://6b8spv8dcqto" path="res://sonidos/sonido_boton.mp3" id="4_e3e7l"]
-[ext_resource type="Texture2D" uid="uid://rhd3lmrrhjsa" path="res://sprites-assets/personajes/enemigo_papa.png" id="4_it414"]
 [ext_resource type="FontFile" uid="uid://d4h663edhjxp6" path="res://sprites-assets/tipografia/stairsnslabs.ttf" id="4_vmmbw"]
-[ext_resource type="Texture2D" uid="uid://dnj1hjkyxdd52" path="res://sprites-assets/personajes/Cupcake_sprite.png" id="5_e3e7l"]
+[ext_resource type="Texture2D" uid="uid://1mxjsrkts814" path="res://sprites-assets/enemigos/robot_volador.png" id="6_35skj"]
+[ext_resource type="Texture2D" uid="uid://cqweqx3agylb5" path="res://sprites-assets/enemigos/robot_oruga.png" id="7_4mpyr"]
+[ext_resource type="Texture2D" uid="uid://vfhnm5b4w8pr" path="res://sprites-assets/jugador/spritesheet_jugador.png" id="8_35skj"]
+[ext_resource type="Texture2D" uid="uid://xkiu2amrt56a" path="res://sprites-assets/powerup/powerup_escudo.png" id="9_jmg5y"]
+[ext_resource type="Texture2D" uid="uid://drbaccxlabf7b" path="res://sprites-assets/powerup/powerup_vida.png" id="10_1av6o"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mrt3"]
-texture = ExtResource("2_gu6o0")
+texture = ExtResource("2_vmmbw")
+modulate_color = Color(0.9891078, 0.734835, 0.85607696, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rwowx"]
 atlas = ExtResource("3_it414")
@@ -43,19 +48,20 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_5mrt3")
 [node name="CuadroTexto" type="Sprite2D" parent="." unique_id=1173706047]
 self_modulate = Color(0.9999997, 0.8077901, 0.99612993, 1)
 texture_filter = 1
-position = Vector2(567.44104, 67.97691)
+position = Vector2(518.44104, 70.71102)
 rotation = 3.1415927
-scale = Vector2(6.8400664, -5.497113)
-texture = ExtResource("3_it414")
+scale = Vector2(3.1071606, -2.4971123)
+texture = ExtResource("3_35skj")
 region_enabled = true
-region_rect = Rect2(31.259617, 463.94092, 32.98765, 16)
+region_rect = Rect2(31.804054, 130.56456, 96.83614, 27.047333)
 
 [node name="Teclas" type="Node2D" parent="." unique_id=2013550269]
-position = Vector2(567.44104, 67.97691)
+position = Vector2(487, 70)
 rotation = -3.1415925
-scale = Vector2(6.8400664, -5.497113)
+scale = Vector2(5.894397, -4.737113)
 
 [node name="Tecla derecha" type="Sprite2D" parent="Teclas" unique_id=108903511]
+modulate = Color(0.827451, 0.84705883, 0, 1)
 texture_filter = 1
 position = Vector2(43.92371, 28.200825)
 scale = Vector2(0.5336218, 0.62324893)
@@ -64,6 +70,7 @@ region_enabled = true
 region_rect = Rect2(-0.76173806, 175.08441, 17.530458, 17.648056)
 
 [node name="Tecla izquierda" type="Sprite2D" parent="Teclas" unique_id=1328558385]
+modulate = Color(0.827451, 0.84705883, 0, 1)
 texture_filter = 1
 position = Vector2(64.39134, 27.655083)
 scale = Vector2(0.5336218, 0.62324893)
@@ -73,6 +80,7 @@ region_enabled = true
 region_rect = Rect2(-0.76173806, 175.08441, 17.530458, 17.648056)
 
 [node name="Tecla arriba" type="Sprite2D" parent="Teclas" unique_id=892614842]
+modulate = Color(0.827451, 0.84705883, 0, 1)
 texture_filter = 1
 position = Vector2(54.011307, 15.648781)
 scale = Vector2(0.5336218, 0.62324893)
@@ -81,6 +89,7 @@ region_enabled = true
 region_rect = Rect2(15.293896, 175.18442, 17.405655, 17.598206)
 
 [node name="Teca abajo" type="Sprite2D" parent="Teclas" unique_id=591054767]
+modulate = Color(0.827451, 0.84705883, 0, 1)
 texture_filter = 1
 position = Vector2(54.157505, 27.837)
 scale = Vector2(0.5336218, 0.62324893)
@@ -90,6 +99,7 @@ region_enabled = true
 region_rect = Rect2(15.453244, 175.18442, 17.245522, 17.598206)
 
 [node name="Tecla a" type="Sprite2D" parent="Teclas" unique_id=2129646941]
+modulate = Color(0.8281528, 0.8471736, 3.85046e-07, 1)
 texture_filter = 1
 position = Vector2(11.029284, 28.200817)
 scale = Vector2(0.5336218, 0.62324893)
@@ -103,24 +113,23 @@ rotation = 3.1415927
 scale = Vector2(6.8400664, -5.497113)
 
 [node name="Tutorial" type="Label" parent="Label" unique_id=1325066703]
-offset_left = 23.017473
-offset_top = -1.08728
-offset_right = 949.8685
-offset_bottom = 169.64098
+modulate = Color(1, 0.52156866, 1, 1)
+offset_left = 30.181147
+offset_top = -0.589907
+offset_right = 957.0322
+offset_bottom = 170.13835
 scale = Vector2(-0.050475396, 0.06499647)
 theme_override_fonts/font = ExtResource("4_vmmbw")
 theme_override_font_sizes/font_size = 41
 text = "TUTORIAL"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Advertencia" type="Label" parent="Label" unique_id=819988657]
-offset_left = -35.169094
-offset_top = 16.0126
-offset_right = 1319.712
-offset_bottom = 172.586
+offset_left = -23.6054
+offset_top = 1.6238737
+offset_right = 1331.2758
+offset_bottom = 158.19727
 scale = Vector2(-0.05726383, 0.06952641)
-theme_override_colors/font_outline_color = Color(0.7293229, 0.30620676, 0.24779207, 1)
 theme_override_constants/outline_size = 30
 theme_override_fonts/font = ExtResource("4_vmmbw")
 theme_override_font_sizes/font_size = 43
@@ -129,61 +138,92 @@ text = "Cuidado con
 los enemigos"
 
 [node name="Disparar" type="Label" parent="Label" unique_id=214070314]
-offset_left = 23.017475
-offset_top = 16.194519
-offset_right = 479.0175
-offset_bottom = 125.15959
+offset_left = 33.25129
+offset_top = 13.101988
+offset_right = 489.25128
+offset_bottom = 122.06706
 scale = Vector2(-0.05726383, 0.06952641)
-theme_override_colors/font_outline_color = Color(0.7293229, 0.30620676, 0.24779207, 1)
 theme_override_constants/outline_size = 30
 theme_override_fonts/font = ExtResource("4_vmmbw")
 theme_override_font_sizes/font_size = 43
 text = "Disparar"
 
+[node name="PowerUp" type="Label" parent="Label" unique_id=643514890]
+offset_left = -27.566832
+offset_top = 59.126133
+offset_right = 428.43317
+offset_bottom = 168.0912
+scale = Vector2(-0.05726383, 0.06952641)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("4_vmmbw")
+theme_override_font_sizes/font_size = 43
+text = "Power Up"
+
 [node name="Sprites" type="Node2D" parent="." unique_id=668360780]
 
 [node name="Enemigo" type="Sprite2D" parent="Sprites" unique_id=764366752]
 texture_filter = 1
-position = Vector2(828, 350)
-scale = Vector2(0.47514606, 0.47514606)
-texture = ExtResource("4_it414")
-hframes = 9
-
-[node name="Cupcake1" type="Sprite2D" parent="Sprites" unique_id=1511829518]
-texture_filter = 1
-position = Vector2(215.00002, 351)
-scale = Vector2(0.47514606, 0.47514606)
-texture = ExtResource("5_e3e7l")
+position = Vector2(844.90356, 199.90353)
+scale = Vector2(2.7063236, 2.7063236)
+texture = ExtResource("6_35skj")
 hframes = 6
-frame = 5
 
-[node name="Cupcake2" type="Sprite2D" parent="Sprites" unique_id=947386511]
+[node name="Enemigo2" type="Sprite2D" parent="Sprites" unique_id=25000780]
 texture_filter = 1
-position = Vector2(501, 353)
-scale = Vector2(0.47514606, 0.47514606)
-texture = ExtResource("5_e3e7l")
+position = Vector2(839.90356, 278.90353)
+scale = Vector2(3.0719101, 3.0719101)
+texture = ExtResource("7_4mpyr")
 hframes = 6
+vframes = 2
+
+[node name="Jugador1" type="Sprite2D" parent="Sprites" unique_id=1511829518]
+texture_filter = 1
+position = Vector2(175.99997, 331)
+scale = Vector2(0.15703657, 0.15703657)
+texture = ExtResource("8_35skj")
+hframes = 5
+frame = 2
+
+[node name="Jugador2" type="Sprite2D" parent="Sprites" unique_id=947386511]
+texture_filter = 1
+position = Vector2(418, 329.00003)
+scale = Vector2(0.15939444, 0.15939444)
+texture = ExtResource("8_35skj")
+hframes = 5
 frame = 4
 
+[node name="Escudo" type="Sprite2D" parent="Sprites" unique_id=495156894]
+texture_filter = 1
+position = Vector2(787.00006, 463.00006)
+scale = Vector2(3.2046976, 3.2046976)
+texture = ExtResource("9_jmg5y")
+
+[node name="Vida" type="Sprite2D" parent="Sprites" unique_id=897734912]
+texture_filter = 1
+position = Vector2(885.00006, 463.00006)
+scale = Vector2(3.2046976, 3.2046976)
+texture = ExtResource("10_1av6o")
+
 [node name="TextureButton1" type="TextureButton" parent="." unique_id=1249836970]
+modulate = Color(0.7607843, 0, 0.42745098, 1)
 texture_filter = 1
 layout_mode = 0
-offset_left = 35.00003
-offset_top = 502.00003
-offset_right = 79.00003
-offset_bottom = 534.0
+offset_left = 29.0
+offset_top = 459.0
+offset_right = 73.0
+offset_bottom = 491.0
 scale = Vector2(4.6380033, 3.1180058)
 texture_normal = SubResource("AtlasTexture_rwowx")
 texture_pressed = SubResource("AtlasTexture_hu44a")
 texture_hover = SubResource("AtlasTexture_0cr88")
 
-[node name="Volver" type="Label" parent="TextureButton1" unique_id=1049213572]
+[node name="Volver" type="Label" parent="." unique_id=1049213572]
 layout_mode = 0
-offset_left = 5.605839
-offset_top = 13.149414
-offset_right = 244.60583
-offset_bottom = 78.149414
-scale = Vector2(0.15259326, 0.23117486)
+offset_left = 54.9999
+offset_top = 499.99997
+offset_right = 323.68848
+offset_bottom = 551.9087
+scale = Vector2(0.67259234, 0.81896013)
 theme_override_fonts/font = ExtResource("4_vmmbw")
 theme_override_font_sizes/font_size = 28
 text = "Volver"

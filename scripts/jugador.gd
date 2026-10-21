@@ -9,7 +9,9 @@ enum Estado { IDLE, SLIDING }
 @export var tamano_casilla := 48.0
 @export var velocidad_deslizamiento := 240.0
 @export var alcance_ataque := 96.0
-@onready var sprite: Sprite2D = $Cupcake
+@onready var sprite: Sprite2D = $RobotJugador
+@onready var animacion: AnimationPlayer = $AnimationPlayer
+
 var estado := Estado.IDLE
 var direccion := Vector2.RIGHT
 var power_up_disponible: PowerUp
@@ -18,7 +20,7 @@ var escudo_activo := false
 var turnos_escudo := 0
 var raycast_trayectoria: RayCast2D
 var raycast_ataque: RayCast2D
-var _origen_deslizamiento := Vector2.ZERO
+var _origen_deslizamiento := Vector2.ZERO #ver si se usará
 var _toque_inicial := Vector2.ZERO
 var _hay_toque := false
 var _destello_ataque := 0.0
@@ -27,8 +29,8 @@ var _tiempo_invulnerable := 0.0
 func _ready() -> void:
 	nombre = "Jugador"
 	vida = 3
-	sprite.scale = Vector2(0.3, 0.3)
-
+	sprite.scale = Vector2(0.1, 0.1)
+	
 	raycast_trayectoria = RayCast2D.new()
 	raycast_trayectoria.name = "RayCastTrayectoria"
 	raycast_trayectoria.enabled = true
@@ -99,6 +101,7 @@ func iniciar_deslizamiento(nueva_direccion: Vector2) -> void:
 	if estado == Estado.IDLE and not raycast_trayectoria.is_colliding():
 		estado = Estado.SLIDING
 		sprite.frame = 5
+		#animacion.play ("fly_jugador")ACAAAAAAAA
 
 func _actualizar_orientacion() -> void:
 	if direccion.x<0:

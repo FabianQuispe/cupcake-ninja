@@ -1,36 +1,37 @@
 [gd_scene format=3 uid="uid://bbtnds8un56y"]
 
 [ext_resource type="Script" uid="uid://cw436v8rqe4gr" path="res://scripts/hud_vida.gd" id="1_dp305"]
-[ext_resource type="Texture2D" uid="uid://pvcgw1v7k6ap" path="res://sprites-assets/vida/vida.png" id="1_i33c0"]
-[ext_resource type="Texture2D" uid="uid://cidmq2cy4eyp3" path="res://sprites-assets/vida/sin_vida.png" id="3_qh0ce"]
+[ext_resource type="Texture2D" uid="uid://cnktawp5hslxv" path="res://sprites-assets/powerup/vida.png" id="1_i33c0"]
+[ext_resource type="Texture2D" uid="uid://ecgewx48qq1x" path="res://sprites-assets/powerup/sin_vida.png" id="3_qh0ce"]
 
-[node name="Control" type="Control" unique_id=896967587 node_paths=PackedStringArray("VidaCereza1", "VidaCereza2", "VidaCereza3")]
+[node name="Control" type="Control" unique_id=896967587 node_paths=PackedStringArray("VidaCorazon1", "VidaCorazon2", "VidaCorazon3")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_dp305")
 vida = ExtResource("1_i33c0")
 sin_vida = ExtResource("3_qh0ce")
-VidaCereza1 = NodePath("HBoxContainer/VidaCereza1")
-VidaCereza2 = NodePath("HBoxContainer/VidaCereza2")
-VidaCereza3 = NodePath("HBoxContainer/VidaCereza3")
+VidaCorazon1 = NodePath("HBoxContainer/VidaCorazon1")
+VidaCorazon2 = NodePath("HBoxContainer/VidaCorazon2")
+VidaCorazon3 = NodePath("HBoxContainer/VidaCorazon3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1590798168]
+texture_filter = 1
 layout_mode = 0
-offset_right = 977.0
-offset_bottom = 342.0
-scale = Vector2(0.16, 0.16)
+offset_right = 108.75017
+offset_bottom = 334.31464
+scale = Vector2(1.6799966, 0.1679996)
 
-[node name="VidaCereza1" type="TextureRect" parent="HBoxContainer" unique_id=1146535610]
+[node name="VidaCorazon1" type="TextureRect" parent="HBoxContainer" unique_id=1146535610]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("1_i33c0")
 
-[node name="VidaCereza2" type="TextureRect" parent="HBoxContainer" unique_id=1921124190]
+[node name="VidaCorazon2" type="TextureRect" parent="HBoxContainer" unique_id=1921124190]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("1_i33c0")
 
-[node name="VidaCereza3" type="TextureRect" parent="HBoxContainer" unique_id=893029975]
+[node name="VidaCorazon3" type="TextureRect" parent="HBoxContainer" unique_id=893029975]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("1_i33c0")

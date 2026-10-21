@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://jmaqdv1c3xvr"]
+[gd_scene format=3 uid="uid://g7ui366kg4vx"]
 
 [sub_resource type="GDScript" id="GDScript_6ea73"]
 script/source = "extends Personaje

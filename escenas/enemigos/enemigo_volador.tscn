@@ -19,7 +19,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_xuxv0"]
-resource_name = "fly"
+resource_name = "lanzar_bomba"
 length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
@@ -38,13 +38,13 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6cboq"]
 _data = {
 &"RESET": SubResource("Animation_nbqag"),
-&"fly": SubResource("Animation_xuxv0")
+&"lanzar_bomba": SubResource("Animation_xuxv0")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebask"]
 size = Vector2(103.03992, 19.60994)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2136436131]
+[node name="RobotVolador" type="CharacterBody2D" unique_id=2136436131]
 script = ExtResource("1_58snc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=837981153]

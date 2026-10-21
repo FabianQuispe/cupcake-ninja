@@ -17,3 +17,9 @@ func _on_boton_nivel_3_pressed() -> void:
 	$SonidoBoton.play()
 	await $SonidoBoton.finished
 	get_tree().change_scene_to_file("res://escenas/niveles/nivel_dificil.tscn")
+
+#Lleva al menu
+func _on_boton_volver_pressed() -> void:
+	$SonidoBoton.play()
+	await $SonidoBoton.finished
+	get_tree().change_scene_to_file("res://escenas/ui/menu.tscn")

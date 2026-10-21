@@ -2,12 +2,15 @@
 
 [ext_resource type="Script" uid="uid://8j0u0jsu34xq" path="res://scripts/ui/menu.gd" id="1_d7r87"]
 [ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="1_vdanu"]
-[ext_resource type="Texture2D" uid="uid://c7ipfi53ii8py" path="res://fondos/fondo_1.png" id="2_2owot"]
+[ext_resource type="Texture2D" uid="uid://ce5nkbkonhcbq" path="res://fondos/fondo_juego.png" id="2_xrw20"]
 [ext_resource type="AudioStream" uid="uid://6b8spv8dcqto" path="res://sonidos/sonido_boton.mp3" id="4_6cq3m"]
 [ext_resource type="FontFile" uid="uid://d4h663edhjxp6" path="res://sprites-assets/tipografia/stairsnslabs.ttf" id="4_xrw20"]
+[ext_resource type="Texture2D" uid="uid://5e88vy6f7tay" path="res://sprites-assets/jugador/robotito.png" id="6_6coix"]
+[ext_resource type="Texture2D" uid="uid://ba1xy4pvhv7m2" path="res://logo falugame.png" id="7_l7ced"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6cq3m"]
-texture = ExtResource("2_2owot")
+texture = ExtResource("2_xrw20")
+modulate_color = Color(0.34372908, 0.36941528, 0.7656731, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouk20"]
 atlas = ExtResource("1_vdanu")
@@ -41,73 +44,85 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_6cq3m")
 [node name="Botones" type="Node2D" parent="." unique_id=1226314483]
 
 [node name="BotonJugar" type="TextureButton" parent="Botones" unique_id=643307385]
+modulate = Color(1, 0.4, 0.8627451, 1)
 texture_filter = 1
-offset_left = 463.0
-offset_top = 269.0
-offset_right = 507.0
-offset_bottom = 301.0
+offset_left = 742.0
+offset_top = 189.0
+offset_right = 786.0
+offset_bottom = 221.0
 scale = Vector2(4.6380033, 3.1180058)
 texture_normal = SubResource("AtlasTexture_ouk20")
 texture_pressed = SubResource("AtlasTexture_mae5d")
 texture_hover = SubResource("AtlasTexture_4hy44")
 
-[node name="Jugar" type="Label" parent="Botones/BotonJugar" unique_id=1090816870]
-layout_mode = 0
-offset_left = 8.193176
-offset_top = 12.508026
-offset_right = 356.77692
-offset_bottom = 70.776276
+[node name="Jugar" type="Label" parent="Botones" unique_id=1090816870]
+offset_left = 803.0
+offset_top = 228.00009
+offset_right = 1333.0
+offset_bottom = 308.0001
 scale = Vector2(0.15259326, 0.23117486)
 theme_override_fonts/font = ExtResource("4_xrw20")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 80
 text = "Jugar"
 
 [node name="BotonTutorial" type="TextureButton" parent="Botones" unique_id=1455501644]
+modulate = Color(1, 0.4, 0.8627451, 1)
 texture_filter = 1
-offset_left = 463.0
-offset_top = 382.0
-offset_right = 507.0
-offset_bottom = 414.0
+offset_left = 742.0
+offset_top = 302.0
+offset_right = 786.0
+offset_bottom = 334.0
 scale = Vector2(4.6380033, 3.1180058)
 texture_normal = SubResource("AtlasTexture_ouk20")
 texture_pressed = SubResource("AtlasTexture_mae5d")
 texture_hover = SubResource("AtlasTexture_4hy44")
 
-[node name="Tutorial" type="Label" parent="Botones/BotonTutorial" unique_id=652969108]
-layout_mode = 0
-offset_left = 1.2936571
-offset_top = 12.82871
-offset_right = 298.29367
-offset_bottom = 77.82871
+[node name="Tutorial" type="Label" parent="Botones" unique_id=652969108]
+offset_left = 781.0
+offset_top = 342.0
+offset_right = 1629.0
+offset_bottom = 422.0
 scale = Vector2(0.15259326, 0.23117486)
 theme_override_fonts/font = ExtResource("4_xrw20")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 80
 text = "Tutorial"
 
 [node name="BotonCreditos" type="TextureButton" parent="Botones" unique_id=1853832091]
+modulate = Color(1, 0.4, 0.8627451, 1)
 texture_filter = 1
-offset_left = 463.0
-offset_top = 490.0
-offset_right = 507.0
-offset_bottom = 522.0
+offset_left = 742.0
+offset_top = 410.0
+offset_right = 786.0
+offset_bottom = 442.0
 scale = Vector2(4.6380033, 3.1180058)
 texture_normal = SubResource("AtlasTexture_ouk20")
 texture_pressed = SubResource("AtlasTexture_mae5d")
 texture_hover = SubResource("AtlasTexture_4hy44")
 
-[node name="Creditos" type="Label" parent="Botones/BotonCreditos" unique_id=1602084776]
+[node name="Creditos" type="Label" parent="." unique_id=1602084776]
 layout_mode = 0
-offset_left = 1.2936573
-offset_top = 12.507992
-offset_right = 298.29367
-offset_bottom = 77.507996
+offset_left = 779.0
+offset_top = 449.0
+offset_right = 1627.0
+offset_bottom = 529.0
 scale = Vector2(0.15259326, 0.23117486)
 theme_override_fonts/font = ExtResource("4_xrw20")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 80
 text = "Creditos"
 
 [node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=113970228]
 stream = ExtResource("4_6cq3m")
+
+[node name="SpriteRobot" type="Sprite2D" parent="." unique_id=423881909]
+texture_filter = 1
+position = Vector2(386, 366)
+scale = Vector2(3.5599995, 3.5599995)
+texture = ExtResource("6_6coix")
+
+[node name="Logo" type="Sprite2D" parent="." unique_id=982775927]
+position = Vector2(913, 61.000008)
+scale = Vector2(0.09914077, 0.09914077)
+texture = ExtResource("7_l7ced")
 
 [connection signal="pressed" from="Botones/BotonJugar" to="." method="_on_boton_jugar_pressed"]
 [connection signal="pressed" from="Botones/BotonTutorial" to="." method="_on_boton_tutorial_pressed"]

@@ -5,7 +5,6 @@ var tipo: String = "Enemigo"
 var objetivo: Jugador
 var danio_contacto: int = 1
 
-
 func _ready() -> void:
 	nombre = tipo
 	vida = 35

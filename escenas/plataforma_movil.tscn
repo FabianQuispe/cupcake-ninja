@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cgncwejom7bwx"]
+
+[ext_resource type="Script" uid="uid://caom415k4dgsw" path="res://scripts/plataforma_movil.gd" id="1_qhfep"]
+[ext_resource type="Texture2D" uid="uid://bqf0c1c3ism4w" path="res://sprites-assets/plataformas/plataforma_movil.png" id="2_7atdm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7atdm"]
+size = Vector2(169, 27)
+
+[sub_resource type="Animation" id="Animation_m8iqi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_b4oyd"]
+resource_name = "movimiento"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1trdg"]
+_data = {
+&"RESET": SubResource("Animation_m8iqi"),
+&"movimiento": SubResource("Animation_b4oyd")
+}
+
+[node name="PlataformaMovil" type="StaticBody2D" unique_id=454444714]
+script = ExtResource("1_qhfep")
+
+[node name="PlataformaMovil" type="Sprite2D" parent="." unique_id=1548742955]
+texture_filter = 1
+position = Vector2(40.5, 13.5)
+scale = Vector2(1.84375, 1.84375)
+texture = ExtResource("2_7atdm")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=511872772]
+position = Vector2(40.499996, -1.5)
+shape = SubResource("RectangleShape2D_7atdm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1679494573]
+root_node = NodePath("../PlataformaMovil")
+libraries/ = SubResource("AnimationLibrary_1trdg")

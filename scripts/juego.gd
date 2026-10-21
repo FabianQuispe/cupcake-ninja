@@ -13,7 +13,7 @@ var tiempo_de_nivel := 0.0
 var generador_aleatorio := RandomNumberGenerator.new()
 
 const ESCENA_NIVEL := preload("res://escenas/niveles/nivel_facil.tscn")
-const ESCENA_ENEMIGO_PAPA := preload("res://escenas/enemigos/enemigo_papa.tscn")
+const ESCENA_ENEMIGO_ORUGA := preload("res://escenas/enemigos/enemigo_oruga.tscn")
 const ESCENA_ENEMIGO_VOLADOR := preload("res://escenas/enemigos/enemigo_volador.tscn")
 
 
@@ -128,7 +128,7 @@ func _crear_paredes() -> void:
 
 
 func _crear_enemigos() -> void:
-	for datos in [[Vector2(240, 210), "Papa"], [Vector2(900, 230), "Volador"], [Vector2(850, 500), "Papa"]]:
+	for datos in [[Vector2(440, 210), "Oruga"], [Vector2(500, 100), "Volador"], [Vector2(850, 500), "Oruga"]]:
 		_crear_enemigo(datos[0], datos[1])
 
 
@@ -138,7 +138,7 @@ func _crear_enemigo(posicion: Vector2, tipo: String) -> void:
 		enemigo = ESCENA_ENEMIGO_VOLADOR.instantiate()
 		enemigo.scale = Vector2(0.2, 0.2)
 	else:
-		enemigo = ESCENA_ENEMIGO_PAPA.instantiate()
+		enemigo = ESCENA_ENEMIGO_ORUGA.instantiate()
 		enemigo.scale = Vector2(0.3, 0.3)
 
 	var sprite := enemigo.get_node_or_null("Sprite2D") as Sprite2D
@@ -156,7 +156,7 @@ func _crear_enemigo(posicion: Vector2, tipo: String) -> void:
 	add_child(enemigo)
 	var animacion := enemigo.get_node_or_null("AnimationPlayer") as AnimationPlayer
 	if animacion:
-		animacion.play("fly" if tipo == "Volador" else "walk")
+		animacion.play("lanzar_bomba" if tipo == "Volador" else "walk")
 
 
 func _crear_enemigo_aleatorio() -> void:
@@ -168,7 +168,7 @@ func _crear_enemigo_aleatorio() -> void:
 		)
 		if posicion.distance_to(jugador.position) >= 192.0 and not _hay_trampa_cerca(posicion):
 			break
-	var tipos := ["Papa", "Volador"]
+	var tipos := ["Oruga", "Volador"]
 	_crear_enemigo(posicion, tipos[generador_aleatorio.randi_range(0, tipos.size() - 1)])
 
 

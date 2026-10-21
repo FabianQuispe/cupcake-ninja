@@ -1,17 +1,32 @@
 [gd_scene format=3 uid="uid://do1i6epldjm0q"]
 
 [ext_resource type="Script" uid="uid://dfvfux3jdj84x" path="res://scripts/jugador.gd" id="1_16k11"]
-[ext_resource type="Texture2D" uid="uid://dnj1hjkyxdd52" path="res://sprites-assets/personajes/Cupcake_sprite.png" id="2_omvyu"]
+[ext_resource type="Texture2D" uid="uid://vfhnm5b4w8pr" path="res://sprites-assets/jugador/spritesheet_jugador.png" id="2_jpodt"]
 
-[sub_resource type="Animation" id="Animation_btb33"]
-resource_name = "Win"
-length = 0.6
+[sub_resource type="Animation" id="Animation_njcx7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RobotJugador:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_xutah"]
+resource_name = "fly_jugador"
+length = 0.3
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Cupcake:frame")
+tracks/0/path = NodePath("RobotJugador:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -23,25 +38,27 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qw2bf"]
 _data = {
-&"Win": SubResource("Animation_btb33")
+&"RESET": SubResource("Animation_njcx7"),
+&"fly_jugador": SubResource("Animation_xutah")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jugador"]
-size = Vector2(60, 85)
+size = Vector2(46.666664, 68.19444)
 
 [node name="Jugador" type="CharacterBody2D" unique_id=2072079063]
 script = ExtResource("1_16k11")
 
-[node name="Cupcake" type="Sprite2D" parent="." unique_id=1223004284]
+[node name="RobotJugador" type="Sprite2D" parent="." unique_id=1223004284]
 texture_filter = 1
-scale = Vector2(0.31356522, 0.3135653)
-texture = ExtResource("2_omvyu")
-hframes = 6
+position = Vector2(-12.000008, -0.99998474)
+scale = Vector2(0.029115077, 0.029115088)
+texture = ExtResource("2_jpodt")
+hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2103158307]
 libraries/ = SubResource("AnimationLibrary_qw2bf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=359608813]
-position = Vector2(-5, 0.5)
-scale = Vector2(0.72000015, 0.72000015)
+position = Vector2(-9, 0)
+scale = Vector2(0.32000077, 0.32000077)
 shape = SubResource("RectangleShape2D_jugador")

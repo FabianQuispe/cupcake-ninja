@@ -1,13 +1,32 @@
 [gd_scene format=3 uid="uid://kcgiem71akdp"]
 
 [ext_resource type="Script" uid="uid://dnccevjn0ync4" path="res://scripts/ui/elegir_nivel.gd" id="1_566hm"]
-[ext_resource type="Texture2D" uid="uid://c7ipfi53ii8py" path="res://fondos/fondo_1.png" id="2_kwvsd"]
+[ext_resource type="Texture2D" uid="uid://ce5nkbkonhcbq" path="res://fondos/fondo_juego.png" id="2_g4yij"]
+[ext_resource type="Texture2D" uid="uid://bvyiqx376qoxj" path="res://sprites-assets/botones/FrameMap.png" id="3_g4yij"]
 [ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="3_nfr48"]
 [ext_resource type="FontFile" uid="uid://d4h663edhjxp6" path="res://sprites-assets/tipografia/stairsnslabs.ttf" id="4_g4yij"]
 [ext_resource type="AudioStream" uid="uid://6b8spv8dcqto" path="res://sonidos/sonido_boton.mp3" id="5_nfr48"]
+[ext_resource type="Texture2D" uid="uid://cnktawp5hslxv" path="res://sprites-assets/powerup/vida.png" id="6_k3k61"]
+[ext_resource type="Texture2D" uid="uid://bm3hvntg7p57o" path="res://sprites-assets/powerup/tiempo.png" id="7_usdi7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bl2xq"]
-texture = ExtResource("2_kwvsd")
+texture = ExtResource("2_g4yij")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl2xq"]
+atlas = ExtResource("3_g4yij")
+region = Rect2(32.80581, 131.2334, 95.16655, 26.379486)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4yij"]
+atlas = ExtResource("3_nfr48")
+region = Rect2(0, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl74x"]
+atlas = ExtResource("3_nfr48")
+region = Rect2(96, 0, 44, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpupp"]
+atlas = ExtResource("3_nfr48")
+region = Rect2(48, 0, 44, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k3k61"]
 atlas = ExtResource("3_nfr48")
@@ -31,7 +50,7 @@ grow_vertical = 2
 script = ExtResource("1_566hm")
 
 [node name="Panel" type="Panel" parent="." unique_id=246260334]
-modulate = Color(0.9920364, 0.7380258, 0.884731, 1)
+modulate = Color(0.54509807, 1, 0.57254905, 1)
 texture_filter = 1
 layout_mode = 0
 offset_right = 283.6551
@@ -39,79 +58,205 @@ offset_bottom = 159.50069
 scale = Vector2(3.605, 3.605)
 theme_override_styles/panel = SubResource("StyleBoxTexture_bl2xq")
 
-[node name="Node2D" type="Node2D" parent="." unique_id=86788959]
+[node name="Grupo" type="Node2D" parent="." unique_id=86788959]
 position = Vector2(99.00003, 252)
 scale = Vector2(0.90295947, 1.0118521)
 
-[node name="BotonNivel1" type="TextureButton" parent="Node2D" unique_id=1043118543]
-modulate = Color(0.5709606, 1, 0.9479646, 1)
+[node name="Sprite2D" type="Sprite2D" parent="Grupo" unique_id=36634505]
 texture_filter = 1
-offset_left = 73.09295
-offset_right = 117.09295
-offset_bottom = 32.0
+position = Vector2(462.92218, -157.13759)
+scale = Vector2(3.7886093, 3.7886093)
+texture = SubResource("AtlasTexture_bl2xq")
+
+[node name="Tutorial" type="Label" parent="Grupo" unique_id=1664193654]
+modulate = Color(1, 0.52156866, 1, 1)
+offset_left = 264.68515
+offset_top = -168.00876
+offset_right = 1191.5363
+offset_bottom = 2.7194977
+scale = Vector2(0.44003484, 0.46720618)
+theme_override_fonts/font = ExtResource("4_g4yij")
+theme_override_font_sizes/font_size = 41
+text = "DIFICULTAD"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BotonVolver" type="TextureButton" parent="Grupo" unique_id=1844925119]
+modulate = Color(0.7607843, 0, 0.42745098, 1)
+texture_filter = 1
+offset_left = -73.09302
+offset_top = 199.63391
+offset_right = -29.093018
+offset_bottom = 231.63391
+scale = Vector2(4.638002, 3.1180058)
+texture_normal = SubResource("AtlasTexture_g4yij")
+texture_pressed = SubResource("AtlasTexture_bl74x")
+texture_hover = SubResource("AtlasTexture_kpupp")
+
+[node name="Volver" type="Label" parent="Grupo" unique_id=92630994]
+offset_left = -45.406273
+offset_top = 240.15366
+offset_right = 223.28226
+offset_bottom = 292.06238
+scale = Vector2(0.67192197, 0.8007272)
+theme_override_fonts/font = ExtResource("4_g4yij")
+theme_override_font_sizes/font_size = 28
+text = "Volver"
+
+[node name="BotonNivel1" type="TextureButton" parent="Grupo" unique_id=1043118543]
+modulate = Color(1, 0.39886007, 0.86451465, 1)
+texture_filter = 1
+offset_left = 4.42984
+offset_top = -30.636887
+offset_right = 48.42984
+offset_bottom = 1.3631134
 scale = Vector2(5.1580033, 3.4675877)
 texture_normal = SubResource("AtlasTexture_k3k61")
 texture_pressed = SubResource("AtlasTexture_usdi7")
 texture_hover = SubResource("AtlasTexture_dixcb")
+metadata/_edit_use_anchors_ = true
 
-[node name="Facil" type="Label" parent="Node2D/BotonNivel1" unique_id=903163371]
-layout_mode = 0
-offset_left = 10.081413
-offset_top = 14.419246
-offset_right = 358.66516
-offset_bottom = 72.68749
-scale = Vector2(0.15259326, 0.23117486)
+[node name="Facil" type="Label" parent="Grupo" unique_id=903163371]
+offset_left = 64.23319
+offset_top = 20.754019
+offset_right = 594.2332
+offset_bottom = 100.75402
+scale = Vector2(0.19689068, 0.23117486)
 theme_override_fonts/font = ExtResource("4_g4yij")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 80
 text = "Facil"
+metadata/_edit_use_anchors_ = true
 
-[node name="BotonNivel2" type="TextureButton" parent="Node2D" unique_id=1274864697]
-modulate = Color(0.5709606, 1, 0.9479646, 1)
+[node name="BotonNivel2" type="TextureButton" parent="Grupo" unique_id=1274864697]
+modulate = Color(1, 0.4, 0.8627451, 1)
 texture_filter = 1
-offset_left = 393.1516
-offset_right = 437.1516
-offset_bottom = 32.0
+offset_left = 324.4885
+offset_top = -30.636887
+offset_right = 368.4885
+offset_bottom = 1.3631134
 scale = Vector2(6.2654724, 3.4675877)
 texture_normal = SubResource("AtlasTexture_k3k61")
 texture_pressed = SubResource("AtlasTexture_usdi7")
 texture_hover = SubResource("AtlasTexture_dixcb")
+metadata/_edit_use_anchors_ = true
 
-[node name="Intermedio" type="Label" parent="Node2D/BotonNivel2" unique_id=1398703997]
-layout_mode = 0
-offset_left = 5.8329983
-offset_top = 14.419246
-offset_right = 354.41675
-offset_bottom = 72.68749
-scale = Vector2(0.10310115, 0.23117486)
+[node name="Intermedio" type="Label" parent="Grupo" unique_id=1398703997]
+offset_left = 361.035
+offset_top = 19.363096
+offset_right = 1421.035
+offset_bottom = 99.3631
+scale = Vector2(0.19169599, 0.23117486)
 theme_override_fonts/font = ExtResource("4_g4yij")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 80
 text = "Intermedio"
+metadata/_edit_use_anchors_ = true
 
-[node name="BotonNivel3" type="TextureButton" parent="Node2D" unique_id=1073055311]
-modulate = Color(0.5709606, 1, 0.9479646, 1)
+[node name="BotonNivel3" type="TextureButton" parent="Grupo" unique_id=1073055311]
+modulate = Color(1, 0.4, 0.8627451, 1)
 texture_filter = 1
-offset_left = 778.55096
-offset_right = 822.55096
-offset_bottom = 32.0
+offset_left = 709.8879
+offset_top = -30.636887
+offset_right = 753.8879
+offset_bottom = 1.3631134
 scale = Vector2(5.1580033, 3.4675877)
 texture_normal = SubResource("AtlasTexture_k3k61")
 texture_pressed = SubResource("AtlasTexture_usdi7")
 texture_hover = SubResource("AtlasTexture_dixcb")
+metadata/_edit_use_anchors_ = true
 
-[node name="Dificil" type="Label" parent="Node2D/BotonNivel3" unique_id=1750941346]
-layout_mode = 0
-offset_left = 6.4412684
-offset_top = 14.419246
-offset_right = 355.025
-offset_bottom = 72.68749
-scale = Vector2(0.15259326, 0.23117486)
+[node name="Dificil" type="Label" parent="Grupo" unique_id=1750941346]
+offset_left = 749.7567
+offset_top = 19.765718
+offset_right = 1491.7568
+offset_bottom = 99.76572
+scale = Vector2(0.19259813, 0.23117486)
 theme_override_fonts/font = ExtResource("4_g4yij")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 80
 text = "Dificil"
+metadata/_edit_use_anchors_ = true
+
+[node name="VidaFacil" type="Sprite2D" parent="Grupo" unique_id=1972422737]
+texture_filter = 1
+position = Vector2(38.761383, 107.72322)
+scale = Vector2(2.1457222, 1.9148058)
+texture = ExtResource("6_k3k61")
+
+[node name="VidaIntermedio" type="Sprite2D" parent="Grupo" unique_id=1143334249]
+texture_filter = 1
+position = Vector2(359.9275, 107.72322)
+scale = Vector2(2.1457222, 1.9148058)
+texture = ExtResource("6_k3k61")
+
+[node name="VidaDificil" type="Sprite2D" parent="Grupo" unique_id=1098371019]
+texture_filter = 1
+position = Vector2(745.3268, 107.72322)
+scale = Vector2(2.1457222, 1.9148058)
+texture = ExtResource("6_k3k61")
+
+[node name="TiempoFacil" type="Sprite2D" parent="Grupo" unique_id=1509112638]
+texture_filter = 1
+position = Vector2(745.3268, 150.2196)
+scale = Vector2(2.1457222, 1.9148058)
+texture = ExtResource("7_usdi7")
+
+[node name="TiempoIntermedio" type="Sprite2D" parent="Grupo" unique_id=600152023]
+texture_filter = 1
+position = Vector2(362.14246, 150.2196)
+scale = Vector2(2.1457222, 1.9148058)
+texture = ExtResource("7_usdi7")
+
+[node name="TiempoDificil" type="Sprite2D" parent="Grupo" unique_id=1782923279]
+texture_filter = 1
+position = Vector2(37.65393, 150.21962)
+scale = Vector2(2.1457222, 1.9148058)
+texture = ExtResource("7_usdi7")
+
+[node name="VidasTextoFacil" type="Label" parent="Grupo" unique_id=1624968507]
+offset_left = 88.59752
+offset_top = 90.92237
+offset_right = 430.59753
+offset_bottom = 292.92236
+scale = Vector2(0.324593, 0.3914414)
+theme_override_constants/line_spacing = 28
+theme_override_constants/outline_size = 33
+theme_override_fonts/font = ExtResource("4_g4yij")
+theme_override_font_sizes/font_size = 86
+text = "3
+300"
+metadata/_edit_use_anchors_ = true
+
+[node name="VidasTextoIntermedio" type="Label" parent="Grupo" unique_id=2032745744]
+offset_left = 415.30103
+offset_top = 90.92237
+offset_right = 757.301
+offset_bottom = 292.92236
+scale = Vector2(0.324593, 0.3914414)
+theme_override_constants/line_spacing = 28
+theme_override_constants/outline_size = 33
+theme_override_fonts/font = ExtResource("4_g4yij")
+theme_override_font_sizes/font_size = 86
+text = "3
+120"
+metadata/_edit_use_anchors_ = true
+
+[node name="VidasTextoDificil" type="Label" parent="Grupo" unique_id=1721515288]
+offset_left = 791.8406
+offset_top = 90.92237
+offset_right = 1019.8406
+offset_bottom = 292.92236
+scale = Vector2(0.324593, 0.3914414)
+theme_override_constants/line_spacing = 28
+theme_override_constants/outline_size = 33
+theme_override_fonts/font = ExtResource("4_g4yij")
+theme_override_font_sizes/font_size = 86
+text = "1
+80"
+metadata/_edit_use_anchors_ = true
 
 [node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=1601359808]
 stream = ExtResource("5_nfr48")
 
-[connection signal="pressed" from="Node2D/BotonNivel1" to="." method="_on_boton_nivel_1_pressed"]
-[connection signal="pressed" from="Node2D/BotonNivel2" to="." method="_on_boton_nivel_2_pressed"]
-[connection signal="pressed" from="Node2D/BotonNivel3" to="." method="_on_boton_nivel_3_pressed"]
+[connection signal="pressed" from="Grupo/BotonVolver" to="." method="_on_boton_volver_pressed"]
+[connection signal="pressed" from="Grupo/BotonNivel1" to="." method="_on_boton_nivel_1_pressed"]
+[connection signal="pressed" from="Grupo/BotonNivel2" to="." method="_on_boton_nivel_2_pressed"]
+[connection signal="pressed" from="Grupo/BotonNivel3" to="." method="_on_boton_nivel_3_pressed"]

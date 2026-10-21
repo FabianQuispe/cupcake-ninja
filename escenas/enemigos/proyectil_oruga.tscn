@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://drh6wsr1pxoxq"]
+
+[ext_resource type="Script" uid="uid://du87k6cjsens1" path="res://scripts/enemigos/proyectil_enemigo.gd" id="1_g3ypv"]
+[ext_resource type="Texture2D" uid="uid://n7p4gnlo8t41" path="res://sprites-assets/enemigos/bala_oruga.png" id="2_7ko2v"]
+
+[node name="Node2D" type="Node2D" unique_id=481242833]
+script = ExtResource("1_g3ypv")
+
+[node name="Bala" type="Sprite2D" parent="." unique_id=1237561471]
+texture_filter = 1
+position = Vector2(-4.125002, 7.5)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_7ko2v")

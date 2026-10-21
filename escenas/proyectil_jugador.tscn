@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://nnt4hx1s1ukj"]
 
-[ext_resource type="Texture2D" uid="uid://crufiyl2xw564" path="res://sprites-assets/personajes/disparar_personaje.png" id="1_e4f5l"]
+[ext_resource type="Texture2D" uid="uid://crufiyl2xw564" path="res://sprites-assets/jugador/disparar_personaje.png" id="1_e4f5l"]
 
 [sub_resource type="Animation" id="Animation_1inse"]
 length = 0.2
@@ -42,12 +42,12 @@ _data = {
 
 [node name="Node2D" type="Node2D" unique_id=1813996879]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1184891728]
+[node name="ProyectilJugador" type="Sprite2D" parent="." unique_id=1184891728]
 texture_filter = 1
 scale = Vector2(2.7199998, 2.7199998)
 texture = ExtResource("1_e4f5l")
 hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1350381591]
-root_node = NodePath("../Sprite2D")
+root_node = NodePath("../ProyectilJugador")
 libraries/ = SubResource("AnimationLibrary_3guic")

@@ -2,13 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="1_7p47b"]
 [ext_resource type="Script" uid="uid://bgwkpwawjkttt" path="res://scripts/ui/creditos.gd" id="1_xid12"]
-[ext_resource type="Texture2D" uid="uid://dqnfc1u4hcbwm" path="res://fondos/fondo_2.png" id="2_1345a"]
-[ext_resource type="Texture2D" uid="uid://bufqeu5fwb6qr" path="res://sprites-assets/botones/cuadro.png" id="3_5v1o1"]
+[ext_resource type="Texture2D" uid="uid://ce5nkbkonhcbq" path="res://fondos/fondo_juego.png" id="2_4viod"]
+[ext_resource type="Texture2D" uid="uid://bvyiqx376qoxj" path="res://sprites-assets/botones/FrameMap.png" id="3_4viod"]
 [ext_resource type="FontFile" uid="uid://d4h663edhjxp6" path="res://sprites-assets/tipografia/stairsnslabs.ttf" id="5_4viod"]
 [ext_resource type="AudioStream" uid="uid://6b8spv8dcqto" path="res://sonidos/sonido_boton.mp3" id="5_pyrin"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5v1o1"]
-texture = ExtResource("2_1345a")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qxgwo"]
+texture = ExtResource("2_4viod")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxgwo"]
+atlas = ExtResource("3_4viod")
+region = Rect2(0, 163.5, 97, 89)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xid12"]
 atlas = ExtResource("1_7p47b")
@@ -38,32 +42,33 @@ offset_top = 1.0
 offset_right = 283.49515
 offset_bottom = 159.9459
 scale = Vector2(3.605, 3.605)
-theme_override_styles/panel = SubResource("StyleBoxTexture_5v1o1")
+theme_override_styles/panel = SubResource("StyleBoxTexture_qxgwo")
 
 [node name="CuadroTexto1" type="Sprite2D" parent="." unique_id=1964761773]
 texture_filter = 1
-position = Vector2(577, 312)
-scale = Vector2(10.531251, 9.73941)
-texture = ExtResource("3_5v1o1")
+position = Vector2(539.00006, 301)
+scale = Vector2(5.107682, 5.631481)
+texture = SubResource("AtlasTexture_qxgwo")
 
 [node name="CuadroTexto2" type="Sprite2D" parent="." unique_id=563804189]
 self_modulate = Color(0.9999997, 0.8077901, 0.99612993, 1)
 texture_filter = 1
-position = Vector2(575, 74)
-scale = Vector2(-7.114481, 5.717771)
-texture = ExtResource("1_7p47b")
+position = Vector2(545, 71)
+scale = Vector2(-3.1384895, 3.252299)
+texture = ExtResource("3_4viod")
 region_enabled = true
-region_rect = Rect2(31.259617, 463.94092, 32.98765, 16)
+region_rect = Rect2(30.777328, 130.17989, 98.22221, 27.555557)
 
 [node name="Label" type="Node2D" parent="." unique_id=1584302824]
 position = Vector2(387, 147.00002)
 scale = Vector2(1.0738606, 1.0162734)
 
 [node name="Creditos" type="Label" parent="Label" unique_id=24492411]
-offset_left = 94.98439
-offset_top = -81.670975
-offset_right = 603.9844
-offset_bottom = 115.56853
+modulate = Color(1, 0.52156866, 1, 1)
+offset_left = 75.42878
+offset_top = -80.686966
+offset_right = 584.4288
+offset_bottom = 116.552536
 scale = Vector2(0.30912834, 0.34422672)
 theme_override_fonts/font = ExtResource("5_4viod")
 theme_override_font_sizes/font_size = 48
@@ -71,10 +76,11 @@ text = "CREDITOS"
 metadata/_edit_use_anchors_ = true
 
 [node name="Programadores" type="Label" parent="Label" unique_id=329455272]
-offset_left = 49.354637
-offset_top = 1.9679594
-offset_right = 790.3546
-offset_bottom = 136.66452
+modulate = Color(1, 0.52156866, 1, 1)
+offset_left = 33.523903
+offset_top = -16.727798
+offset_right = 774.5239
+offset_bottom = 117.968765
 scale = Vector2(0.3463771, 0.3857047)
 theme_override_colors/font_outline_color = Color(0.7293229, 0.30620676, 0.24779207, 1)
 theme_override_constants/outline_size = 30
@@ -84,10 +90,11 @@ text = "Programadores"
 metadata/_edit_use_anchors_ = true
 
 [node name="Nombres" type="Label" parent="Label" unique_id=235786150]
-offset_left = 16.76195
-offset_top = 61.007195
-offset_right = 1138.762
-offset_bottom = 338.0072
+modulate = Color(0.30588236, 1, 1, 1)
+offset_left = -5.587318
+offset_top = 18.695747
+offset_right = 1116.4127
+offset_bottom = 295.69574
 scale = Vector2(0.27911302, 0.31080347)
 theme_override_fonts/font = ExtResource("5_4viod")
 theme_override_font_sizes/font_size = 41
@@ -98,10 +105,11 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="DiseñoDeInterfaz" type="Label" parent="Label" unique_id=450121004]
-offset_left = 90.3283
-offset_top = 162.35788
-offset_right = 1077.3282
-offset_bottom = 299.35788
+modulate = Color(1, 0.52156866, 1, 1)
+offset_left = 70.77268
+offset_top = 92.49478
+offset_right = 1057.7726
+offset_bottom = 229.49481
 scale = Vector2(0.3463771, 0.3857047)
 theme_override_colors/font_outline_color = Color(0.7293229, 0.30620676, 0.24779207, 1)
 theme_override_constants/outline_size = 30
@@ -110,21 +118,46 @@ theme_override_font_sizes/font_size = 41
 text = "interfaz"
 
 [node name="Nombres2" type="Label" parent="Label" unique_id=111259728]
-offset_left = 26.074142
-offset_top = 224.34908
-offset_right = 1103.0741
-offset_bottom = 421.58862
+modulate = Color(0.30588236, 1, 1, 1)
+offset_left = 43.76731
+offset_top = 128.90231
+offset_right = 1120.7673
+offset_bottom = 326.14185
 scale = Vector2(0.27911302, 0.31080347)
 theme_override_fonts/font = ExtResource("5_4viod")
 theme_override_font_sizes/font_size = 41
 text = "SnowHex-Asset"
-metadata/_edit_use_anchors_ = true
+
+[node name="Asset" type="Label" parent="Label" unique_id=454954722]
+modulate = Color(1, 0.52156866, 1, 1)
+offset_left = 96.84685
+offset_top = 176.13368
+offset_right = 1083.8469
+offset_bottom = 313.1337
+scale = Vector2(0.3463771, 0.3857047)
+theme_override_colors/font_outline_color = Color(0.7293229, 0.30620676, 0.24779207, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("5_4viod")
+theme_override_font_sizes/font_size = 41
+text = "Asset"
+
+[node name="Nombres3" type="Label" parent="Label" unique_id=872240727]
+modulate = Color(0.30588236, 1, 1, 1)
+offset_left = 68.91024
+offset_top = 209.58923
+offset_right = 1145.9103
+offset_bottom = 406.82877
+scale = Vector2(0.27911302, 0.31080347)
+theme_override_fonts/font = ExtResource("5_4viod")
+theme_override_font_sizes/font_size = 41
+text = "Atomic Realm"
 
 [node name="MusicaYSonido" type="Label" parent="Label" unique_id=50268378]
-offset_left = 35.386345
-offset_top = 301.10004
-offset_right = 884.38635
-offset_bottom = 438.10007
+modulate = Color(0.9999997, 0.523439, 0.99810845, 1)
+offset_left = 12.105853
+offset_top = 255.83662
+offset_right = 861.10583
+offset_bottom = 392.83667
 scale = Vector2(0.3463771, 0.3857047)
 theme_override_colors/font_outline_color = Color(0.7293229, 0.30620676, 0.24779207, 1)
 theme_override_constants/outline_size = 30
@@ -133,36 +166,44 @@ theme_override_font_sizes/font_size = 41
 text = "Musica y Sonido"
 metadata/_edit_use_anchors_ = true
 
-[node name="Nombres3" type="Label" parent="Label" unique_id=2007148644]
-offset_left = 110.815125
-offset_top = 355.21933
-offset_right = 556.65094
-offset_bottom = 552.45886
+[node name="Nombres4" type="Label" parent="Label" unique_id=2007148644]
+modulate = Color(0.30588236, 1, 1, 1)
+offset_left = -94.05317
+offset_top = 290.2762
+offset_right = 1631.9468
+offset_bottom = 557.27625
 scale = Vector2(0.27911302, 0.31080347)
 theme_override_fonts/font = ExtResource("5_4viod")
 theme_override_font_sizes/font_size = 41
-text = "SnowHex"
+text = "DANI MACCARI en 
+
+colaboracion con 
+
+tallbeard Studios
+"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureButton1" type="TextureButton" parent="." unique_id=1257809384]
+modulate = Color(0.7620017, 1.92523e-07, 0.42562258, 1)
 texture_filter = 1
 layout_mode = 0
-offset_left = 35.00003
-offset_top = 502.00003
-offset_right = 79.00003
-offset_bottom = 534.0
+offset_left = 27.0
+offset_top = 455.99997
+offset_right = 71.0
+offset_bottom = 487.99997
 scale = Vector2(4.6380033, 3.1180058)
 texture_normal = SubResource("AtlasTexture_xid12")
 texture_pressed = SubResource("AtlasTexture_1345a")
 texture_hover = SubResource("AtlasTexture_5v1o1")
 
-[node name="Volver" type="Label" parent="TextureButton1" unique_id=316802519]
+[node name="Volver" type="Label" parent="." unique_id=316802519]
 layout_mode = 0
-offset_left = 5.821464
-offset_top = 12.507992
-offset_right = 228.82146
-offset_bottom = 77.507996
-scale = Vector2(0.15259326, 0.23117486)
+offset_left = 54.0
+offset_top = 494.99994
+offset_right = 277.0
+offset_bottom = 559.99994
+scale = Vector2(0.6673814, 0.7183642)
 theme_override_fonts/font = ExtResource("5_4viod")
 theme_override_font_sizes/font_size = 28
 text = "Volver"
