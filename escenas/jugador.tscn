@@ -43,14 +43,14 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jugador"]
-size = Vector2(46.666664, 68.19444)
+size = Vector2(65.62485, 84.3748)
 
 [node name="Jugador" type="CharacterBody2D" unique_id=2072079063]
 script = ExtResource("1_16k11")
 
 [node name="RobotJugador" type="Sprite2D" parent="." unique_id=1223004284]
 texture_filter = 1
-position = Vector2(-12.000008, -0.99998474)
+position = Vector2(9.536743e-07, 1.000001)
 scale = Vector2(0.029115077, 0.029115088)
 texture = ExtResource("2_jpodt")
 hframes = 5
@@ -59,6 +59,6 @@ hframes = 5
 libraries/ = SubResource("AnimationLibrary_qw2bf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=359608813]
-position = Vector2(-9, 0)
+position = Vector2(9.536743e-07, 0)
 scale = Vector2(0.32000077, 0.32000077)
 shape = SubResource("RectangleShape2D_jugador")

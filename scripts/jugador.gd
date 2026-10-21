@@ -20,7 +20,6 @@ var escudo_activo := false
 var turnos_escudo := 0
 var raycast_trayectoria: RayCast2D
 var raycast_ataque: RayCast2D
-var _origen_deslizamiento := Vector2.ZERO #ver si se usará
 var _toque_inicial := Vector2.ZERO
 var _hay_toque := false
 var _destello_ataque := 0.0
@@ -100,8 +99,7 @@ func iniciar_deslizamiento(nueva_direccion: Vector2) -> void:
 	raycast_trayectoria.force_raycast_update()
 	if estado == Estado.IDLE and not raycast_trayectoria.is_colliding():
 		estado = Estado.SLIDING
-		sprite.frame = 5
-		#animacion.play ("fly_jugador")ACAAAAAAAA
+		animacion.play("fly_jugador")
 
 func _actualizar_orientacion() -> void:
 	if direccion.x<0:
@@ -133,6 +131,7 @@ func finalizar_deslizamiento() -> void:
 	global_position = _ajustar_a_casilla(global_position)
 	movimiento_terminado.emit(direccion)
 	_consumir_turno()
+	animacion.stop()
 	sprite.frame = 3
 	
 
