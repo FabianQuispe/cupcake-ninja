@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cdut4uavpdvq3"]
 
 [ext_resource type="Texture2D" uid="uid://dh8buoj188mws" path="res://sprites-assets/enemigos/bomba_robot_volador.png" id="1_aqdsy"]
-[ext_resource type="Script" uid="uid://bt7niubtl5dd3" path="res://scripts/enemigos/bomba_enemigo.gd" id="1_clf6d"]
+[ext_resource type="Script" uid="uid://bt7niubtl5dd3" path="res://scripts/enemigos/proyectil_enemigo_volador.gd" id="1_clf6d"]
 
 [sub_resource type="Animation" id="Animation_1inse"]
 length = 0.2

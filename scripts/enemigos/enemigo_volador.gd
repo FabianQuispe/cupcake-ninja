@@ -5,7 +5,7 @@ extends Enemigo
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animacion: AnimationPlayer = $AnimationPlayer
-const ESCENA_BOMBA:= preload ("res://escenas/enemigos/bomba_enemigo.tscn")
+const ESCENA_BOMBA:= preload ("res://escenas/enemigos/proyectil_enemigo_volador.tscn")
 
 var disparo = 0.0
 var tiempo_espera_disparo = 5
@@ -19,8 +19,10 @@ func _ready() -> void:
 	super._ready()
 	vida = 2
 	velocidad = 80
+	posicion_inicial = position.x
+	sprite.frame = 0
 	animacion.animation_finished.connect(fin_animacion)
-	animacion.play("lanzar_bomba")
+	
 	
 func comportamiento (_delta: float) -> void:
 #Se queda quieto mientras el enemigo vuela.
@@ -33,7 +35,13 @@ func comportamiento (_delta: float) -> void:
 	elif position.x < posicion_inicial - movimiento:
 		direccion_movimiento = 1
 	mover(Vector2(direccion_movimiento, 0))
-	$Sprite2D.flip_h = direccion_movimiento < 0
+	
+	#Cuando choca con una pared, el enemigo se mueve a otra dirección.
+	if is_on_wall():
+		direccion_movimiento = -direccion_movimiento
+	
+	#El sprite se da vuelta a la direccion donde vuela.
+	$Sprite2D.flip_h = direccion_movimiento < 0 
 
 #Lanza la bomba si detecta al jugador cerca.
 	disparo += _delta 
@@ -59,6 +67,4 @@ func disparar() -> void:
 func fin_animacion(tipo_animacion) -> void:
 	if tipo_animacion == "lanzar_bomba":
 		lanzar = false
-
-func enemigo_volando (_animacion_nombre) -> void:
-	sprite.frame= 0 
+		sprite.frame=0

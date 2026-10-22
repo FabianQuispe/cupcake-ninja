@@ -26,12 +26,17 @@ func _ready() -> void:
 func comportamiento (_delta: float) -> void:
 	if ataca:
 		return
-		
+
 	if position.x > posicion_inicial + movimiento:
 		direccion_movimiento = -1
 	elif position.x < posicion_inicial - movimiento:
 		direccion_movimiento = 1
 	mover(Vector2(direccion_movimiento, 0))
+	
+#Cuando choca con una pared, el enemigo se mueve a otra dirección.
+	if is_on_wall():
+		direccion_movimiento = -direccion_movimiento
+
 	$Sprite2D.flip_h = direccion_movimiento < 0
 
 #Lanza la bomba si detecta al jugador cerca.

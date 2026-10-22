@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c0v5b7v74n7r"]
 
+[ext_resource type="Script" uid="uid://bp2g5su2s4v5f" path="res://scripts/trampa_shuriken.gd" id="1_cjb7l"]
 [ext_resource type="Texture2D" uid="uid://f7ynrqf00nyu" path="res://sprites-assets/trampas/shuriken.png" id="1_kcb66"]
 
 [sub_resource type="Animation" id="Animation_cjb7l"]
@@ -41,6 +42,7 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D" unique_id=1687939521]
+script = ExtResource("1_cjb7l")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=169003688]
 texture_filter = 1
