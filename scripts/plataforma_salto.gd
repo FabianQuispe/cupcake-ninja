@@ -12,12 +12,12 @@ func _ready() -> void:
 	super._ready()
 	zona.collision_layer = 0
 	animacion.animacion_finished.connect(plataforma_sin_lanzar)
-	
+
 func actualizar(delta: float) -> void:
 	tiempo_saltar = maxf(tiempo_saltar - delta, 0.0)
 	if tiempo_saltar > 0:
 		return
-	
+
 #Si el cuerpo es el jugador, lo lanza, si es el enemigo no.
 	for cuerpo_jugador in zona.get_overlapping_bodies():
 		if cuerpo_jugador is Jugador:

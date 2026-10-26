@@ -45,6 +45,7 @@ _data = {
 }
 
 [node name="PlataformaSalto" type="StaticBody2D" unique_id=1840269995]
+scale = Vector2(2.4085824, 2.4085824)
 script = ExtResource("1_qlspm")
 
 [node name="PlataformaSalto" type="Sprite2D" parent="." unique_id=386381188]

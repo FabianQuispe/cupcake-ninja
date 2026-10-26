@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b3xn37t3ti5tf"]
 
 [ext_resource type="Texture2D" uid="uid://cxeprp0o2ahp7" path="res://sprites-assets/trampas/lanza.png" id="1_tmk5s"]
-[ext_resource type="Script" uid="uid://dmxylpn35043n" path="res://escenas/trampa_lanza.gd" id="1_ymjr4"]
+[ext_resource type="Script" uid="uid://dmxylpn35043n" path="res://scripts/trampa_lanza.gd" id="1_ymjr4"]
 
 [sub_resource type="Animation" id="Animation_ymjr4"]
 length = 0.001
@@ -20,7 +20,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_u812y"]
 resource_name = "trampa_activada"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

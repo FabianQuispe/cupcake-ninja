@@ -41,14 +41,22 @@ _data = {
 &"shuriken_activo": SubResource("Animation_3v24w")
 }
 
-[node name="Node2D" type="Node2D" unique_id=1687939521]
+[sub_resource type="CircleShape2D" id="CircleShape2D_cjb7l"]
+radius = 15.297058
+
+[node name="TrampaShuriken" type="Node2D" unique_id=1687939521]
+scale = Vector2(1.6800005, 1.6800005)
 script = ExtResource("1_cjb7l")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=169003688]
+[node name="TrampaShuriken" type="Sprite2D" parent="." unique_id=169003688]
 texture_filter = 1
 texture = ExtResource("1_kcb66")
 hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1638852285]
-root_node = NodePath("../Sprite2D")
+root_node = NodePath("../TrampaShuriken")
 libraries/ = SubResource("AnimationLibrary_ghy3h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=645619065]
+scale = Vector2(0.9047612, 0.9047612)
+shape = SubResource("CircleShape2D_cjb7l")

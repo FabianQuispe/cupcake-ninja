@@ -15,3 +15,7 @@ offset_top = -1.0
 offset_right = 1023.77783
 offset_bottom = 575.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_yyom2")
+
+[node name="TileMap" type="TileMap" parent="." unique_id=1961331196]
+position = Vector2(-2, -1)
+format = 2

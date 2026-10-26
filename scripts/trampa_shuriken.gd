@@ -1,11 +1,14 @@
 class_name TrampaShuriken
 extends Trampa
 
+#Trampa que gira y daña al jugador cuando es tocado.
+@onready var animacion: AnimationPlayer = $AnimationPlayer
 
-func _ready() -> void:
-	pass # Replace with function body.
+func activar() -> void:
+#Bucle de la animación de la trampa.
+	animacion.get_animation("shuriken_activo").loop_mode = Animation.LOOP_LINEAR
+	animacion.play("shuriken_activo")
 
-
-
-func _process(delta: float) -> void:
-	pass
+#El shuriken dañará siempre.
+func daniar() -> bool:
+	return true

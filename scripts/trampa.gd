@@ -1,22 +1,17 @@
 class_name Trampa
 extends Node2D
 
+#Clase base de las trampas: Lanza y shuriken
+
 var danio: int = 1
-var activada := false
 
+func _ready() -> void:
+	add_to_group("trampas")
+	activar()
 
-func recibir_dano(cantidad: int) -> void:
-	if cantidad > 10:
-		explotar()
+func activar() -> void:
+	pass
 
-
-func explotar() -> void:
-	activada = true
-	queue_redraw()
-
-
-func _draw() -> void:
-	var color := Color("ffbd69") if not activada else Color("f05d5e")
-	draw_rect(Rect2(-16, -16, 32, 32), color)
-	draw_line(Vector2(-10, -10), Vector2(10, 10), Color("182338"), 3.0)
-	draw_line(Vector2(10, -10), Vector2(-10, 10), Color("182338"), 3.0)
+#Muestra cuando la trampa daña
+func daniar() -> bool:
+	return true

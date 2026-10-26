@@ -45,6 +45,7 @@ _data = {
 }
 
 [node name="PlataformaMovil" type="StaticBody2D" unique_id=454444714]
+scale = Vector2(0.6399999, 0.6399999)
 script = ExtResource("1_qhfep")
 
 [node name="PlataformaMovil" type="Sprite2D" parent="." unique_id=1548742955]
