@@ -1,6 +1,8 @@
 class_name Jugador
 extends Personaje
 
+const ESCENA_DISPARO := preload("res://escenas/proyectil_jugador.tscn")
+
 signal movimiento_terminado(direccion: Vector2)
 signal ataque_realizado(posicion: Vector2, direccion: Vector2, alcance: float, danio: int)
 signal vidas_cambiadas (vidas_actuales: int)
@@ -12,31 +14,28 @@ enum Estado { IDLE, SLIDING }
 @onready var sprite: Sprite2D = $RobotJugador
 @onready var animacion: AnimationPlayer = $AnimationPlayer
 
+# Duración de la invulnerabilidad y del recorrido visual del disparo.
+const TIEMPO_INVULNERABLE := 1.0
+const DURACION_DISPARO := 0.10
+
 var estado := Estado.IDLE
 var direccion := Vector2.RIGHT
 var power_up_disponible: PowerUp
 var vidas_restantes: int = 3
 var escudo_activo := false
 var turnos_escudo := 0
-var raycast_trayectoria: RayCast2D
 var raycast_ataque: RayCast2D
 var _toque_inicial := Vector2.ZERO
 var _hay_toque := false
-var _destello_ataque := 0.0
 var _tiempo_invulnerable := 0.0
+var _esta_recibiendo_dano := false
 
 func _ready() -> void:
 	nombre = "Jugador"
 	vida = 3
+	collision_mask = 1
 	sprite.scale = Vector2(0.1, 0.1)
 	
-	raycast_trayectoria = RayCast2D.new()
-	raycast_trayectoria.name = "RayCastTrayectoria"
-	raycast_trayectoria.enabled = true
-	raycast_trayectoria.collide_with_areas = true
-	raycast_trayectoria.collision_mask = 1
-	add_child(raycast_trayectoria)
-
 	raycast_ataque = RayCast2D.new()
 	raycast_ataque.name = "RayCastAtaque"
 	raycast_ataque.enabled = true
@@ -49,11 +48,11 @@ func _physics_process(delta: float) -> void:
 	if estado == Estado.SLIDING:
 		_deslizar_hasta_colision(delta)
 	_tiempo_invulnerable = maxf(_tiempo_invulnerable - delta, 0.0)
-	if _destello_ataque > 0.0:
-		_destello_ataque -= delta
-		queue_redraw()
 
 func _input(event: InputEvent) -> void:
+	# Evita acciones mientras el jugador parpadea o ya perdió todas sus vidas.
+	if _esta_recibiendo_dano or vidas_restantes <= 0:
+		return
 	if event is InputEventKey and event.pressed and not event.echo:
 		var direccion_tecla := _direccion_de_tecla(event.keycode)
 		if direccion_tecla != Vector2.ZERO:
@@ -91,13 +90,11 @@ func _direccion_de_deslizamiento(desplazamiento: Vector2) -> Vector2:
 
 
 func iniciar_deslizamiento(nueva_direccion: Vector2) -> void:
-	if nueva_direccion == Vector2.ZERO:
+	if nueva_direccion == Vector2.ZERO or _esta_recibiendo_dano or vidas_restantes <= 0:
 		return
 	direccion = nueva_direccion
 	_actualizar_orientacion()
-	raycast_trayectoria.target_position = direccion * tamano_casilla
-	raycast_trayectoria.force_raycast_update()
-	if estado == Estado.IDLE and not raycast_trayectoria.is_colliding():
+	if estado == Estado.IDLE:
 		estado = Estado.SLIDING
 		animacion.play("fly_jugador")
 
@@ -114,21 +111,16 @@ func _actualizar_orientacion() -> void:
 
 func _deslizar_hasta_colision(delta: float) -> void:
 	var distancia := velocidad_deslizamiento * delta
-	raycast_trayectoria.target_position = direccion * maxf(distancia + 4.0, 8.0)
-	raycast_trayectoria.force_raycast_update()
-	if raycast_trayectoria.is_colliding():
-		var punto_colision := raycast_trayectoria.get_collision_point()
-		global_position = punto_colision - direccion * 18.0
-		finalizar_deslizamiento()
-		return
 	var colision := move_and_collide(direccion * distancia)
 	if colision != null:
-		finalizar_deslizamiento()
+		finalizar_deslizamiento(false)
 
 
-func finalizar_deslizamiento() -> void:
+func finalizar_deslizamiento(ajustar_a_casilla: bool = true) -> void:
 	estado = Estado.IDLE
-	global_position = _ajustar_a_casilla(global_position)
+	velocity = Vector2.ZERO
+	if ajustar_a_casilla:
+		global_position = _ajustar_a_casilla(global_position)
 	movimiento_terminado.emit(direccion)
 	_consumir_turno()
 	animacion.stop()
@@ -140,19 +132,41 @@ func _ajustar_a_casilla(posicion: Vector2) -> Vector2:
 
 
 func realizar_ataque() -> void:
-	_destello_ataque = 0.14
-	queue_redraw()
-	sprite.frame = 4
+	if _esta_recibiendo_dano or vidas_restantes <= 0:
+		return
+	sprite.frame = 2
 	raycast_ataque.target_position = direccion * alcance_ataque
 	raycast_ataque.force_raycast_update()
 	var alcance_real := alcance_ataque
-	if raycast_ataque.is_colliding():
+	# Un enemigo no debe cortar el alcance: el disparo puede alcanzarlo.
+	if raycast_ataque.is_colliding() and not (raycast_ataque.get_collider() is Enemigo):
 		var punto_bloqueo := raycast_ataque.get_collision_point()
 		alcance_real = global_position.distance_to(punto_bloqueo) - 18.0
-	ataque_realizado.emit(global_position, direccion, maxf(alcance_real, 0.0), maxi(danio_disparo, 35))
+	alcance_real = maxf(alcance_real, 0.0)
+	_disparar_visual(alcance_real)
+	ataque_realizado.emit(global_position, direccion, alcance_real, maxi(danio_disparo, 35))
 	_consumir_turno()
 	await get_tree().create_timer(0.3).timeout
-	sprite.frame = 3
+	sprite.frame = 2
+
+
+func _disparar_visual(alcance: float) -> void:
+	# Anima el sprite del disparo desde el jugador hasta el límite de alcance.
+	var disparo: Node2D = ESCENA_DISPARO.instantiate()
+	get_tree().current_scene.add_child(disparo)
+	var posicion_inicial := global_position + direccion * 20.0
+	disparo.global_position = posicion_inicial
+	disparo.global_rotation = direccion.angle()
+	var animacion_disparo := disparo.get_node("AnimationPlayer") as AnimationPlayer
+	animacion_disparo.play("disparar_jugador")
+	var desplazamiento := disparo.create_tween()
+	desplazamiento.tween_property(
+		disparo,
+		"global_position",
+		global_position + direccion * maxf(alcance, 20.0),
+		DURACION_DISPARO
+	)
+	get_tree().create_timer(0.55).timeout.connect(disparo.queue_free)
 
 
 func _consumir_turno() -> void:
@@ -167,13 +181,31 @@ func _consumir_turno() -> void:
 func recibir_dano(cantidad: int) -> void:
 	if escudo_activo or _tiempo_invulnerable > 0.0:
 		return
-	_tiempo_invulnerable = 0.35
+	# Interrumpe el movimiento y da un breve período de invulnerabilidad.
+	_tiempo_invulnerable = TIEMPO_INVULNERABLE
+	_esta_recibiendo_dano = true
+	estado = Estado.IDLE
+	velocity = Vector2.ZERO
+	animacion.stop()
+	sprite.frame = 3
 	super.recibir_dano(cantidad)
 	if vida <= 0:
 		vidas_restantes -= 1
 		vidas_cambiadas.emit(vidas_restantes)
 		if vidas_restantes > 0:
 			vida = 3
+			vida_cambiada.emit(vida)
+	_parpadear_por_dano()
+
+
+func _parpadear_por_dano() -> void:
+	# Bloquea el control hasta que termina el parpadeo rojo.
+	var parpadeo := create_tween()
+	for _iteracion in range(3):
+		parpadeo.tween_property(sprite, "modulate", Color(1.0, 0.15, 0.15), 0.1)
+		parpadeo.tween_property(sprite, "modulate", Color.WHITE, 0.1)
+	await parpadeo.finished
+	_esta_recibiendo_dano = false
 
 func usar_power_up(power_up: PowerUp) -> void:
 	if power_up_disponible != null:
@@ -193,8 +225,5 @@ func _draw() -> void:
 	var color := Color("5ee1a7") if not escudo_activo else Color("6bc7ff")
 	draw_circle(Vector2.ZERO, 19.0, color)
 	draw_circle(Vector2.ZERO, 9.0, Color("182338"))
-	if _destello_ataque > 0.0:
-		draw_line(Vector2.ZERO, direccion * alcance_ataque, Color("fff0a8"), 8.0)
-		draw_circle(direccion * alcance_ataque, 10.0, Color("fff0a8"))
 	if escudo_activo:
 		draw_arc(Vector2.ZERO, 28.0, 0.0, TAU, 32, Color("b4ecff"), 3.0)

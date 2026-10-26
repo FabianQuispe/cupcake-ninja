@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://42ixm48byqyx"]
+
+[ext_resource type="Texture2D" uid="uid://dh8buoj188mws" path="res://sprites-assets/enemigos/bomba_robot_volador.png" id="1_aqdsy"]
+[ext_resource type="Script" path="res://scripts/enemigos/bomba_enemigo.gd" id="1_clf6d"]
+
+[sub_resource type="Animation" id="Animation_1inse"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mocgy"]
+resource_name = "disparar_jugador"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vr5g0"]
+_data = {
+&"RESET": SubResource("Animation_1inse"),
+&"lanzar_bomba": SubResource("Animation_mocgy")
+}
+
+[node name="Node2D" type="Node2D" unique_id=101541730]
+scale = Vector2(3.1199994, 3.1199994)
+script = ExtResource("1_clf6d")
+
+[node name="BombaEnemigo" type="Sprite2D" parent="." unique_id=1133887777]
+texture_filter = 1
+position = Vector2(-1.8397439, 2.4807696)
+scale = Vector2(0.47035262, 0.47035262)
+texture = ExtResource("1_aqdsy")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=44978779]
+root_node = NodePath("../BombaEnemigo")
+libraries/ = SubResource("AnimationLibrary_vr5g0")

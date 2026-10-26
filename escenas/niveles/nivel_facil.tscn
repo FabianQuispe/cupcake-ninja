@@ -367,10 +367,40 @@ texture = ExtResource("5_4egy2")
 5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_il4qf"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 0
 sources/0 = SubResource("TileSetAtlasSource_13ipd")
 sources/1 = SubResource("TileSetAtlasSource_wmi7w")
 sources/2 = SubResource("TileSetAtlasSource_vvl3a")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pared_superior"]
+size = Vector2(1024, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pared_inferior"]
+size = Vector2(1024, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pared_izquierda"]
+size = Vector2(16, 576)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pared_derecha"]
+size = Vector2(16, 576)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_maquina_izquierda"]
+size = Vector2(108, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_caja_centro"]
+size = Vector2(70, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_caja_pequena"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plataforma_derecha"]
+size = Vector2(124, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plataforma_inferior"]
+size = Vector2(328, 85)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pilar"]
+size = Vector2(32, 115)
 
 [node name="Nivel1" type="Node2D" unique_id=1891582265]
 scale = Vector2(0.88, 0.88)
@@ -391,3 +421,78 @@ tile_set = SubResource("TileSet_il4qf")
 rendering_quadrant_size = 32
 format = 2
 layer_0/tile_data = PackedInt32Array(1507360, 0, 2, 1507361, 65536, 2, 1507362, 131072, 2, 1507363, 196608, 2, 1507364, 196608, 2, 1507365, 196608, 2, 1507366, 196608, 2, 1507367, 196608, 2, 1507368, 196608, 2, 1507369, 196608, 2, 1507370, 196608, 2, 1507371, 196608, 2, 1507372, 196608, 2, 1507373, 196608, 2, 1507374, 196608, 2, 1507375, 0, 5, 1507376, 524288, 0, 1572896, 0, 3, 1638432, 0, 4, 1703968, 0, 5, 1769504, 0, 6, 1769505, 65536, 6, 1769506, 131072, 6, 1769507, 196608, 6, 1703969, 65536, 5, 1703970, 131072, 5, 1703971, 131072, 4, 1572897, 65536, 3, 1638433, 65536, 4, 1572898, 131072, 3, 1638434, 131072, 4, 1572899, 196608, 3, 1638435, 196608, 4, 1572909, 262144, 3, 1638445, 589824, 0, 1572900, 524288, 0, 1638436, 524288, 1, 1572904, 262144, 3, 1638440, 262144, 4, 1703982, 655360, 1, 1703983, 720896, 1, 1703984, 262144, 5, 1572905, 65536, 3, 1638441, 524288, 7, 1572906, 131072, 3, 1638442, 131072, 4, 1572907, 196608, 3, 1638443, 196608, 4, 1638437, 589824, 1, 1638438, 655360, 1, 1572901, 589824, 0, 1572902, 655360, 0, 1703973, 196608, 4, 1703974, 196608, 4, 1703972, 131072, 4, 1703975, 131072, 4, 1703976, 131072, 5, 1703978, 131072, 5, 1703979, 196608, 5, 1703977, 196608, 5, 1703980, 524288, 1, 1703981, 589824, 1, 1638444, 524288, 0, 1572903, 720896, 0, 1638439, 720896, 1, 1638446, 655360, 0, 1638447, 720896, 0, 1572910, 131072, 3, 1572911, 196608, 3, 1572912, 262144, 3, 1572908, 196608, 3, 1769508, 131072, 5, 1769509, 196608, 5, 1769510, 131072, 5, 1769511, 196608, 5, 1769514, 131072, 5, 1769515, 131072, 5, 1769512, 131072, 5, 1769513, 196608, 5, 1769517, 589824, 2, 1769518, 655360, 2, 1769516, 524288, 0, 1769520, 196608, 5, 1769519, 131072, 5, 1638448, 131072, 4, 9, 393216, 2, 65545, 393216, 3, 131081, 393216, 4, 196617, 393216, 5, 262153, 393216, 6, 327689, 393216, 7, 10, 458752, 2, 65546, 458752, 3, 131082, 458752, 4, 196618, 458752, 5, 262154, 458752, 6, 327690, 458752, 7, 29, 393216, 2, 65565, 393216, 3, 131101, 393216, 4, 196637, 393216, 5, 262173, 393216, 6, 327709, 393216, 7, 30, 458752, 2, 65566, 458752, 3, 131102, 458752, 4, 196638, 458752, 5, 262174, 458752, 6, 327710, 458752, 7, 655394, 0, 0, 720930, 0, 1, 655395, 65536, 0, 720931, 65536, 1, 655396, 131072, 0, 720932, 131072, 1, 655397, 196608, 0, 720933, 196608, 1, 655398, 262144, 0, 720934, 262144, 1, 655399, 327680, 0, 720935, 327680, 1, 655364, 262144, 2, 720900, 262144, 3, 786436, 262144, 4, 851972, 262144, 5, 917508, 262144, 6, 983044, 262144, 7, 655365, 327680, 2, 720901, 327680, 3, 786437, 327680, 4, 851973, 327680, 5, 917509, 327680, 6, 983045, 327680, 7, 655361, 65536, 2, 720897, 65536, 3, 786433, 131072, 4, 851969, 131072, 5, 917505, 65536, 6, 983041, 65536, 7, 655362, 131072, 2, 720898, 131072, 3, 786434, 131072, 4, 851970, 131072, 5, 917506, 131072, 6, 983042, 131072, 7, 655363, 196608, 2, 720899, 196608, 3, 786435, 196608, 4, 851971, 196608, 5, 917507, 196608, 6, 983043, 196608, 7, 917504, 65536, 6, 983040, 65536, 7, 786432, 65536, 4, 851968, 65536, 5, 655360, 327680, 6, 720896, 65536, 3, 1048576, 720896, 0, 1114112, 720896, 1, 1179648, 720896, 2, 1245184, 720896, 3, 1310720, 720896, 0, 1376256, 720896, 1, 1441792, 720896, 2, 1507328, 720896, 3, 1572864, 720896, 0, 1638400, 720896, 1, 1703936, 720896, 2, 1769472, 720896, 3, 458752, 327680, 3, 524288, 327680, 4, 589824, 327680, 5, 196608, 327680, 3, 262144, 327680, 4, 327680, 327680, 5, 393216, 327680, 6, 0, 327680, 4, 65536, 327680, 5, 131072, 327680, 6, 1703966, 655360, 2, 1769502, 655360, 3, 1703967, 720896, 2, 1769503, 720896, 3, 1703964, 524288, 2, 1769500, 524288, 3, 1703965, 589824, 2, 1769501, 589824, 3, 1703962, 655360, 2, 1769498, 655360, 3, 1703963, 720896, 2, 1769499, 720896, 3, 1703960, 720896, 2, 1769496, 720896, 3, 1703961, 589824, 2, 1769497, 589824, 3, 1703958, 589824, 2, 1769494, 589824, 3, 1703959, 655360, 2, 1769495, 655360, 3, 1703956, 720896, 2, 1769492, 720896, 3, 1703957, 524288, 2, 1769493, 524288, 3, 1703954, 589824, 2, 1769490, 589824, 3, 1703955, 655360, 2, 1769491, 655360, 3, 1703952, 720896, 2, 1769488, 720896, 3, 1703953, 524288, 2, 1769489, 524288, 3, 1703950, 589824, 2, 1769486, 589824, 3, 1703951, 655360, 2, 1769487, 655360, 3, 1703948, 720896, 2, 1769484, 720896, 3, 1703949, 524288, 2, 1769485, 524288, 3, 1703946, 589824, 2, 1769482, 589824, 3, 1703947, 655360, 2, 1769483, 655360, 3, 1703944, 720896, 2, 1769480, 720896, 3, 1703945, 524288, 2, 1769481, 524288, 3, 1703942, 589824, 2, 1769478, 589824, 3, 1703943, 655360, 2, 1769479, 655360, 3, 1703940, 720896, 2, 1769476, 720896, 3, 1703941, 524288, 2, 1769477, 524288, 3, 1703938, 589824, 2, 1769474, 589824, 3, 1703939, 655360, 2, 1769475, 655360, 3, 1703937, 524288, 2, 1769473, 524288, 3, 1376304, 524288, 0, 1441840, 524288, 0, 1179696, 524288, 0, 1245232, 524288, 0, 1310768, 524288, 0, 983088, 524288, 0, 1048624, 524288, 0, 1114160, 524288, 0, 786480, 524288, 0, 852016, 524288, 0, 917552, 524288, 0, 589872, 524288, 0, 655408, 524288, 0, 720944, 524288, 0, 393264, 524288, 0, 458800, 524288, 0, 524336, 524288, 0, 48, 524288, 0, 65584, 524288, 0, 131120, 524288, 0, 196656, 524288, 0, 262192, 524288, 0, 327728, 524288, 0, 1376303, 0, 3, 1441839, 0, 4, 1179695, 0, 3, 1245231, 0, 4, 1310767, 0, 5, 983087, 0, 3, 1048623, 0, 4, 1114159, 0, 5, 786479, 0, 3, 852015, 0, 4, 917551, 0, 5, 589871, 0, 3, 655407, 0, 4, 720943, 0, 5, 393263, 0, 3, 458799, 0, 4, 524335, 0, 5, 196655, 0, 3, 262191, 0, 4, 327727, 0, 5, 47, 0, 3, 65583, 0, 4, 131119, 0, 5, 851982, 1, 0, 851983, 65537, 0, 851984, 131073, 0, 851985, 196609, 0, 917518, 1, 1, 917519, 131073, 3, 917520, 196609, 3, 917521, 196609, 1, 983055, 131073, 5, 1048592, 131073, 7, 983056, 131073, 4, 1048591, 65537, 7, 983054, 1, 4, 1048590, 1, 7, 1048593, 327681, 7, 983057, 327681, 6, 14, 131073, 7, 15, 196609, 7, 16, 262145, 7, 17, 262145, 7, 18, 65537, 7, 19, 262145, 7, 21, 65537, 7, 22, 65537, 7, 23, 65537, 7, 24, 65537, 7, 25, 65537, 7, 26, 65537, 7, 20, 65537, 7, 27, 262145, 7, 28, 327681, 7, 11, 1, 7, 13, 65537, 7, 12, 65537, 7, 1, 1, 7, 8, 327681, 7, 7, 262145, 7, 6, 196609, 7, 5, 131073, 7, 4, 65537, 7, 3, 65537, 7, 2, 65537, 7, 32, 65537, 7, 33, 65537, 7, 34, 65537, 7, 35, 65537, 7, 36, 65537, 7, 37, 65537, 7, 38, 65537, 7, 39, 65537, 7, 40, 65537, 7, 41, 65537, 7, 42, 65537, 7, 43, 65537, 7, 44, 65537, 7, 45, 65537, 7, 31, 1, 1, 46, 327681, 1)
+
+[node name="Obstaculos" type="Node2D" parent="." unique_id=578962005]
+scale = Vector2(1.1363636, 1.1363636)
+
+[node name="ParedSuperior" type="StaticBody2D" parent="Obstaculos" unique_id=1416542281]
+position = Vector2(512, 8)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/ParedSuperior" unique_id=682375019]
+shape = SubResource("RectangleShape2D_pared_superior")
+
+[node name="ParedInferior" type="StaticBody2D" parent="Obstaculos" unique_id=1000215676]
+position = Vector2(512, 568)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/ParedInferior" unique_id=114701120]
+shape = SubResource("RectangleShape2D_pared_inferior")
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="Obstaculos" unique_id=1117442363]
+position = Vector2(8, 288)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/ParedIzquierda" unique_id=1352007950]
+shape = SubResource("RectangleShape2D_pared_izquierda")
+
+[node name="ParedDerecha" type="StaticBody2D" parent="Obstaculos" unique_id=171615357]
+position = Vector2(1016, 288)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/ParedDerecha" unique_id=1714012438]
+shape = SubResource("RectangleShape2D_pared_derecha")
+
+[node name="MaquinaIzquierda" type="StaticBody2D" parent="Obstaculos" unique_id=1808737873]
+position = Vector2(79, 275)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/MaquinaIzquierda" unique_id=134421342]
+shape = SubResource("RectangleShape2D_maquina_izquierda")
+
+[node name="CajaCentro" type="StaticBody2D" parent="Obstaculos" unique_id=778431999]
+position = Vector2(340, 307)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/CajaCentro" unique_id=1624473171]
+shape = SubResource("RectangleShape2D_caja_centro")
+
+[node name="CajaPequenaCentro" type="StaticBody2D" parent="Obstaculos" unique_id=1731801878]
+position = Vector2(427, 227)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/CajaPequenaCentro" unique_id=195891372]
+shape = SubResource("RectangleShape2D_caja_pequena")
+
+[node name="PlataformaDerecha" type="StaticBody2D" parent="Obstaculos" unique_id=1293233079]
+position = Vector2(765, 227)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/PlataformaDerecha" unique_id=1176413612]
+shape = SubResource("RectangleShape2D_plataforma_derecha")
+
+[node name="PlataformaInferior" type="StaticBody2D" parent="Obstaculos" unique_id=1270641358]
+position = Vector2(828, 503)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/PlataformaInferior" unique_id=2015194783]
+shape = SubResource("RectangleShape2D_plataforma_inferior")
+
+[node name="CajaDerecha" type="StaticBody2D" parent="Obstaculos" unique_id=861781849]
+position = Vector2(973, 348)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/CajaDerecha" unique_id=731069255]
+shape = SubResource("RectangleShape2D_caja_pequena")
+
+[node name="PilarSuperiorIzquierda" type="StaticBody2D" parent="Obstaculos" unique_id=483596181]
+position = Vector2(218, 63)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/PilarSuperiorIzquierda" unique_id=551288373]
+shape = SubResource("RectangleShape2D_pilar")
+
+[node name="PilarSuperiorCentro" type="StaticBody2D" parent="Obstaculos" unique_id=623056634]
+position = Vector2(623, 63)
+
+[node name="Forma" type="CollisionShape2D" parent="Obstaculos/PilarSuperiorCentro" unique_id=1558691561]
+shape = SubResource("RectangleShape2D_pilar")

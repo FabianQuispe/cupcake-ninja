@@ -26,17 +26,14 @@ func _ready() -> void:
 	add_child(game_manager)
 	game_manager.iniciar_juego()
 	_crear_fondo()
-	_crear_hud()
-	_crear_paredes()
 	_crear_jugador()
 	hud_vida = preload("res://escenas/hud_vida.tscn").instantiate()
 	add_child(hud_vida)
-	jugador.vida_cambiada.connect(hud_vida.actualizar_vidas)
+	jugador.vidas_cambiadas.connect(_actualizar_vidas_jugador)
 	_crear_enemigos()
 	_crear_trampas()
 	_crear_power_ups()
 	
-	_actualizar_hud()
 
 
 func _process(delta: float) -> void:
@@ -44,7 +41,6 @@ func _process(delta: float) -> void:
 		return
 		
 	tiempo_de_nivel += delta
-	_actualizar_hud()
 	_revisar_contactos()
 	
 	var resultado = nivel.consultar_nivel(game_manager.puntaje.puntos, tiempo_de_nivel, muertes_de_jugador)
@@ -60,14 +56,9 @@ func _process(delta: float) -> void:
 		jugador.position = Vector2(576.0, 330.0)
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		game_manager.terminar_juego()
-		estado_label.text = "PAUSA - pulsa R para reiniciar"
+func _input(event: InputEvent) -> void:	
 	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == KEY_R and not game_manager.juego_activo:
-			get_tree().reload_current_scene()
-		elif event.keycode == KEY_Q and game_manager.juego_activo:
+		if event.keycode == KEY_Q and game_manager.juego_activo:
 			jugador.usar_power_up(PowerUpVida.new())
 		elif event.keycode == KEY_E and game_manager.juego_activo:
 			jugador.usar_power_up(PowerUpEscudo.new())
@@ -80,24 +71,6 @@ func _crear_fondo() -> void:
 	move_child(escenario, 0)
 
 
-func _crear_hud() -> void:
-	estado_label = Label.new()
-	estado_label.position = Vector2(32, 24)
-	estado_label.add_theme_font_size_override("font_size", 26)
-	add_child(estado_label)
-
-	objetivo_label = Label.new()
-	objetivo_label.position = Vector2(32, 68)
-	objetivo_label.add_theme_color_override("font_color", Color("a9bad8"))
-	add_child(objetivo_label)
-
-	ayuda_label = Label.new()
-	ayuda_label.position = Vector2(770, 24)
-	ayuda_label.text = "Flechas o swipe: deslizar   A: atacar   Q/E: power-up"
-	ayuda_label.add_theme_color_override("font_color", Color("a9bad8"))
-	add_child(ayuda_label)
-
-
 func _crear_jugador() -> void:
 	jugador = preload("res://escenas/jugador.tscn").instantiate()
 	jugador.position = Vector2(576, 330)
@@ -108,23 +81,11 @@ func _crear_jugador() -> void:
 	add_child(jugador)
 
 
-func _crear_paredes() -> void:
-	var limites := [
-		[Vector2(576, 104), Vector2(1088, 16)],
-		[Vector2(576, 616), Vector2(1088, 16)],
-		[Vector2(32, 360), Vector2(16, 512)],
-		[Vector2(1120, 360), Vector2(16, 512)]
-	]
-	for limite in limites:
-		var pared := StaticBody2D.new()
-		pared.collision_layer = 1
-		pared.position = limite[0]
-		var forma := CollisionShape2D.new()
-		var rectangulo := RectangleShape2D.new()
-		rectangulo.size = limite[1]
-		forma.shape = rectangulo
-		pared.add_child(forma)
-		add_child(pared)
+func _actualizar_vidas_jugador(vidas_actuales: int) -> void:
+	# Actualiza el HUD y activa la derrota cuando se agotan las vidas.
+	hud_vida.actualizar_vidas(vidas_actuales)
+	if vidas_actuales <= 0:
+		muertes_de_jugador = nivel.muerte_max
 
 
 func _crear_enemigos() -> void:
@@ -199,12 +160,18 @@ func _resolver_turno(_direccion_movimiento: Vector2) -> void:
 
 
 func _resolver_ataque(posicion: Vector2, direccion_ataque: Vector2, alcance: float, danio: int) -> void:
+	var direccion_normalizada := direccion_ataque.normalized()
+	var perpendicular := Vector2(-direccion_normalizada.y, direccion_normalizada.x)
 	for enemigo in enemigos:
 		if not is_instance_valid(enemigo) or enemigo.vida <= 0:
 			continue
 		var vector_al_enemigo := enemigo.global_position - posicion
-		var distancia := vector_al_enemigo.length()
-		if distancia <= alcance and direccion_ataque.dot(vector_al_enemigo.normalized()) > 0.75:
+		var distancia_en_la_direccion := vector_al_enemigo.dot(direccion_normalizada)
+		var distancia_lateral := absf(vector_al_enemigo.dot(perpendicular))
+		var dentro_del_alcance := distancia_en_la_direccion >= 0.0 and distancia_en_la_direccion <= alcance
+		var alineado_con_disparo := distancia_lateral <= 32.0
+		# Solo reciben daño los enemigos delante del jugador y alineados con el disparo.
+		if dentro_del_alcance and alineado_con_disparo:
 			enemigo.recibir_dano(danio)
 			if enemigo.vida <= 0:
 				game_manager.puntaje.acumulacion_puntaje(10)
@@ -220,10 +187,3 @@ func _revisar_contactos() -> void:
 	for trampa in nivel.trampas:
 		if is_instance_valid(trampa) and trampa.position.distance_to(jugador.position) < 34.0:
 			jugador.recibir_dano(trampa.danio)
-
-
-func _actualizar_hud() -> void:
-	if not is_instance_valid(jugador):
-		return
-	estado_label.text = "VIDA: %d    PUNTOS: %d" % [jugador.vida, game_manager.puntaje.puntos]
-	objetivo_label.text = "%s    Tiempo: %02d s" % [nivel.objetivo, int(tiempo_de_nivel)]

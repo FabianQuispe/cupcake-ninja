@@ -14,8 +14,9 @@ extends Control
 func _ready() -> void:
 	actualizar_vidas(3)
 
-func actualizar_vidas(vida_actual:int) -> void:
-	if vida_actual <0:
+func actualizar_vidas(vida_actual: int) -> void:
+	# Muestra los tres corazones vacíos al quedarse sin vidas.
+	if vida_actual <= 0:
 		actualizar_corazon (sin_vida, sin_vida, sin_vida)
 	else:
 		match vida_actual:

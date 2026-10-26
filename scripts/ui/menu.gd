@@ -6,11 +6,11 @@ func _on_boton_creditos_pressed() -> void:
 	await $SonidoBoton.finished
 	get_tree().change_scene_to_file("res://escenas/ui/creditos.tscn")
 	
-#El botón lleva a la eleccion de dificultad
+#El botón inicia el juego
 func _on_boton_jugar_pressed() -> void:
 	$SonidoBoton.play()
 	await $SonidoBoton.finished
-	get_tree().change_scene_to_file("res://escenas/ui/elegir_nivel.tscn")
+	get_tree().change_scene_to_file("res://escenas/main.tscn")
 
 #El botón lleva al tutorial
 func _on_boton_tutorial_pressed() -> void:
