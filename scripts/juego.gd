@@ -15,7 +15,8 @@ var generador_aleatorio := RandomNumberGenerator.new()
 const ESCENA_NIVEL := preload("res://escenas/niveles/nivel_facil.tscn")
 const ESCENA_ENEMIGO_ORUGA := preload("res://escenas/enemigos/enemigo_oruga.tscn")
 const ESCENA_ENEMIGO_VOLADOR := preload("res://escenas/enemigos/enemigo_volador.tscn")
-
+const ESCENA_SHURIKEN := preload("res://escenas/trampa_shuriken.tscn")
+const ESCENA_LANZA := preload("res://escenas/trampa_lanza.tscn")
 
 func _ready() -> void:
 	generador_aleatorio.randomize()
@@ -141,9 +142,10 @@ func _hay_trampa_cerca(posicion: Vector2) -> bool:
 
 
 func _crear_trampas() -> void:
-	for posicion in [Vector2(430, 235), Vector2(700, 470), Vector2(1000, 360)]:
-		var trampa := Trampa.new()
-		trampa.position = posicion
+	var trampas_nivel := [[Vector2 (400, 230), ESCENA_SHURIKEN], [Vector2 (800, 300), ESCENA_LANZA]]
+	for datos in trampas_nivel:
+		var trampa: Trampa = datos [1].instantiate()
+		trampa.position = datos[0]
 		trampa.danio = 1
 		nivel.agregar_trampa(trampa)
 		add_child(trampa)
@@ -184,6 +186,6 @@ func _revisar_contactos() -> void:
 	for enemigo in enemigos:
 		if is_instance_valid(enemigo) and enemigo.vida > 0 and enemigo.global_position.distance_to(jugador.global_position) < 34.0:
 			jugador.recibir_dano(enemigo.danio_contacto)
-	for trampa in nivel.trampas:
-		if is_instance_valid(trampa) and trampa.position.distance_to(jugador.position) < 34.0:
+	for trampa in get_tree().get_nodes_in_group("trampas"):
+		if trampa.daniar() and trampa.position.distance_to(jugador.position) < 34.0:
 			jugador.recibir_dano(trampa.danio)
