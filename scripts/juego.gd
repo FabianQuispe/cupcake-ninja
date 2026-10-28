@@ -17,6 +17,7 @@ const ESCENA_ENEMIGO_ORUGA := preload("res://escenas/enemigos/enemigo_oruga.tscn
 const ESCENA_ENEMIGO_VOLADOR := preload("res://escenas/enemigos/enemigo_volador.tscn")
 const ESCENA_SHURIKEN := preload("res://escenas/trampa_shuriken.tscn")
 const ESCENA_LANZA := preload("res://escenas/trampa_lanza.tscn")
+const TIPOGRAFIA_PIXEL := preload("res://sprites-assets/tipografia/stairsnslabs.ttf")
 
 func _ready() -> void:
 	generador_aleatorio.randomize()
@@ -30,7 +31,9 @@ func _ready() -> void:
 	_crear_jugador()
 	hud_vida = preload("res://escenas/hud_vida.tscn").instantiate()
 	add_child(hud_vida)
+	_crear_hud()
 	jugador.vidas_cambiadas.connect(_actualizar_vidas_jugador)
+	jugador.vida_cambiada.connect(hud_vida.actualizar_vidas)
 	_crear_enemigos()
 	_crear_trampas()
 	_crear_power_ups()
@@ -63,6 +66,8 @@ func _input(event: InputEvent) -> void:
 			jugador.usar_power_up(PowerUpVida.new())
 		elif event.keycode == KEY_E and game_manager.juego_activo:
 			jugador.usar_power_up(PowerUpEscudo.new())
+		elif event.keycode == KEY_R and not game_manager.juego_activo:
+			get_tree().reload_current_scene()
 
 
 func _crear_fondo() -> void:
@@ -93,6 +98,15 @@ func _crear_enemigos() -> void:
 	for datos in [[Vector2(440, 210), "Oruga"], [Vector2(500, 100), "Volador"], [Vector2(850, 500), "Oruga"]]:
 		_crear_enemigo(datos[0], datos[1])
 
+#Muestra el texto que indica al jugador si ganó o perdió.
+func _crear_hud() -> void:
+	estado_label = Label.new()
+	estado_label.position = Vector2(32,80)
+	estado_label.add_theme_font_override("font", TIPOGRAFIA_PIXEL)
+	estado_label.add_theme_font_size_override("font_size", 13)
+	estado_label.add_theme_color_override("font_outline_color", Color.DEEP_PINK)
+	estado_label.add_theme_constant_override("outline_size", 6)
+	add_child (estado_label)
 
 func _crear_enemigo(posicion: Vector2, tipo: String) -> void:
 	var enemigo: Enemigo
@@ -153,7 +167,7 @@ func _crear_trampas() -> void:
 
 func _crear_power_ups() -> void:
 	var vida := PowerUpVida.new()
-	vida.cantidad_vidas = 3
+	vida.cantidad_vidas = 3 
 	jugador.power_up_disponible = vida
 
 
@@ -187,5 +201,9 @@ func _revisar_contactos() -> void:
 		if is_instance_valid(enemigo) and enemigo.vida > 0 and enemigo.global_position.distance_to(jugador.global_position) < 34.0:
 			jugador.recibir_dano(enemigo.danio_contacto)
 	for trampa in get_tree().get_nodes_in_group("trampas"):
-		if trampa.daniar() and trampa.position.distance_to(jugador.position) < 34.0:
+		if trampa.daniar() and trampa.global_position.distance_to(jugador.position) < 34.0:
 			jugador.recibir_dano(trampa.danio)
+	
+	for power_up in get_tree().get_nodes_in_group("power_ups"):
+		if power_up.aparicion and power_up.global_position.distance_to(jugador.global_position)<34.0:
+			power_up.obtener(jugador)

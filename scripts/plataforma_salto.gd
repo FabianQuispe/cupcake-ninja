@@ -11,23 +11,28 @@ var tiempo_saltar := 0.0
 func _ready() -> void:
 	super._ready()
 	zona.collision_layer = 0
-	animacion.animacion_finished.connect(plataforma_sin_lanzar)
+	await $AnimationPlayer.animation_finished #RECORDATORIO: Mejorar esta parte, la animacion se sigue activando.
+	animacion.animation_finished.connect(plataforma_sin_lanzar)
 
 func actualizar(delta: float) -> void:
 	tiempo_saltar = maxf(tiempo_saltar - delta, 0.0)
-	if tiempo_saltar > 0:
+	if tiempo_saltar > 0.0:
 		return
 
 #Si el cuerpo es el jugador, lo lanza, si es el enemigo no.
 	for cuerpo_jugador in zona.get_overlapping_bodies():
-		if cuerpo_jugador is Jugador:
-			lanzar (cuerpo_jugador)
+		if cuerpo_jugador is Jugador and cuerpo_jugador.estado == Jugador.Estado.IDLE:
+			lanzar(cuerpo_jugador)
 
-#Lanza al jugador.
+#Lanza al jugador en dirección contraria.
 func lanzar (jugador: Jugador) -> void:
-	tiempo_saltar = 2
+	var direccion_saltar := Vector2.UP.rotated(global_rotation).round()
+	jugador.iniciar_deslizamiento(direccion_saltar)
+	if jugador.estado != Jugador.Estado.SLIDING:
+		return
+	tiempo_saltar = 2.0
 	animacion.play("lanzar_jugador")
-	jugador.iniciar_deslizamiento(Vector2.UP)
+
 
 #Solo se muestra el primer frame cuando no toca al jugador.
 func plataforma_sin_lanzar(_animacion_nombre) -> void:

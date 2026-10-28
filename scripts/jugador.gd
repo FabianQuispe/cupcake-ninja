@@ -2,6 +2,7 @@ class_name Jugador
 extends Personaje
 
 const ESCENA_DISPARO := preload("res://escenas/proyectil_jugador.tscn")
+const COLOR_ESCUDO := Color(0.857, 0.749, 0.0, 1.0)
 
 signal movimiento_terminado(direccion: Vector2)
 signal ataque_realizado(posicion: Vector2, direccion: Vector2, alcance: float, danio: int)
@@ -23,7 +24,7 @@ var direccion := Vector2.RIGHT
 var power_up_disponible: PowerUp
 var vidas_restantes: int = 3
 var escudo_activo := false
-var turnos_escudo := 0
+var turnos_escudo := 0.0
 var raycast_ataque: RayCast2D
 var _toque_inicial := Vector2.ZERO
 var _hay_toque := false
@@ -175,6 +176,7 @@ func _consumir_turno() -> void:
 	turnos_escudo -= 1
 	if turnos_escudo <= 0:
 		escudo_activo = false
+		sprite.modulate = Color.WHITE
 		queue_redraw()
 
 
@@ -190,7 +192,7 @@ func recibir_dano(cantidad: int) -> void:
 	sprite.frame = 3
 	super.recibir_dano(cantidad)
 	if vida <= 0:
-		vidas_restantes -= 1
+		vidas_restantes = 0
 		vidas_cambiadas.emit(vidas_restantes)
 		if vidas_restantes > 0:
 			vida = 3
@@ -208,16 +210,22 @@ func _parpadear_por_dano() -> void:
 	_esta_recibiendo_dano = false
 
 func usar_power_up(power_up: PowerUp) -> void:
-	if power_up_disponible != null:
-		power_up_disponible.usar(self)
-		power_up_disponible = null
-	else:
-		power_up.usar(self)
+	if power_up_disponible == null:
+		return
+	power_up_disponible.usar(self)
+	power_up_disponible = null
 
-
+func _parpadear_por_escudo()-> void:
+	var parpadeo := create_tween()
+	for _iteracion in range(3):
+		parpadeo.tween_property(sprite, "modulate", COLOR_ESCUDO, 0.1)
+		parpadeo.tween_property(sprite, "modulate", Color.WHITE, 0.1)
+	parpadeo.tween_property(sprite, "modulate", COLOR_ESCUDO, 0.1) #CORREGIR SI ES NECESARIOOO
+	
 func activar_escudo(duracion: float) -> void:
 	escudo_activo = true
 	turnos_escudo = maxi(ceili(duracion), 1)
+	_parpadear_por_escudo()
 	queue_redraw()
 
 

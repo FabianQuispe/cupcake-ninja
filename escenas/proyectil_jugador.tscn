@@ -20,7 +20,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_mocgy"]
 resource_name = "disparar_jugador"
 length = 0.53333336
-loop_mode = 0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
