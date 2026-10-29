@@ -11,8 +11,11 @@ var ayuda_label: Label
 var objetivo_label: Label
 var tiempo_de_nivel := 0.0
 var generador_aleatorio := RandomNumberGenerator.new()
+var puntaje_label: Label
 
 const ESCENA_NIVEL := preload("res://escenas/niveles/nivel_facil.tscn")
+const ESCENA_NIVEL_INTERMEDIO := preload("res://escenas/niveles/nivel_normal.tscn")
+const ESCENA_NIVEL_DIFICIL := preload("res://escenas/niveles/nivel_dificil.tscn")
 const ESCENA_ENEMIGO_ORUGA := preload("res://escenas/enemigos/enemigo_oruga.tscn")
 const ESCENA_ENEMIGO_VOLADOR := preload("res://escenas/enemigos/enemigo_volador.tscn")
 const ESCENA_SHURIKEN := preload("res://escenas/trampa_shuriken.tscn")
@@ -22,8 +25,7 @@ const TIPOGRAFIA_PIXEL := preload("res://sprites-assets/tipografia/stairsnslabs.
 func _ready() -> void:
 	generador_aleatorio.randomize()
 	game_manager.jugador = null
-	game_manager.nivel = Nivel.new(1, "Sobrevive y consigue 100 puntos")#reemplazar por el de abajo luego 
-	#game_manager.cargar_mundos(_crear_mundos())
+	game_manager.nivel = Nivel.new(1, "Sobrevive y consigue 100 puntos")#CODEAR
 	nivel = game_manager.nivel
 	add_child(game_manager)
 	game_manager.iniciar_juego()
@@ -31,6 +33,8 @@ func _ready() -> void:
 	_crear_jugador()
 	hud_vida = preload("res://escenas/hud_vida.tscn").instantiate()
 	add_child(hud_vida)
+	jugador.vida = nivel.muerte_max
+	hud_vida.actualizar_vidas(jugador.vida)
 	_crear_hud()
 	jugador.vidas_cambiadas.connect(_actualizar_vidas_jugador)
 	jugador.vida_cambiada.connect(hud_vida.actualizar_vidas)
@@ -45,6 +49,7 @@ func _process(delta: float) -> void:
 		return
 		
 	tiempo_de_nivel += delta
+	puntaje_label.text = "PUNTOS: %d / %d   TIEMPO: %d" % [game_manager.puntaje.puntos, nivel.puntaje_necesario, maxi(int(nivel.tiempo_max - tiempo_de_nivel), 0)]
 	_revisar_contactos()
 	
 	var resultado = nivel.consultar_nivel(game_manager.puntaje.puntos, tiempo_de_nivel, muertes_de_jugador)
@@ -71,7 +76,13 @@ func _input(event: InputEvent) -> void:
 
 
 func _crear_fondo() -> void:
-	var escenario := ESCENA_NIVEL.instantiate()
+	var escenario : Node
+	if nivel.numero == 1:
+		escenario = ESCENA_NIVEL.instantiate()
+	elif nivel.numero == 2:
+		escenario = ESCENA_NIVEL_INTERMEDIO.instantiate()
+	else:
+		escenario = ESCENA_NIVEL_DIFICIL.instantiate()
 	escenario.name = "EscenarioNivel1"
 	add_child(escenario)
 	move_child(escenario, 0)
@@ -107,6 +118,13 @@ func _crear_hud() -> void:
 	estado_label.add_theme_color_override("font_outline_color", Color.DEEP_PINK)
 	estado_label.add_theme_constant_override("outline_size", 6)
 	add_child (estado_label)
+	puntaje_label = Label.new()
+	puntaje_label.position = Vector2(32,100)
+	puntaje_label.add_theme_font_override("font", TIPOGRAFIA_PIXEL)
+	puntaje_label.add_theme_font_size_override("font_size", 13)
+	puntaje_label.add_theme_color_override("font_outline_color", Color.DEEP_PINK)
+	puntaje_label.add_theme_constant_override("outline_size", 6)
+	add_child(puntaje_label)
 
 func _crear_enemigo(posicion: Vector2, tipo: String) -> void:
 	var enemigo: Enemigo

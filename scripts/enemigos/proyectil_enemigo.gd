@@ -18,6 +18,10 @@ func _physics_process(delta: float) -> void:
 		objetivo.recibir_dano(danio)
 		queue_free()
 		return
-		
+	
+	if topar_proyectil_pared (delta): #RECORDATORIO: REVISAR ESTA PARTE
+		queue_free()
+		return
+	
 	if position.x <0 or position.x > 1152 or position.y > 648 or position.y <0:
 		queue_free()

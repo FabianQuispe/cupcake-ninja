@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://nnt4hx1s1ukj"]
 
 [ext_resource type="Texture2D" uid="uid://crufiyl2xw564" path="res://sprites-assets/jugador/disparar_personaje.png" id="1_e4f5l"]
+[ext_resource type="Script" uid="uid://yl6pt7prqcxe" path="res://escenas/proyectil_jugador.gd" id="1_ec782"]
 
 [sub_resource type="Animation" id="Animation_1inse"]
 length = 0.2
@@ -40,6 +41,7 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D" unique_id=1813996879]
+script = ExtResource("1_ec782")
 
 [node name="ProyectilJugador" type="Sprite2D" parent="." unique_id=1184891728]
 texture_filter = 1

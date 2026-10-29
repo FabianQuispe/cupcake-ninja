@@ -7,14 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://cgncwejom7bwx" path="res://escenas/plataforma_movil.tscn" id="5_il4qf"]
 [ext_resource type="PackedScene" uid="uid://0ox5d1onseut" path="res://escenas/plataforma_salto.tscn" id="6_4egy2"]
 [ext_resource type="PackedScene" uid="uid://c0v5b7v74n7r" path="res://escenas/trampa_shuriken.tscn" id="8_0xljm"]
-[ext_resource type="PackedScene" uid="uid://bwcpnf5cbimt2" path="res://power_up_escudo.tscn" id="9_koo7t"]
+[ext_resource type="PackedScene" uid="uid://bwcpnf5cbimt2" path="res://escenas/power_up_escudo.tscn" id="9_koo7t"]
 [ext_resource type="PackedScene" uid="uid://b3xn37t3ti5tf" path="res://escenas/trampa_lanza.tscn" id="9_rnya8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oh5vl"]
 texture = ExtResource("1_kjkih")
 modulate_color = Color(0.64813435, 0.41125786, 0.6556307, 1)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_13ipd"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xljm"]
 texture = ExtResource("3_17ggu")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -169,7 +169,7 @@ texture = ExtResource("3_17ggu")
 10:7/0 = 0
 11:7/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wmi7w"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rnya8"]
 texture = ExtResource("4_il4qf")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -312,7 +312,7 @@ texture = ExtResource("4_il4qf")
 10:7/0 = 0
 11:7/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vvl3a"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_koo7t"]
 texture = ExtResource("5_4egy2")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -373,9 +373,9 @@ texture = ExtResource("5_4egy2")
 
 [sub_resource type="TileSet" id="TileSet_il4qf"]
 physics_layer_0/collision_layer = 0
-sources/0 = SubResource("TileSetAtlasSource_13ipd")
-sources/1 = SubResource("TileSetAtlasSource_wmi7w")
-sources/2 = SubResource("TileSetAtlasSource_vvl3a")
+sources/0 = SubResource("TileSetAtlasSource_0xljm")
+sources/1 = SubResource("TileSetAtlasSource_rnya8")
+sources/2 = SubResource("TileSetAtlasSource_koo7t")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pared_superior"]
 size = Vector2(1024, 16)

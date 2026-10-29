@@ -30,6 +30,8 @@ func _init(numero_nivel: int = 1, objetivo_nivel: String = "") -> void:
 		tiempo_max = 80
 		muerte_max = 1
 
+	objetivo = "Consigue %d puntos en %d segundos" % [puntaje_necesario, int (tiempo_max)]
+
 func agregar_trampa(trampa: Trampa) -> void:
 	trampas.append(trampa)
 
