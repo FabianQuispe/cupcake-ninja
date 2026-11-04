@@ -9,7 +9,7 @@ const ESCENA_BOMBA:= preload ("res://escenas/enemigos/proyectil_enemigo_volador.
 
 var disparo = 0.0
 var tiempo_espera_disparo = 5
-var distanciaDisparo= 250
+var distancia_disparo= 250
 var direccion_movimiento = 1 
 var movimiento = 200  
 var posicion_inicial = 0.0
@@ -50,7 +50,7 @@ func comportamiento (_delta: float) -> void:
 	elif not is_instance_valid(objetivo):
 		return
 	var distancia = global_position.distance_to(objetivo.global_position)
-	if distancia > distanciaDisparo:
+	if distancia > distancia_disparo:
 		return
 	disparo=0
 	disparar()

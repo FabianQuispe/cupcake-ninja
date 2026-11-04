@@ -57,7 +57,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		var direccion_tecla := _direccion_de_tecla(event.keycode)
 		if direccion_tecla != Vector2.ZERO:
-			iniciar_deslizamiento(direccion_tecla)
+			mirar_direccion(direccion_tecla)
+		elif event.keycode == KEY_SPACE:
+			saltar_jugador()
 		elif event.keycode == KEY_A:
 			realizar_ataque()
 	elif event is InputEventScreenTouch:
@@ -68,7 +70,8 @@ func _input(event: InputEvent) -> void:
 			_hay_toque = false
 			var desplazamiento: Vector2 = event.position - _toque_inicial
 			if desplazamiento.length() >= tamano_casilla * 0.35:
-				iniciar_deslizamiento(_direccion_de_deslizamiento(desplazamiento))
+				mirar_direccion(_direccion_de_deslizamiento(desplazamiento))
+				saltar_jugador()
 
 
 func _direccion_de_tecla(tecla: Key) -> Vector2:
@@ -83,6 +86,15 @@ func _direccion_de_tecla(tecla: Key) -> Vector2:
 			return Vector2.DOWN
 	return Vector2.ZERO
 
+#Mira hacia la direccion en que el jugador se mueva para pensar donde saltar/disparar.
+func mirar_direccion(nueva_direccion: Vector2) -> void:
+	if estado !=Estado.IDLE:
+		return
+	direccion = nueva_direccion
+	_actualizar_orientacion()
+
+func saltar_jugador() -> void:
+	iniciar_deslizamiento(direccion)
 
 func _direccion_de_deslizamiento(desplazamiento: Vector2) -> Vector2:
 	if absf(desplazamiento.x) > absf(desplazamiento.y):
@@ -93,21 +105,21 @@ func _direccion_de_deslizamiento(desplazamiento: Vector2) -> Vector2:
 func iniciar_deslizamiento(nueva_direccion: Vector2) -> void:
 	if nueva_direccion == Vector2.ZERO or _esta_recibiendo_dano or vidas_restantes <= 0:
 		return
+	if estado != Estado.IDLE:
+		return
+	if test_move(global_transform, nueva_direccion * 4.0):
+		return
 	direccion = nueva_direccion
 	_actualizar_orientacion()
-	if estado == Estado.IDLE:
-		estado = Estado.SLIDING
-		animacion.play("fly_jugador")
+	estado = Estado.SLIDING
+	animacion.play("fly_jugador")
 
 func _actualizar_orientacion() -> void:
-	if direccion.x<0:
-		sprite.flip_h = true
-	elif direccion.x>0:
-		sprite.flip_h = false
-	elif direccion.y<0:
-		sprite.flip_v = true
-	elif direccion.y > 0:
+	if direccion.x != 0:
+		sprite.flip_h = direccion.x < 0
 		sprite.flip_v = false
+	else:
+		sprite.flip_v = direccion.y < 0
 
 
 func _deslizar_hasta_colision(delta: float) -> void:
@@ -132,10 +144,11 @@ func _ajustar_a_casilla(posicion: Vector2) -> Vector2:
 	return Vector2(round(posicion.x / tamano_casilla) * tamano_casilla, round(posicion.y / tamano_casilla) * tamano_casilla)
 
 
+
 func realizar_ataque() -> void:
 	if _esta_recibiendo_dano or vidas_restantes <= 0:
 		return
-	sprite.frame = 2
+	sprite.frame = 4
 	raycast_ataque.target_position = direccion * alcance_ataque
 	raycast_ataque.force_raycast_update()
 	var alcance_real := alcance_ataque
@@ -144,31 +157,22 @@ func realizar_ataque() -> void:
 		var punto_bloqueo := raycast_ataque.get_collision_point()
 		alcance_real = global_position.distance_to(punto_bloqueo) - 18.0
 	alcance_real = maxf(alcance_real, 0.0)
-	_disparar_visual(alcance_real)
+	_disparar_proyectil(alcance_real)
 	ataque_realizado.emit(global_position, direccion, alcance_real, maxi(danio_disparo, 35))
 	_consumir_turno()
 	await get_tree().create_timer(0.3).timeout
-	sprite.frame = 2
+	sprite.frame = 3
 
 
-func _disparar_visual(alcance: float) -> void:
+func _disparar_proyectil(alcance: float) -> void:
 	# Anima el sprite del disparo desde el jugador hasta el límite de alcance.
-	var disparo: Node2D = ESCENA_DISPARO.instantiate()
-	get_tree().current_scene.add_child(disparo)
-	var posicion_inicial := global_position + direccion * 20.0
-	disparo.global_position = posicion_inicial
-	disparo.global_rotation = direccion.angle()
-	var animacion_disparo := disparo.get_node("AnimationPlayer") as AnimationPlayer
-	animacion_disparo.play("disparar_jugador")
-	var desplazamiento := disparo.create_tween()
-	desplazamiento.tween_property(
-		disparo,
-		"global_position",
-		global_position + direccion * maxf(alcance, 20.0),
-		DURACION_DISPARO
-	)
-	get_tree().create_timer(0.55).timeout.connect(disparo.queue_free)
+	var disparo: ProyectilJugador = ESCENA_DISPARO.instantiate()
 
+	disparo.direccion = direccion
+	disparo.alcance_max = alcance
+	disparo.global_position = global_position + direccion * 20.0
+
+	get_tree().current_scene.add_child(disparo)
 
 func _consumir_turno() -> void:
 	if not escudo_activo:
@@ -227,11 +231,3 @@ func activar_escudo(duracion: float) -> void:
 	turnos_escudo = maxi(ceili(duracion), 1)
 	_parpadear_por_escudo()
 	queue_redraw()
-
-
-func _draw() -> void:
-	var color := Color("5ee1a7") if not escudo_activo else Color("6bc7ff")
-	draw_circle(Vector2.ZERO, 19.0, color)
-	draw_circle(Vector2.ZERO, 9.0, Color("182338"))
-	if escudo_activo:
-		draw_arc(Vector2.ZERO, 28.0, 0.0, TAU, 32, Color("b4ecff"), 3.0)

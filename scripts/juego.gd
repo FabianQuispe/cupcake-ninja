@@ -7,8 +7,6 @@ var enemigos: Array[Enemigo] = []
 var nivel: Nivel
 var hud_vida: HudVida
 var estado_label: Label
-var ayuda_label: Label
-var objetivo_label: Label
 var tiempo_de_nivel := 0.0
 var generador_aleatorio := RandomNumberGenerator.new()
 var puntaje_label: Label
@@ -18,14 +16,14 @@ const ESCENA_NIVEL_INTERMEDIO := preload("res://escenas/niveles/nivel_normal.tsc
 const ESCENA_NIVEL_DIFICIL := preload("res://escenas/niveles/nivel_dificil.tscn")
 const ESCENA_ENEMIGO_ORUGA := preload("res://escenas/enemigos/enemigo_oruga.tscn")
 const ESCENA_ENEMIGO_VOLADOR := preload("res://escenas/enemigos/enemigo_volador.tscn")
-const ESCENA_SHURIKEN := preload("res://escenas/trampa_shuriken.tscn")
-const ESCENA_LANZA := preload("res://escenas/trampa_lanza.tscn")
+const ESCENA_POWER_UP_VIDA := preload("res://escenas/power_up_vida.tscn")
+const PROB_DROPEO_POWER_UP_VIDA := 0.5
 const TIPOGRAFIA_PIXEL := preload("res://sprites-assets/tipografia/stairsnslabs.ttf")
 
 func _ready() -> void:
 	generador_aleatorio.randomize()
 	game_manager.jugador = null
-	game_manager.nivel = Nivel.new(1, "Sobrevive y consigue 100 puntos")#CODEAR
+	game_manager.nivel = Nivel.new(Nivel.nivel_elegido)
 	nivel = game_manager.nivel
 	add_child(game_manager)
 	game_manager.iniciar_juego()
@@ -39,8 +37,7 @@ func _ready() -> void:
 	jugador.vidas_cambiadas.connect(_actualizar_vidas_jugador)
 	jugador.vida_cambiada.connect(hud_vida.actualizar_vidas)
 	_crear_enemigos()
-	_crear_trampas()
-	_crear_power_ups()
+
 	
 
 
@@ -94,7 +91,6 @@ func _crear_jugador() -> void:
 	jugador.danio_disparo = 1
 	game_manager.jugador = jugador
 	jugador.movimiento_terminado.connect(_resolver_turno)
-	jugador.ataque_realizado.connect(_resolver_ataque)
 	add_child(jugador)
 
 
@@ -118,6 +114,8 @@ func _crear_hud() -> void:
 	estado_label.add_theme_color_override("font_outline_color", Color.DEEP_PINK)
 	estado_label.add_theme_constant_override("outline_size", 6)
 	add_child (estado_label)
+
+#Muestra el texto del puntaje del jugador.
 	puntaje_label = Label.new()
 	puntaje_label.position = Vector2(32,100)
 	puntaje_label.add_theme_font_override("font", TIPOGRAFIA_PIXEL)
@@ -126,6 +124,7 @@ func _crear_hud() -> void:
 	puntaje_label.add_theme_constant_override("outline_size", 6)
 	add_child(puntaje_label)
 
+	
 func _crear_enemigo(posicion: Vector2, tipo: String) -> void:
 	var enemigo: Enemigo
 	if tipo == "Volador":
@@ -147,12 +146,27 @@ func _crear_enemigo(posicion: Vector2, tipo: String) -> void:
 	enemigo.objetivo = jugador
 	enemigo.danio_contacto = 1
 	enemigos.append(enemigo)
+	enemigo.vida_cambiada.connect(cambiar_vida_enemigo.bind(enemigo))
 	add_child(enemigo)
 	var animacion := enemigo.get_node_or_null("AnimationPlayer") as AnimationPlayer
 	if animacion:
 		animacion.play("lanzar_bomba" if tipo == "Volador" else "walk")
+		
+func cambiar_vida_enemigo(vida_actual: int, enemigo: Enemigo) -> void:
+	if vida_actual > 0:
+		return
+	game_manager.puntaje.acumulacion_puntaje(10)
+	_dropeo_power_up_vida(enemigo.position)
+	enemigo.queue_free()
+	_crear_enemigo_aleatorio.call_deferred()
 
-
+func _dropeo_power_up_vida(posicion: Vector2) -> void:
+	if generador_aleatorio.randf() >= PROB_DROPEO_POWER_UP_VIDA:
+		return
+	var item := ESCENA_POWER_UP_VIDA.instantiate()
+	item.position = posicion
+	add_child(item)
+	
 func _crear_enemigo_aleatorio() -> void:
 	var posicion := Vector2.ZERO
 	for intento in range(12):
@@ -173,46 +187,8 @@ func _hay_trampa_cerca(posicion: Vector2) -> bool:
 	return false
 
 
-func _crear_trampas() -> void:
-	var trampas_nivel := [[Vector2 (400, 230), ESCENA_SHURIKEN], [Vector2 (800, 300), ESCENA_LANZA]]
-	for datos in trampas_nivel:
-		var trampa: Trampa = datos [1].instantiate()
-		trampa.position = datos[0]
-		trampa.danio = 1
-		nivel.agregar_trampa(trampa)
-		add_child(trampa)
-
-
-func _crear_power_ups() -> void:
-	var vida := PowerUpVida.new()
-	vida.cantidad_vidas = 3 
-	jugador.power_up_disponible = vida
-
-
 func _resolver_turno(_direccion_movimiento: Vector2) -> void:
 	_revisar_contactos()
-
-
-func _resolver_ataque(posicion: Vector2, direccion_ataque: Vector2, alcance: float, danio: int) -> void:
-	var direccion_normalizada := direccion_ataque.normalized()
-	var perpendicular := Vector2(-direccion_normalizada.y, direccion_normalizada.x)
-	for enemigo in enemigos:
-		if not is_instance_valid(enemigo) or enemigo.vida <= 0:
-			continue
-		var vector_al_enemigo := enemigo.global_position - posicion
-		var distancia_en_la_direccion := vector_al_enemigo.dot(direccion_normalizada)
-		var distancia_lateral := absf(vector_al_enemigo.dot(perpendicular))
-		var dentro_del_alcance := distancia_en_la_direccion >= 0.0 and distancia_en_la_direccion <= alcance
-		var alineado_con_disparo := distancia_lateral <= 32.0
-		# Solo reciben daño los enemigos delante del jugador y alineados con el disparo.
-		if dentro_del_alcance and alineado_con_disparo:
-			enemigo.recibir_dano(danio)
-			if enemigo.vida <= 0:
-				game_manager.puntaje.acumulacion_puntaje(10)
-				enemigo.queue_free()
-				_crear_enemigo_aleatorio.call_deferred()
-	_revisar_contactos()
-
 
 func _revisar_contactos() -> void:
 	for enemigo in enemigos:

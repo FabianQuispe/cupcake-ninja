@@ -2,6 +2,7 @@ class_name Nivel
 extends RefCounted
 
 enum {seguir_jugando, ganar, perder}
+static var nivel_elegido: int = 1
 
 var numero: int
 var objetivo: String

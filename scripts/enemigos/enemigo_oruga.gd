@@ -7,7 +7,7 @@ extends Enemigo
 const ESCENA_BALA := preload("res://escenas/enemigos/proyectil_oruga.tscn")
 
 var disparo = 0
-var distanciaDisparo= 200
+var distancia_disparo= 200
 var direccion_movimiento = 1 
 var movimiento = 150  
 var posicion_inicial = 0 
@@ -46,12 +46,12 @@ func comportamiento (_delta: float) -> void:
 	elif not is_instance_valid(objetivo):
 		return
 	var distancia = global_position.distance_to(objetivo.global_position)
-	if distancia > distanciaDisparo:
+	if distancia > distancia_disparo:
 		return
 	disparo=0
-	disparar_oruga()
+	disparar()
 
-func disparar_oruga() -> void:
+func disparar() -> void:
 	ataca = true
 	animacion.play ("attack")
 	var bala = ESCENA_BALA.instantiate()

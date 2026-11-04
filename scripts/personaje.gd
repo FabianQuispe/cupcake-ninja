@@ -24,7 +24,3 @@ func recibir_dano(cantidad: int) -> void:
 	vida = maxi(vida - maxi(cantidad, 0), 0)
 	vida_cambiada.emit(vida)
 	queue_redraw()
-
-
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, 18.0, Color("f0b35a"))
