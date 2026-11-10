@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://coq666r3157g8"]
 
-[ext_resource type="Script" uid="uid://d0y08b8kmxp06" path="res://scripts/enemigos/enemigo_oruga.gd" id="1_br41q"]
+[ext_resource type="Script" uid="uid://d0y08b8kmxp06" path="res://scripts/enemigo_oruga.gd" id="1_br41q"]
 [ext_resource type="Texture2D" uid="uid://cqweqx3agylb5" path="res://sprites-assets/enemigos/robot_oruga.png" id="2_br41q"]
 
 [sub_resource type="Animation" id="Animation_usnke"]

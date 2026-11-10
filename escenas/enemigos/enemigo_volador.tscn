@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgqbb2h0pkey0"]
 
-[ext_resource type="Script" uid="uid://cmopyvhlafaoe" path="res://scripts/enemigos/enemigo_volador.gd" id="1_58snc"]
+[ext_resource type="Script" uid="uid://cmopyvhlafaoe" path="res://scripts/enemigo_volador.gd" id="1_58snc"]
 [ext_resource type="Texture2D" uid="uid://1mxjsrkts814" path="res://sprites-assets/enemigos/robot_volador.png" id="2_ebask"]
 
 [sub_resource type="Animation" id="Animation_nbqag"]

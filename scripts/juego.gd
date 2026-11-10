@@ -10,13 +10,14 @@ var estado_label: Label
 var tiempo_de_nivel := 0.0
 var generador_aleatorio := RandomNumberGenerator.new()
 var puntaje_label: Label
+var ganar := false
 
-const ESCENA_NIVEL := preload("res://escenas/niveles/nivel_facil.tscn")
-const ESCENA_NIVEL_INTERMEDIO := preload("res://escenas/niveles/nivel_normal.tscn")
+const ESCENA_NIVEL_FACIL := preload("res://escenas/niveles/nivel_facil.tscn")
+const ESCENA_NIVEL_NORMAL := preload("res://escenas/niveles/nivel_normal.tscn")
 const ESCENA_NIVEL_DIFICIL := preload("res://escenas/niveles/nivel_dificil.tscn")
 const ESCENA_ENEMIGO_ORUGA := preload("res://escenas/enemigos/enemigo_oruga.tscn")
 const ESCENA_ENEMIGO_VOLADOR := preload("res://escenas/enemigos/enemigo_volador.tscn")
-const ESCENA_POWER_UP_VIDA := preload("res://escenas/power_up_vida.tscn")
+const ESCENA_POWER_UP_VIDA := preload("res://escenas/powerUp/power_up_vida.tscn")
 const PROB_DROPEO_POWER_UP_VIDA := 0.5
 const TIPOGRAFIA_PIXEL := preload("res://sprites-assets/tipografia/stairsnslabs.ttf")
 
@@ -53,10 +54,15 @@ func _process(delta: float) -> void:
 	
 	if resultado == Nivel.ganar:
 		game_manager.terminar_juego()
-		estado_label.text = "GANASTE - pulsa R para reiniciar"
+		ganar = true
+		if nivel.numero < 3:
+			estado_label.text = "GANASTE - R: Reiniciar - T: Siguiente nivel"
+		else:
+			estado_label.text = "GANASTE - R: Reiniciar"
+
 	elif resultado == Nivel.perder:
 		game_manager.terminar_juego()
-		estado_label.text = "DERROTA - pulsa R para reiniciar"
+		estado_label.text = "DERROTA - R: Reiniciar"
 		
 	if jugador.position.y > 700.0:
 		jugador.position = Vector2(576.0, 330.0)
@@ -65,19 +71,20 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:	
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_Q and game_manager.juego_activo:
-			jugador.usar_power_up(PowerUpVida.new())
-		elif event.keycode == KEY_E and game_manager.juego_activo:
 			jugador.usar_power_up(PowerUpEscudo.new())
 		elif event.keycode == KEY_R and not game_manager.juego_activo:
+			get_tree().reload_current_scene()
+		elif event.keycode == KEY_T and ganar and nivel.numero < 3:
+			Nivel.nivel_elegido = nivel.numero + 1
 			get_tree().reload_current_scene()
 
 
 func _crear_fondo() -> void:
 	var escenario : Node
 	if nivel.numero == 1:
-		escenario = ESCENA_NIVEL.instantiate()
+		escenario = ESCENA_NIVEL_FACIL.instantiate()
 	elif nivel.numero == 2:
-		escenario = ESCENA_NIVEL_INTERMEDIO.instantiate()
+		escenario = ESCENA_NIVEL_NORMAL.instantiate()
 	else:
 		escenario = ESCENA_NIVEL_DIFICIL.instantiate()
 	escenario.name = "EscenarioNivel1"
@@ -86,11 +93,11 @@ func _crear_fondo() -> void:
 
 
 func _crear_jugador() -> void:
+	var spawn_jugador = get_tree().get_first_node_in_group("spawn_jugador")
 	jugador = preload("res://escenas/jugador.tscn").instantiate()
-	jugador.position = Vector2(576, 330)
+	jugador.position = spawn_jugador.global_position
 	jugador.danio_disparo = 1
 	game_manager.jugador = jugador
-	jugador.movimiento_terminado.connect(_resolver_turno)
 	add_child(jugador)
 
 
@@ -102,8 +109,10 @@ func _actualizar_vidas_jugador(vidas_actuales: int) -> void:
 
 
 func _crear_enemigos() -> void:
-	for datos in [[Vector2(440, 210), "Oruga"], [Vector2(500, 100), "Volador"], [Vector2(850, 500), "Oruga"]]:
-		_crear_enemigo(datos[0], datos[1])
+	var intentos := 0
+	while enemigos.size() < 3 and intentos < 20:
+		_crear_enemigo_aleatorio()
+		intentos += 1
 
 #Muestra el texto que indica al jugador si ganó o perdió.
 func _crear_hud() -> void:
@@ -151,7 +160,8 @@ func _crear_enemigo(posicion: Vector2, tipo: String) -> void:
 	var animacion := enemigo.get_node_or_null("AnimationPlayer") as AnimationPlayer
 	if animacion:
 		animacion.play("lanzar_bomba" if tipo == "Volador" else "walk")
-		
+
+
 func cambiar_vida_enemigo(vida_actual: int, enemigo: Enemigo) -> void:
 	if vida_actual > 0:
 		return
@@ -168,27 +178,22 @@ func _dropeo_power_up_vida(posicion: Vector2) -> void:
 	add_child(item)
 	
 func _crear_enemigo_aleatorio() -> void:
-	var posicion := Vector2.ZERO
-	for intento in range(12):
-		posicion = Vector2(
-			generador_aleatorio.randi_range(2, 21) * 48,
-			generador_aleatorio.randi_range(3, 11) * 48
-		)
-		if posicion.distance_to(jugador.position) >= 192.0 and not _hay_trampa_cerca(posicion):
-			break
-	var tipos := ["Oruga", "Volador"]
-	_crear_enemigo(posicion, tipos[generador_aleatorio.randi_range(0, tipos.size() - 1)])
+	var tipo = ["Oruga", "Volador"].pick_random()
+	var puntos = get_tree().get_nodes_in_group("spawn_" + tipo.to_lower())
+	puntos = puntos.filter(_enemigos_sin_pisarse)
+	if puntos.is_empty():
+		return
+	_crear_enemigo(puntos.pick_random().global_position, tipo)
 
+#Los enemigos no se pisan al generarse aleatoriamente.
+func _enemigos_sin_pisarse(marcador: Node2D) -> bool:
+	if marcador.global_position.distance_to(jugador.global_position) <193.0:
+		return false
+	for enemigo in enemigos:
+		if is_instance_valid(enemigo) and enemigo.global_position.distance_to(marcador.global_position) < 80.0:
+			return false
+	return true
 
-func _hay_trampa_cerca(posicion: Vector2) -> bool:
-	for trampa in nivel.trampas:
-		if is_instance_valid(trampa) and trampa.position.distance_to(posicion) < 72.0:
-			return true
-	return false
-
-
-func _resolver_turno(_direccion_movimiento: Vector2) -> void:
-	_revisar_contactos()
 
 func _revisar_contactos() -> void:
 	for enemigo in enemigos:
@@ -199,5 +204,5 @@ func _revisar_contactos() -> void:
 			jugador.recibir_dano(trampa.danio)
 	
 	for power_up in get_tree().get_nodes_in_group("power_ups"):
-		if power_up.aparicion and power_up.global_position.distance_to(jugador.global_position)<34.0:
+		if power_up._aparicion and power_up.global_position.distance_to(jugador.global_position)<34.0:
 			power_up.obtener(jugador)

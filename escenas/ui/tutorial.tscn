@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d1flm6dltgxc"]
 
-[ext_resource type="Script" uid="uid://lgeetdvs4yvq" path="res://scripts/ui/tutorial.gd" id="1_jspii"]
+[ext_resource type="Script" uid="uid://lgeetdvs4yvq" path="res://scripts/tutorial.gd" id="1_jspii"]
 [ext_resource type="Texture2D" uid="uid://ce5nkbkonhcbq" path="res://fondos/fondo_juego.png" id="2_vmmbw"]
 [ext_resource type="Texture2D" uid="uid://bvyiqx376qoxj" path="res://sprites-assets/botones/FrameMap.png" id="3_35skj"]
 [ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="3_it414"]
@@ -63,7 +63,7 @@ scale = Vector2(5.894397, -4.737113)
 [node name="Tecla derecha" type="Sprite2D" parent="Teclas" unique_id=108903511]
 modulate = Color(0.827451, 0.84705883, 0, 1)
 texture_filter = 1
-position = Vector2(50.661655, 28.200827)
+position = Vector2(50.661655, 24.182642)
 scale = Vector2(0.5336218, 0.62324893)
 texture = ExtResource("3_it414")
 region_enabled = true
@@ -72,7 +72,7 @@ region_rect = Rect2(-0.76173806, 175.08441, 17.530458, 17.648056)
 [node name="Tecla izquierda" type="Sprite2D" parent="Teclas" unique_id=1328558385]
 modulate = Color(0.827451, 0.84705883, 0, 1)
 texture_filter = 1
-position = Vector2(71.12929, 27.655085)
+position = Vector2(71.12929, 23.6369)
 scale = Vector2(0.5336218, 0.62324893)
 texture = ExtResource("3_it414")
 flip_h = true
@@ -82,7 +82,7 @@ region_rect = Rect2(-0.76173806, 175.08441, 17.530458, 17.648056)
 [node name="Tecla arriba" type="Sprite2D" parent="Teclas" unique_id=892614842]
 modulate = Color(0.827451, 0.84705883, 0, 1)
 texture_filter = 1
-position = Vector2(60.749252, 15.648783)
+position = Vector2(60.749252, 11.630598)
 scale = Vector2(0.5336218, 0.62324893)
 texture = ExtResource("3_it414")
 region_enabled = true
@@ -91,17 +91,28 @@ region_rect = Rect2(15.293896, 175.18442, 17.405655, 17.598206)
 [node name="Teca abajo" type="Sprite2D" parent="Teclas" unique_id=591054767]
 modulate = Color(0.827451, 0.84705883, 0, 1)
 texture_filter = 1
-position = Vector2(60.89545, 27.837002)
+position = Vector2(60.89545, 23.818817)
 scale = Vector2(0.5336218, 0.62324893)
 texture = ExtResource("3_it414")
 flip_v = true
 region_enabled = true
 region_rect = Rect2(15.453244, 175.18442, 17.245522, 17.598206)
 
+[node name="Teca espacio" type="Sprite2D" parent="Teclas" unique_id=213937727]
+modulate = Color(0.827451, 0.84705883, 0, 1)
+texture_filter = 1
+position = Vector2(34.10018, 24.057995)
+rotation = 3.1403275
+scale = Vector2(0.5336218, 0.62324893)
+texture = ExtResource("3_it414")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(-0.34531784, 335.5183, 29.629623, 16.98767)
+
 [node name="Tecla a" type="Sprite2D" parent="Teclas" unique_id=2129646941]
 modulate = Color(0.8281528, 0.8471736, 3.85046e-07, 1)
 texture_filter = 1
-position = Vector2(17.76723, 28.200819)
+position = Vector2(5.7681866, 24.182632)
 scale = Vector2(0.5336218, 0.62324893)
 texture = ExtResource("3_it414")
 region_enabled = true
@@ -110,7 +121,7 @@ region_rect = Rect2(-0.40751743, 207.4584, 16.576511, 16.948181)
 [node name="Tecla q" type="Sprite2D" parent="Teclas" unique_id=783528943]
 modulate = Color(0.8281528, 0.8471736, 3.85046e-07, 1)
 texture_filter = 1
-position = Vector2(-19.001095, 28.411911)
+position = Vector2(-29.349907, 24.276386)
 scale = Vector2(0.5336218, 0.62324893)
 texture = ExtResource("3_it414")
 region_enabled = true
@@ -146,11 +157,33 @@ text = "Cuidado con
 
 los enemigos"
 
+[node name="Mirar" type="Label" parent="Label" unique_id=2048532577]
+offset_left = 69.21586
+offset_top = 27.836994
+offset_right = 1424.0969
+offset_bottom = 184.41039
+scale = Vector2(-0.05726383, 0.06952641)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("4_vmmbw")
+theme_override_font_sizes/font_size = 27
+text = "Mirar"
+
+[node name="Saltar" type="Label" parent="Label" unique_id=44697970]
+offset_left = 46.993847
+offset_top = 27.655083
+offset_right = 502.99384
+offset_bottom = 136.62015
+scale = Vector2(-0.05726383, 0.06952641)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("4_vmmbw")
+theme_override_font_sizes/font_size = 27
+text = "Saltar"
+
 [node name="Disparar" type="Label" parent="Label" unique_id=214070314]
-offset_left = 35.00566
-offset_top = 14.921125
-offset_right = 491.00568
-offset_bottom = 123.8862
+offset_left = 23.74846
+offset_top = 28.20082
+offset_right = 479.74847
+offset_bottom = 137.1659
 scale = Vector2(-0.05726383, 0.06952641)
 theme_override_constants/outline_size = 30
 theme_override_fonts/font = ExtResource("4_vmmbw")
@@ -158,10 +191,10 @@ theme_override_font_sizes/font_size = 27
 text = "Disparar"
 
 [node name="Escudo" type="Label" parent="Label" unique_id=1055534674]
-offset_left = 2.2574408
-offset_top = 12.374328
-offset_right = 500.25745
-offset_bottom = 121.3394
+offset_left = -7.391588
+offset_top = 28.382729
+offset_right = 490.6084
+offset_bottom = 137.34781
 scale = Vector2(-0.05726383, 0.06952641)
 theme_override_constants/outline_size = 30
 theme_override_fonts/font = ExtResource("4_vmmbw")
@@ -200,7 +233,7 @@ vframes = 2
 
 [node name="Jugador1" type="Sprite2D" parent="Sprites" unique_id=1511829518]
 texture_filter = 1
-position = Vector2(128, 327.99997)
+position = Vector2(189, 353.99997)
 scale = Vector2(0.15703657, 0.15703657)
 texture = ExtResource("8_35skj")
 hframes = 5
@@ -208,7 +241,7 @@ frame = 2
 
 [node name="Jugador2" type="Sprite2D" parent="Sprites" unique_id=947386511]
 texture_filter = 1
-position = Vector2(376, 330.00003)
+position = Vector2(457, 353)
 scale = Vector2(0.15939444, 0.15939444)
 texture = ExtResource("8_35skj")
 hframes = 5
@@ -217,7 +250,7 @@ frame = 4
 [node name="Jugador3" type="Sprite2D" parent="Sprites" unique_id=351524146]
 modulate = Color(1, 1, 0, 1)
 texture_filter = 1
-position = Vector2(606.99994, 334.99997)
+position = Vector2(671, 355)
 scale = Vector2(0.15703657, 0.15703657)
 texture = ExtResource("8_35skj")
 hframes = 5

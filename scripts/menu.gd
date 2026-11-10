@@ -17,3 +17,7 @@ func _on_boton_tutorial_pressed() -> void:
 	$SonidoBoton.play()
 	await $SonidoBoton.finished
 	get_tree().change_scene_to_file("res://escenas/ui/tutorial.tscn")
+
+
+func _on_boton_salir_pressed() -> void:
+	get_tree().quit()

@@ -5,30 +5,30 @@ extends Trampa
 
 @onready var animacion: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
+const TIEMPO_ESPERA := 3.0
 
-var tiempo = 0.0
-var tiempo_espera = 3
-var activada = false
+var _tiempo = 0.0
+var _activada = false
 
 func activar() -> void:
-	animacion.animation_finished.connect(fin_animacion)
+	animacion.animation_finished.connect(_fin_animacion)
 	sprite.frame = 0
 
 func _physics_process(delta: float) -> void:
-	if activada:
+	if _activada:
 		return
-	tiempo += delta
-	if tiempo < tiempo_espera:
+	_tiempo += delta
+	if _tiempo < TIEMPO_ESPERA:
 		return
-	tiempo = 0
-	activada = true
+	_tiempo = 0
+	_activada = true
 	animacion.play("trampa_activada")
 
 #La trampa puede dañar al jugador cuando está activada.
 func daniar() -> bool:
-	return activada and sprite.frame !=0
+	return _activada and sprite.frame !=0
 	
-func fin_animacion (tipo_animacion) -> void:
+func _fin_animacion (tipo_animacion) -> void:
 	if tipo_animacion == "trampa_activada":
-		activada = false
+		_activada = false
 		sprite.frame = 0

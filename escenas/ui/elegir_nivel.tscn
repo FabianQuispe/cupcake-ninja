@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kcgiem71akdp"]
 
-[ext_resource type="Script" uid="uid://dnccevjn0ync4" path="res://scripts/ui/elegir_nivel.gd" id="1_566hm"]
+[ext_resource type="Script" uid="uid://dnccevjn0ync4" path="res://scripts/elegir_nivel.gd" id="1_566hm"]
 [ext_resource type="Texture2D" uid="uid://ce5nkbkonhcbq" path="res://fondos/fondo_juego.png" id="2_g4yij"]
 [ext_resource type="Texture2D" uid="uid://bvyiqx376qoxj" path="res://sprites-assets/botones/FrameMap.png" id="3_g4yij"]
 [ext_resource type="Texture2D" uid="uid://chuw0c606ncyu" path="res://sprites-assets/botones/botones.png" id="3_nfr48"]
@@ -222,7 +222,7 @@ theme_override_constants/outline_size = 33
 theme_override_fonts/font = ExtResource("4_g4yij")
 theme_override_font_sizes/font_size = 86
 text = "3
-300"
+90"
 metadata/_edit_use_anchors_ = true
 
 [node name="VidasTextoIntermedio" type="Label" parent="Grupo" unique_id=2032745744]
@@ -236,7 +236,7 @@ theme_override_constants/outline_size = 33
 theme_override_fonts/font = ExtResource("4_g4yij")
 theme_override_font_sizes/font_size = 86
 text = "3
-120"
+70"
 metadata/_edit_use_anchors_ = true
 
 [node name="VidasTextoDificil" type="Label" parent="Grupo" unique_id=1721515288]
@@ -250,7 +250,7 @@ theme_override_constants/outline_size = 33
 theme_override_fonts/font = ExtResource("4_g4yij")
 theme_override_font_sizes/font_size = 86
 text = "1
-80"
+50"
 metadata/_edit_use_anchors_ = true
 
 [node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=1601359808]

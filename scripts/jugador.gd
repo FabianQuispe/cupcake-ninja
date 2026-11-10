@@ -10,7 +10,7 @@ signal vidas_cambiadas (vidas_actuales: int)
 
 enum Estado { IDLE, SLIDING }
 @export var tamano_casilla := 48.0
-@export var velocidad_deslizamiento := 240.0
+@export var velocidad_deslizamiento := 400.0
 @export var alcance_ataque := 96.0
 @onready var sprite: Sprite2D = $RobotJugador
 @onready var animacion: AnimationPlayer = $AnimationPlayer
@@ -224,7 +224,7 @@ func _parpadear_por_escudo()-> void:
 	for _iteracion in range(3):
 		parpadeo.tween_property(sprite, "modulate", COLOR_ESCUDO, 0.1)
 		parpadeo.tween_property(sprite, "modulate", Color.WHITE, 0.1)
-	parpadeo.tween_property(sprite, "modulate", COLOR_ESCUDO, 0.1) #CORREGIR SI ES NECESARIOOO
+	parpadeo.tween_property(sprite, "modulate", COLOR_ESCUDO, 0.1)
 	
 func activar_escudo(duracion: float) -> void:
 	escudo_activo = true

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dr6ihmrt7r5qr"]
 
-[ext_resource type="Script" uid="uid://dg837of2gttk8" path="res://scripts/power_up/power_up_vida.gd" id="1_6go1c"]
+[ext_resource type="Script" uid="uid://dg837of2gttk8" path="res://scripts/power_up_vida.gd" id="1_6go1c"]
 [ext_resource type="Texture2D" uid="uid://drbaccxlabf7b" path="res://sprites-assets/powerup/powerup_vida.png" id="2_kp8wr"]
 
 [node name="Node2D" type="Node2D" unique_id=1588755690]

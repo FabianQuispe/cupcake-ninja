@@ -6,57 +6,56 @@ extends Enemigo
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animacion: AnimationPlayer = $AnimationPlayer
 const ESCENA_BOMBA:= preload ("res://escenas/enemigos/proyectil_enemigo_volador.tscn")
+const DISTANCIA_DISPARO := 250.0
+const TIEMPO_ESPERA_DISPAROS := 5.0
+const MOVIMIENTO := 200.0
 
-var disparo = 0.0
-var tiempo_espera_disparo = 5
-var distancia_disparo= 250
-var direccion_movimiento = 1 
-var movimiento = 200  
-var posicion_inicial = 0.0
-var lanzar = false
+var _disparo = 0.0
+var _direccion_movimiento = 1 
+var _posicion_inicial = 0.0
+var _lanzar = false
 
 func _ready() -> void:
 	super._ready()
 	vida = 2
 	velocidad = 80
-	posicion_inicial = position.x
+	_posicion_inicial = position.x
 	sprite.frame = 0
-	animacion.animation_finished.connect(fin_animacion)
+	animacion.animation_finished.connect(_fin_animacion)
 	
 	
-func comportamiento (_delta: float) -> void:
+func comportamiento (delta: float) -> void:
 #Se queda quieto mientras el enemigo vuela.
-	if lanzar:
+	if _lanzar:
 		return 
 
 #El enemigo se mueve de izquierda a derecha.
-	if position.x > posicion_inicial + movimiento:
-		direccion_movimiento = -1
-	elif position.x < posicion_inicial - movimiento:
-		direccion_movimiento = 1
-	mover(Vector2(direccion_movimiento, 0))
+	if position.x > _posicion_inicial + MOVIMIENTO:
+		_direccion_movimiento = -1
+	elif position.x < _posicion_inicial - MOVIMIENTO:
+		_direccion_movimiento = 1
+	mover(Vector2(_direccion_movimiento, 0))
 	
 	#Cuando choca con una pared, el enemigo se mueve a otra dirección.
 	if is_on_wall():
-		direccion_movimiento = -direccion_movimiento
+		_direccion_movimiento = -_direccion_movimiento
 	
 	#El sprite se da vuelta a la direccion donde vuela.
-	$Sprite2D.flip_h = direccion_movimiento < 0 
+	$Sprite2D.flip_h = _direccion_movimiento < 0 
 
 #Lanza la bomba si detecta al jugador cerca.
-	disparo += _delta 
-	if disparo < tiempo_espera_disparo:
+	_disparo += delta 
+	if _disparo < TIEMPO_ESPERA_DISPAROS:
 		return
-	elif not is_instance_valid(objetivo):
+	if not is_instance_valid(objetivo):
 		return
-	var distancia = global_position.distance_to(objetivo.global_position)
-	if distancia > distancia_disparo:
+	if global_position.distance_to(objetivo.global_position) > DISTANCIA_DISPARO:
 		return
-	disparo=0
+	_disparo = 0.0
 	disparar()
 
 func disparar() -> void:
-	lanzar = true
+	_lanzar = true
 	animacion.play ("lanzar_bomba")
 	var bomba = ESCENA_BOMBA.instantiate()
 	bomba.direccion = Vector2.DOWN
@@ -64,7 +63,7 @@ func disparar() -> void:
 	get_parent().add_child(bomba)
 	bomba.global_position = global_position
 
-func fin_animacion(tipo_animacion) -> void:
+func _fin_animacion(tipo_animacion) -> void:
 	if tipo_animacion == "lanzar_bomba":
-		lanzar = false
+		_lanzar = false
 		sprite.frame=0

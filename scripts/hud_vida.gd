@@ -25,6 +25,6 @@ func actualizar_vidas(vida_actual: int) -> void:
 			1: actualizar_corazon(vida, sin_vida, sin_vida)
 
 func actualizar_corazon(corazon_1, corazon_2, corazon_3) -> void:
-		VidaCorazon1.texture = corazon_1
-		VidaCorazon2.texture = corazon_2
-		VidaCorazon3.texture = corazon_3
+	VidaCorazon1.texture = corazon_1
+	VidaCorazon2.texture = corazon_2
+	VidaCorazon3.texture = corazon_3

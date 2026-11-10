@@ -3,20 +3,20 @@ extends Plataforma
 
 #Esta plataforma hace que el jugador brinque cuando entra en contacto de éste.
 @onready var animacion: AnimationPlayer = $AnimationPlayer
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $PlataformaSalto
 @onready var zona: Area2D = $Zona
 
-var tiempo_saltar := 0.0
+var _tiempo_espera_saltar := 0.0
 
 func _ready() -> void:
 	super._ready()
 	zona.collision_layer = 0
-	await $AnimationPlayer.animation_finished #RECORDATORIO: Mejorar esta parte, la animacion se sigue activando.
+	await $AnimationPlayer.animation_finished 
 	animacion.animation_finished.connect(plataforma_sin_lanzar)
 
 func actualizar(delta: float) -> void:
-	tiempo_saltar = maxf(tiempo_saltar - delta, 0.0)
-	if tiempo_saltar > 0.0:
+	_tiempo_espera_saltar = maxf(_tiempo_espera_saltar - delta, 0.0)
+	if _tiempo_espera_saltar > 0.0:
 		return
 
 #Si el cuerpo es el jugador, lo lanza, si es el enemigo no.
@@ -30,7 +30,7 @@ func lanzar (jugador: Jugador) -> void:
 	jugador.iniciar_deslizamiento(direccion_saltar)
 	if jugador.estado != Jugador.Estado.SLIDING:
 		return
-	tiempo_saltar = 2.0
+	_tiempo_espera_saltar = 2.0
 	animacion.play("lanzar_jugador")
 
 

@@ -5,9 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://nerrbcnkm8gq" path="res://sprites-assets/assets/1_Industrial_Tileset_1B.png" id="3_58qqp"]
 [ext_resource type="Texture2D" uid="uid://dt4wpp7nypn6t" path="res://sprites-assets/assets/1_Industrial_Tileset_1C.png" id="4_akgml"]
 [ext_resource type="Texture2D" uid="uid://dhjyidq3jpthm" path="res://sprites-assets/assets/0_Template_Tileset.png" id="5_bwcrp"]
-[ext_resource type="PackedScene" uid="uid://bwcpnf5cbimt2" path="res://escenas/power_up_escudo.tscn" id="6_bwcrp"]
-[ext_resource type="PackedScene" uid="uid://c0v5b7v74n7r" path="res://escenas/trampa_shuriken.tscn" id="7_x6usp"]
-[ext_resource type="PackedScene" uid="uid://b3xn37t3ti5tf" path="res://escenas/trampa_lanza.tscn" id="8_xhaye"]
+[ext_resource type="PackedScene" uid="uid://bwcpnf5cbimt2" path="res://escenas/powerUp/power_up_escudo.tscn" id="6_bwcrp"]
+[ext_resource type="PackedScene" uid="uid://c0v5b7v74n7r" path="res://escenas/trampas/trampa_shuriken.tscn" id="7_x6usp"]
+[ext_resource type="PackedScene" uid="uid://b3xn37t3ti5tf" path="res://escenas/trampas/trampa_lanza.tscn" id="8_xhaye"]
+[ext_resource type="AudioStream" uid="uid://caaiq44kjgrgm" path="res://sonidos/musica_nivel.ogg" id="9_x6usp"]
+[ext_resource type="PackedScene" uid="uid://0ox5d1onseut" path="res://escenas/plataformas/plataforma_salto.tscn" id="9_xhaye"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yyom2"]
 texture = ExtResource("1_3jrvm")
@@ -354,6 +356,18 @@ sources/1 = SubResource("TileSetAtlasSource_xhaye")
 sources/2 = SubResource("TileSetAtlasSource_4jvuv")
 sources/3 = SubResource("TileSetAtlasSource_ik5ga")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xhaye"]
+size = Vector2(1024, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jvuv"]
+size = Vector2(1024, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ik5ga"]
+size = Vector2(30, 576)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utlkj"]
+size = Vector2(32, 576)
+
 [node name="Node2D" type="Node2D" unique_id=1134108642]
 
 [node name="Panel" type="Panel" parent="." unique_id=1842858871]
@@ -393,3 +407,82 @@ position = Vector2(-389, 114)
 
 [node name="TrampaShuriken2" parent="Trampas" unique_id=768526747 instance=ExtResource("7_x6usp")]
 position = Vector2(-266, -74)
+
+[node name="TrampaShuriken3" parent="Trampas" unique_id=478397355 instance=ExtResource("7_x6usp")]
+position = Vector2(-268, 117)
+scale = Vector2(1.6800005, 1.6902641)
+
+[node name="Plataformas" type="Node2D" parent="." unique_id=1498529488]
+position = Vector2(730, 394)
+
+[node name="PlataformaSalto" parent="Plataformas" unique_id=1840269995 instance=ExtResource("9_xhaye")]
+position = Vector2(297.00012, -318)
+rotation = -3.1385946
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=854587245]
+stream = ExtResource("9_x6usp")
+volume_db = -17.0
+autoplay = true
+parameters/looping = true
+
+[node name="Marcadores" type="Node2D" parent="." unique_id=1803636097]
+
+[node name="SpawnOruga" type="Node2D" parent="Marcadores" unique_id=1901127392]
+
+[node name="SpawnOruga" type="Marker2D" parent="Marcadores/SpawnOruga" unique_id=922466392 groups=["spawn_oruga"]]
+position = Vector2(154, 514)
+
+[node name="SpawnOruga2" type="Marker2D" parent="Marcadores/SpawnOruga" unique_id=79910543 groups=["spawn_oruga"]]
+position = Vector2(555, 516)
+
+[node name="SpawnOruga3" type="Marker2D" parent="Marcadores/SpawnOruga" unique_id=1079125769 groups=["spawn_oruga"]]
+position = Vector2(198, 211)
+
+[node name="SpawnVolador" type="Node2D" parent="Marcadores" unique_id=805250018]
+
+[node name="SpawnVolador" type="Marker2D" parent="Marcadores/SpawnVolador" unique_id=73726075 groups=["spawn_volador"]]
+position = Vector2(389, 62)
+
+[node name="SpawnVolador2" type="Marker2D" parent="Marcadores/SpawnVolador" unique_id=297231656 groups=["spawn_volador"]]
+position = Vector2(583, 275)
+
+[node name="SpawnVolador3" type="Marker2D" parent="Marcadores/SpawnVolador" unique_id=1087504475 groups=["spawn_volador"]]
+position = Vector2(929.5455, 68.181816)
+
+[node name="SpawnVolador4" type="Marker2D" parent="Marcadores/SpawnVolador" unique_id=611380898 groups=["spawn_volador"]]
+position = Vector2(111.36365, 61.36364)
+
+[node name="SpawnJugador" type="Node2D" parent="Marcadores" unique_id=1781952559]
+
+[node name="SpawnJugador" type="Marker2D" parent="Marcadores/SpawnJugador" unique_id=185750292 groups=["spawn_jugador"]]
+position = Vector2(943, 513)
+
+[node name="Colisiones" type="Node2D" parent="." unique_id=208578634]
+
+[node name="ParedSuperior" type="StaticBody2D" parent="Colisiones" unique_id=704815777]
+position = Vector2(512, 8)
+
+[node name="Forma" type="CollisionShape2D" parent="Colisiones/ParedSuperior" unique_id=2104252266]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_xhaye")
+
+[node name="ParedInferior" type="StaticBody2D" parent="Colisiones" unique_id=1127724648]
+position = Vector2(512, 568)
+
+[node name="Forma" type="CollisionShape2D" parent="Colisiones/ParedInferior" unique_id=721713136]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_4jvuv")
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="Colisiones" unique_id=91276910]
+position = Vector2(8, 288)
+
+[node name="Forma" type="CollisionShape2D" parent="Colisiones/ParedIzquierda" unique_id=56984629]
+position = Vector2(7, 0)
+shape = SubResource("RectangleShape2D_ik5ga")
+
+[node name="ParedDerecha" type="StaticBody2D" parent="Colisiones" unique_id=1886361278]
+position = Vector2(1016, 288)
+
+[node name="Forma" type="CollisionShape2D" parent="Colisiones/ParedDerecha" unique_id=334521337]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_utlkj")

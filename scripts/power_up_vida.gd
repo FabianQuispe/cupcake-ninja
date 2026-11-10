@@ -10,7 +10,7 @@ func aplicar_vida(jugador: Jugador) -> void:
 	jugador.vida_cambiada.emit(jugador.vida)
 
 func obtener(jugador: Jugador) -> void:
-	aparicion = false
+	_aparicion = false
 	if jugador.vida < VIDA_MAX:
 		aplicar_vida(jugador)
 	queue_free()

@@ -24,7 +24,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_50i8n"]
 resource_name = "lanzar_jugador"
 length = 0.8
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

@@ -7,24 +7,24 @@ extends Plataforma
 @export var velocidad_movimiento := 100
 @onready var zona: Area2D = $Zona
 
-var posicion_iniciar: Vector2
-var posicion_finalizar: Vector2
-var direccion :=1
+var _posicion_iniciar: Vector2
+var _posicion_finalizar: Vector2
+var _direccion :=1
 
 func _ready() -> void:
 	super._ready()
 	zona.collision_layer = 0
-	posicion_iniciar = position
-	posicion_finalizar = position + recorrido
+	_posicion_iniciar = position
+	_posicion_finalizar = position + recorrido
 
 func actualizar(delta: float) -> void:
 	var posicion_anterior := position
-	var objetivo := posicion_finalizar
-	if direccion == -1:
-		objetivo = posicion_iniciar
+	var objetivo := _posicion_finalizar
+	if _direccion == -1:
+		objetivo = _posicion_iniciar
 	position = position.move_toward(objetivo, velocidad_movimiento * delta)
 	if position == objetivo:
-		direccion = -direccion
+		_direccion = -_direccion
 	var mover := position - posicion_anterior
 	mover_jugador(mover)
 

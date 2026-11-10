@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://42ixm48byqyx"]
 
 [ext_resource type="Texture2D" uid="uid://dh8buoj188mws" path="res://sprites-assets/enemigos/bomba_robot_volador.png" id="1_aqdsy"]
-[ext_resource type="Script" path="res://scripts/enemigos/bomba_enemigo.gd" id="1_clf6d"]
 
 [sub_resource type="Animation" id="Animation_1inse"]
 length = 0.2
@@ -43,7 +42,6 @@ _data = {
 
 [node name="Node2D" type="Node2D" unique_id=101541730]
 scale = Vector2(3.1199994, 3.1199994)
-script = ExtResource("1_clf6d")
 
 [node name="BombaEnemigo" type="Sprite2D" parent="." unique_id=1133887777]
 texture_filter = 1
